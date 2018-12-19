@@ -4,14 +4,16 @@ sys.path.append('/Users/Hsueh-Ti/Dropbox/BlenderToolbox')
 from include import *
 import bpy
 
+outputPath = './results/demo_edge.png'
+
 # # init blender
 imgRes_x = 1000
 imgRes_y = 1000 
-numSamples = 250 # should set it to perhaps 2000 for high quality paper images
+numSamples = 1000 # should set it to perhaps 2000 for high quality paper images
 blenderInit(imgRes_x, imgRes_y, numSamples)
 
 # # read mesh 
-meshPath = './meshes/test.ply'
+meshPath = './meshes/spot.ply'
 location = (-0.3, 0.6, -0.04)
 rotation = (90, 0,0)
 scale = (1.5,1.5,1.5)
@@ -26,9 +28,9 @@ bpy.ops.object.shade_flat()
 # subdivision(mesh, level)
 
 # # set material (option1: render mesh with edges)
-edgeThickness = 0.002
+edgeThickness = 0.004
 edgeColor = (0,0,0,0)
-meshColor = (0.5,0.5,0.5,0)
+meshColor = (0.7,0.7,0.7,0)
 setMat_edge(mesh, edgeThickness, edgeColor, meshColor)
 
 # # set invisible plane
@@ -60,6 +62,6 @@ setLight_ambient(ambientColor)
 bpy.ops.wm.save_mainfile(filepath='./test.blend')
 
 # # save rendering
-bpy.data.scenes['Scene'].render.filepath = './test.png'
+bpy.data.scenes['Scene'].render.filepath = outputPath
 bpy.data.scenes['Scene'].camera = cam
 bpy.ops.render.render(write_still = True)

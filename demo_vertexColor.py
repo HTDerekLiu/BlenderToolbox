@@ -4,7 +4,7 @@ sys.path.append('/Users/Hsueh-Ti/Dropbox/BlenderToolbox')
 from include import *
 import bpy
 
-outputPath = './results/demo_iglGreen.png'
+outputPath = './results/demo_vertexColor.png'
 
 # # init blender
 imgRes_x = 1000
@@ -27,11 +27,9 @@ bpy.ops.object.shade_smooth()
 level = 2
 subdivision(mesh, level)
 
-# set material (option2: normal mode)
-saturation = 1.3
-meshColor = iglGreen
-brightness = 1.0
-setMat_normal(mesh, saturation, brightness, meshColor)
+# # set material (option3: show vertex color)
+saturation = 1.2
+setMat_VColor(mesh, saturation)
 
 # # set invisible plane
 groundCenter = (0,0,0)
@@ -39,8 +37,8 @@ groundSize = 5
 invisibleGround(groundCenter, groundSize)
 
 # # ambient occlusion
-AOStrength = 1.0
-ambientOcclusion(AOStrength)
+# AOStrength = 1.5
+# ambientOcclusion(AOStrength)
 
 # # set camera
 camLocation = (1.9,2,2.2)
@@ -50,7 +48,7 @@ cam = setCamera(camLocation, lookAtLocation, focalLength)
 
 # # set sunlight
 lightAngle = (-15,-34,-155) 
-strength = 4
+strength = 3
 shadowSoftness = 0.05
 sun = setLight_sun(lightAngle, strength, shadowSoftness)
 
