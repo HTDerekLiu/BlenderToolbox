@@ -1,3 +1,6 @@
+import sys
+sys.path.append('./utils')
+
 from ambientOcclusion import *
 from blenderInit import *
 from invisibleGround import *

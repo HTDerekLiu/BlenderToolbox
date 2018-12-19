@@ -11,7 +11,7 @@ numSamples = 250 # should set it to perhaps 2000 for high quality paper images
 blenderInit(imgRes_x, imgRes_y, numSamples)
 
 # # read mesh 
-meshPath = './test.ply'
+meshPath = './meshes/test.ply'
 location = (-0.3, 0.6, -0.04)
 rotation = (90, 0,0)
 scale = (1.5,1.5,1.5)
