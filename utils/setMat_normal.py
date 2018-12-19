@@ -1,6 +1,6 @@
 import bpy
 
-def setMat_normal(mesh, saturation = 1.0, meshColor = (144.0/255.0, 210.0/255.0, 236.0/255.0,0)):
+def setMat_normal(mesh, saturation = 1.0, brightness = 0.8, meshColor = (144.0/255.0, 210.0/255.0, 236.0/255.0,0)):
 	mat = bpy.data.materials.new('MeshMaterial')
 	mesh.data.materials.append(mat)
 	mat.use_nodes = True
@@ -19,3 +19,4 @@ def setMat_normal(mesh, saturation = 1.0, meshColor = (144.0/255.0, 210.0/255.0,
 	tree.nodes["Glossy BSDF"].inputs['Color'].default_value = meshColor
 	tree.nodes["Hue Saturation Value"].inputs['Color'].default_value = meshColor
 	tree.nodes["Hue Saturation Value"].inputs['Saturation'].default_value = saturation
+	tree.nodes["Hue Saturation Value"].inputs['Value'].default_value = brightness

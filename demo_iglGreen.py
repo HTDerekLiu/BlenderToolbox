@@ -26,9 +26,10 @@ level = 2
 subdivision(mesh, level)
 
 # set material (option2: normal mode)
-saturation = 1.0
-meshColor = (144.0/255, 210.0/255, 236.0/255, 0)
-setMat_normal(mesh, saturation, meshColor)
+saturation = 1.3
+meshColor = (153.0/255, 203.0/255, 67.0/255, 0)
+brightness = 0.8
+setMat_normal(mesh, saturation, brightness, meshColor)
 
 # # set invisible plane
 groundCenter = (0,0,0)
@@ -36,7 +37,7 @@ groundSize = 5
 invisibleGround(groundCenter, groundSize)
 
 # # ambient occlusion
-AOStrength = 1.5
+AOStrength = 1.0
 ambientOcclusion(AOStrength)
 
 # # set camera
