@@ -4,13 +4,14 @@ sys.path.append('/Users/Hsueh-Ti/Dropbox/BlenderToolbox')
 from include import *
 import bpy
 
-outputPath = './results/demo_coralRed.png'
+outputPath = './results/demo_singleColor.png'
 
 # # init blender
-imgRes_x = 1000
-imgRes_y = 1000 
-numSamples = 1000 # should set it to perhaps 2000 for high quality paper images
-blenderInit(imgRes_x, imgRes_y, numSamples)
+imgRes_x = 1000 # should set to > 2000 for paper figures
+imgRes_y = 1000 # should set to > 2000 for paper figures
+numSamples = 100 # should set to >1000 for high quality paper images
+exposure = 1.5
+blenderInit(imgRes_x, imgRes_y, numSamples, exposure)
 
 # # read mesh 
 meshPath = './meshes/spot.ply'
@@ -28,15 +29,16 @@ level = 2
 subdivision(mesh, level)
 
 # set material (option2: normal mode)
-saturation = 1.3
-meshColor = coralRed
-brightness = 1.3
+saturation = 1.5
+brightness = 1.0
+meshColor = (144.0/255, 210.0/255, 236.0/255, 0)
 setMat_normal(mesh, saturation, brightness, meshColor)
 
-# # set invisible plane
+# # set invisible plane (shadow catcher)
 groundCenter = (0,0,0)
 groundSize = 5
-invisibleGround(groundCenter, groundSize)
+shadowDarkeness = 0.18
+invisibleGround(groundCenter, groundSize, shadowDarkeness)
 
 # # ambient occlusion
 AOStrength = 1.0
@@ -50,12 +52,12 @@ cam = setCamera(camLocation, lookAtLocation, focalLength)
 
 # # set sunlight
 lightAngle = (-15,-34,-155) 
-strength = 4
-shadowSoftness = 0.05
+strength = 2
+shadowSoftness = 0.1
 sun = setLight_sun(lightAngle, strength, shadowSoftness)
 
 # # set ambient light
-ambientColor = (0.1,0.1,0.1)
+ambientColor = (0.2,0.2,0.2)
 setLight_ambient(ambientColor)
 
 # # save blender file

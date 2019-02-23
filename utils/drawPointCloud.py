@@ -2,7 +2,7 @@ import bpy
 
 def drawPointCloud(mesh, ptColor, ptSize, numPt, emitFrom = 'VERT', ptSaturation = 1.0, ptBrightness = 1.0): 
     # initialize a primitive sphere
-    bpy.ops.mesh.primitive_uv_sphere_add(size = 1.0, location = (1000,1000,1000))
+    bpy.ops.mesh.primitive_uv_sphere_add(size = 1.0, location = (1e7,1e7,1e7))
     sphere = bpy.context.object
     bpy.ops.object.shade_smooth()
     mat = bpy.data.materials.new(name="sphereMat")
@@ -27,3 +27,4 @@ def drawPointCloud(mesh, ptColor, ptSize, numPt, emitFrom = 'VERT', ptSaturation
     bpy.data.particles["ParticleSettings"].particle_size = ptSize
     bpy.data.particles["ParticleSettings"].physics_type = 'NO'
     bpy.data.particles["ParticleSettings"].use_render_emitter = False
+    bpy.data.particles["ParticleSettings"].use_emit_random = False

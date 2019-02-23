@@ -2,9 +2,9 @@ import sys
 sys.path.append('/Users/Hsueh-Ti/Dropbox/BlenderToolbox')
 
 from include import *
-import bpy
 
-outputPath = './results/demo_edge.png'
+
+outputPath = './results/demo_realValue.png'
 
 # # init blender
 imgRes_x = 1000 # should set to > 2000 for paper figures
@@ -14,7 +14,7 @@ exposure = 1.8
 blenderInit(imgRes_x, imgRes_y, numSamples, exposure)
 
 # # read mesh 
-meshPath = './meshes/spot.ply'
+meshPath = './meshes/spot_10K.ply'
 location = (-0.3, 0.6, -0.04)
 rotation = (90, 0,0)
 scale = (1.5,1.5,1.5)
@@ -28,13 +28,13 @@ bpy.ops.object.shade_flat()
 # level = 2
 # subdivision(mesh, level)
 
-# # set material (option1: render mesh with edges)
-meshColor = (0.9,0.9,0.9,0)
-edgeThickness = 0.004
-edgeColor = (0,0,0,0)
-edgeColorSaturation = 1.0
-edgeColorBrightness = 1.0
-setMat_edge(mesh, edgeThickness, edgeColor, meshColor, edgeColorSaturation, edgeColorBrightness)
+# # set color
+colormap = 'default'
+C = np.loadtxt('./meshes/spot_10K_realVal.txt')
+setVColor(mesh,C, colormap)
+
+# # set material
+setMat_VColor(mesh)
 
 # # set invisible plane
 groundCenter = (0,0,0)
@@ -67,6 +67,6 @@ setLight_ambient(ambientColor)
 bpy.ops.wm.save_mainfile(filepath='./test.blend')
 
 # # save rendering
-bpy.data.scenes['Scene'].render.filepath = outputPath
-bpy.data.scenes['Scene'].camera = cam
-bpy.ops.render.render(write_still = True)
+# bpy.data.scenes['Scene'].render.filepath = outputPath
+# bpy.data.scenes['Scene'].camera = cam
+# bpy.ops.render.render(write_still = True)

@@ -1,20 +1,23 @@
-import sys
-sys.path.append('./utils')
+import bpy, bmesh
+import numpy as np
 
-from ambientOcclusion import *
-from blenderInit import *
-from drawPointCloud import *
-from invisibleGround import *
-from lookAt import *
-from readPLY import *
-from readOBJ import *
-from setCamera import *
-from setLight_sun import *
-from setLight_ambient import *
-from setMat_edge import *
-from setMat_normal import *
-from setMat_VColor import *
-from subdivision import *
+from utils.ambientOcclusion import *
+from utils.blenderInit import *
+from utils.colorMap import *
+from utils.drawPointCloud import *
+from utils.invisibleGround import *
+from utils.lookAt import *
+from utils.readPLY import *
+from utils.readOBJ import *
+from utils.setCamera import *
+from utils.setLight_sun import *
+from utils.setLight_ambient import *
+from utils.setMat_edge import *
+from utils.setMat_normal import *
+from utils.setMat_transparent import *
+from utils.setMat_VColor import *
+from utils.setVColor import *
+from utils.subdivision import *
 
 derekBlue = (144.0/255, 210.0/255, 236.0/255, 0)
 coralRed = (250.0/255, 114.0/255, 104.0/255, 0)

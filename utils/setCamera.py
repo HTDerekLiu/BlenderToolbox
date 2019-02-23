@@ -1,7 +1,7 @@
 import bpy
 import math
 import mathutils
-from lookAt import *
+from utils.lookAt import *
 
 def setCamera(camLocation, lookAtLocation = (0,0,0), focalLength = 35):
 	# initialize camera

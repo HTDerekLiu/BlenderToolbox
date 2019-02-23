@@ -1,6 +1,6 @@
 import bpy
 
-def blenderInit(resolution_x, resolution_y, numSamples = 128):
+def blenderInit(resolution_x, resolution_y, numSamples = 128, exposure = 1.5):
 	# clear all
 	bpy.ops.wm.read_homefile()
 	bpy.ops.object.select_all(action = 'SELECT')
@@ -14,3 +14,4 @@ def blenderInit(resolution_x, resolution_y, numSamples = 128):
 	# bpy.context.scene.use_denoising = True
 	bpy.context.scene.cycles.samples = numSamples # we can set much higher like 2000 samples for high quality images
 	# bpy.context.scene.cycles.max_bounces = 7
+	bpy.context.scene.cycles.film_exposure = exposure
