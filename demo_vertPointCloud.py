@@ -1,6 +1,5 @@
 import sys
-sys.path.append('/Users/hsuehtil/Dropbox/BlenderToolbox2.8')
-sys.path.append('/home/hsuehtil/Dropbox/BlenderToolbox2.8')
+sys.path.append('/Users/hsuehtil/Dropbox/BlenderToolbox')
 
 from include import *
 import bpy
@@ -11,7 +10,7 @@ outputPath = './results/demo_vertPointCloud.png'
 imgRes_x = 1000 # should set to > 2000 for paper figures
 imgRes_y = 1000 # should set to > 2000 for paper figures
 numSamples = 100 # should set to >1000 for high quality paper images
-exposure = 1.8
+exposure = 2.0
 blenderInit(imgRes_x, imgRes_y, numSamples, exposure)
 
 # # read mesh 
@@ -23,9 +22,9 @@ mesh = readPLY(meshPath, location, rotation, scale)
 
 # # draw point cloud
 ptColor = (144.0/255, 210.0/255, 236.0/255, 0)
-ptSaturation = 1.7
+ptSaturation = 1.8
 ptBrightness = 0.8
-ptSize = 0.012
+ptSize = 0.014
 numPt = len(mesh.data.vertices) # this needs to be the number of vertices for vertex_point_cloud
 drawPointCloud(mesh, ptColor, ptSize, numPt, ptSaturation, ptBrightness)
 

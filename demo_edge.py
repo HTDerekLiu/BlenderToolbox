@@ -33,7 +33,7 @@ edgeThickness = 0.004
 edgeColor = (0,0,0,0)
 edgeColorSaturation = 1.0
 edgeColorBrightness = 1.0
-meshColor = (0.5,0.5,0.5,0)
+meshColor = (0.8,0.8,0.8,0)
 AOStrength = 1.0
 setMat_edge(mesh, edgeThickness, edgeColor, edgeColorSaturation, edgeColorBrightness, meshColor, AOStrength)
 

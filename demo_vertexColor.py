@@ -10,7 +10,7 @@ outputPath = './results/demo_vertexColor.png'
 imgRes_x = 1000 # should set to > 2000 for paper figures
 imgRes_y = 1000 # should set to > 2000 for paper figures
 numSamples = 100 # should set to >1000 for high quality paper images
-exposure = 1.5
+exposure = 2.0
 blenderInit(imgRes_x, imgRes_y, numSamples, exposure)
 
 # # read mesh 
@@ -31,8 +31,7 @@ subdivision(mesh, level)
 # # set material (option3: show vertex color)
 saturation = 1.2
 brightness = 1.0
-AOStrength = 0.0
-setMat_VColor(mesh, saturation, brightness, AOStrength)
+setMat_VColor(mesh, saturation, brightness)
 
 # # set invisible plane (shadow catcher)
 groundCenter = (0,0,0)
