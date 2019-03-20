@@ -1,5 +1,5 @@
 import sys
-sys.path.append('/Users/Hsueh-Ti/Dropbox/BlenderToolbox')
+sys.path.append('/Users/hsuehtil/Dropbox/BlenderToolbox')
 
 from include import *
 import bpy
@@ -31,16 +31,14 @@ subdivision(mesh, level)
 # # set material (option3: show vertex color)
 saturation = 1.2
 brightness = 1.0
-setMat_VColor(mesh, saturation, brightness)
+AOStrength = 0.0
+setMat_VColor(mesh, saturation, brightness, AOStrength)
 
-# # set invisible plane
+# # set invisible plane (shadow catcher)
 groundCenter = (0,0,0)
-groundSize = 5
-invisibleGround(groundCenter, groundSize)
-
-# # ambient occlusion
-# AOStrength = 1.5
-# ambientOcclusion(AOStrength)
+shadowDarkeness = 0.05
+groundSize = 20
+invisibleGround(groundCenter, groundSize, shadowDarkeness)
 
 # # set camera
 camLocation = (1.9,2,2.2)
@@ -55,7 +53,7 @@ shadowSoftness = 0.1
 sun = setLight_sun(lightAngle, strength, shadowSoftness)
 
 # # set ambient light
-ambientColor = (0.1,0.1,0.1)
+ambientColor = (0.2,0.2,0.2,1)
 setLight_ambient(ambientColor)
 
 # # save blender file

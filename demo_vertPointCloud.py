@@ -1,5 +1,6 @@
 import sys
-sys.path.append('/Users/Hsueh-Ti/Dropbox/BlenderToolbox')
+sys.path.append('/Users/hsuehtil/Dropbox/BlenderToolbox2.8')
+sys.path.append('/home/hsuehtil/Dropbox/BlenderToolbox2.8')
 
 from include import *
 import bpy
@@ -22,21 +23,17 @@ mesh = readPLY(meshPath, location, rotation, scale)
 
 # # draw point cloud
 ptColor = (144.0/255, 210.0/255, 236.0/255, 0)
-ptSaturation = 1.5
+ptSaturation = 1.7
 ptBrightness = 0.8
-ptSize = 0.015
+ptSize = 0.012
 numPt = len(mesh.data.vertices) # this needs to be the number of vertices for vertex_point_cloud
-emitFrom = 'VERT' 
-drawPointCloud(mesh, ptColor, ptSize, numPt, emitFrom, ptSaturation, ptBrightness)
+drawPointCloud(mesh, ptColor, ptSize, numPt, ptSaturation, ptBrightness)
 
-# # set invisible plane
+# # set invisible plane (shadow catcher)
 groundCenter = (0,0,0)
-groundSize = 5
-invisibleGround(groundCenter, groundSize)
-
-# # ambient occlusion
-# AOStrength = 1.0
-# ambientOcclusion(AOStrength)
+shadowDarkeness = 0.05
+groundSize = 20
+invisibleGround(groundCenter, groundSize, shadowDarkeness)
 
 # # set camera
 camLocation = (1.9,2,2.2)
@@ -51,13 +48,13 @@ shadowSoftness = 0.1
 sun = setLight_sun(lightAngle, strength, shadowSoftness)
 
 # # set ambient light
-ambientColor = (0.1,0.1,0.1)
+ambientColor = (0.1,0.1,0.1,1)
 setLight_ambient(ambientColor)
 
 # # save blender file
 bpy.ops.wm.save_mainfile(filepath='./test.blend')
 
-# # save rendering
+# # # save rendering
 bpy.data.scenes['Scene'].render.filepath = outputPath
 bpy.data.scenes['Scene'].camera = cam
 bpy.ops.render.render(write_still = True)

@@ -1,5 +1,5 @@
 import sys
-sys.path.append('/Users/Hsueh-Ti/Dropbox/BlenderToolbox')
+sys.path.append('/Users/hsuehtil/Dropbox/BlenderToolbox')
 
 from include import *
 import bpy
@@ -29,29 +29,25 @@ bpy.ops.object.shade_flat()
 # subdivision(mesh, level)
 
 # # set material (option1: render mesh with edges)
-meshColor = (0.9,0.9,0.9,0)
 edgeThickness = 0.004
 edgeColor = (0,0,0,0)
 edgeColorSaturation = 1.0
 edgeColorBrightness = 1.0
-setMat_edge(mesh, edgeThickness, edgeColor, meshColor, edgeColorSaturation, edgeColorBrightness)
+meshColor = (0.5,0.5,0.5,0)
+AOStrength = 1.0
+setMat_edge(mesh, edgeThickness, edgeColor, edgeColorSaturation, edgeColorBrightness, meshColor, AOStrength)
 
-# # set invisible plane
+# # set invisible plane (shadow catcher)
 groundCenter = (0,0,0)
-groundSize = 5
-shadowDarkeness = 0.18
+shadowDarkeness = 0.05
+groundSize = 20
 invisibleGround(groundCenter, groundSize, shadowDarkeness)
-
-# # ambient occlusion
-AOStrength = 1.5
-ambientOcclusion(AOStrength)
 
 # # set camera
 camLocation = (1.9,2,2.2)
 lookAtLocation = (0,0,0.5)
 focalLength = 45
 cam = setCamera(camLocation, lookAtLocation, focalLength)
-
 
 # # set sunlight
 lightAngle = (-15,-34,-155) 
@@ -60,13 +56,13 @@ shadowSoftness = 0.1
 sun = setLight_sun(lightAngle, strength, shadowSoftness)
 
 # # set ambient light
-ambientColor = (0.1,0.1,0.1)
+ambientColor = (0.2,0.2,0.2,1)
 setLight_ambient(ambientColor)
 
 # # save blender file
 bpy.ops.wm.save_mainfile(filepath='./test.blend')
 
-# # save rendering
+# # # save rendering
 bpy.data.scenes['Scene'].render.filepath = outputPath
 bpy.data.scenes['Scene'].camera = cam
 bpy.ops.render.render(write_still = True)
