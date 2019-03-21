@@ -3,7 +3,7 @@ sys.path.append('/home/hsuehtil/Dropbox/BlenderToolbox/cycles')
 from include import *
 import bpy
 
-outputPath = './results/demo_toon.png'
+outputPath = './results/demo_tone.png'
 
 # # init blender
 imgRes_x = 1000 # should set to > 2000 for paper figures
@@ -29,11 +29,12 @@ subdivision(mesh, level)
 
 # # set material (option1: render mesh with edges)
 colorPos = (0.05, 0.25) # the length is the number of discrete color (0~1)
-colorDark = (0.9, 0.15, 0.45) # len(colorDark) = len(colorPos) + 1
+colorDarkness = (0.9, 0.45, 0.25) # len(colorDark) = len(colorPos) + 1
 saturation = 1.5
 brightness = 1.0
+shadowSize = 0.4
 meshColor = coralRed
-setMat_toon(mesh, meshColor, saturation, brightness, colorPos, colorDark)
+setMat_tone(mesh, meshColor, saturation, brightness,shadowSize, colorPos, colorDarkness)
 
 # # set invisible plane (shadow catcher)
 groundCenter = (0,0,0)

@@ -15,7 +15,7 @@ from utils.setMat_edge import *
 from utils.setMat_singleColor import *
 from utils.setMat_pointCloud import *
 from utils.setMat_VColor import *
-from utils.setMat_toon import *
+from utils.setMat_tone import *
 from utils.subdivision import *
 
 derekBlue = (144.0/255, 210.0/255, 236.0/255, 0)

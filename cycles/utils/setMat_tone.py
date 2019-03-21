@@ -1,10 +1,11 @@
 import bpy
 import numpy as np
 
-def setMat_toon(mesh, \
+def setMat_tone(mesh, \
             meshColor, \
             saturation, \
             brightness, \
+            shadowSize = 0.4, \
             colorPos = (0.05, 0.15),\
             hsv_V = (0.6, 0.0, 0.3)):
     mat = bpy.data.materials.new('MeshMaterial')
@@ -28,7 +29,6 @@ def setMat_toon(mesh, \
     initRGB.inputs['Value'].default_value = hsv_V[0]
     initDiff = tree.nodes.new('ShaderNodeBsdfDiffuse')
     tree.links.new(initRGB.outputs['Color'], initDiff.inputs['Color'])
-
 
     # init array
     RGBList = [None] * (numColor - 1)
@@ -69,7 +69,23 @@ def setMat_toon(mesh, \
     tree.links.new(MixList[-1].outputs['Shader'], addShader.inputs[0])
     tree.links.new(mainColor.outputs['Color'], principleNode.inputs['Base Color'])
     tree.links.new(principleNode.outputs['BSDF'], addShader.inputs[1])
-    tree.links.new(addShader.outputs['Shader'], tree.nodes['Material Output'].inputs['Surface'])
+
+    # add darkness to the edges
+    mixEnd = tree.nodes.new('ShaderNodeMixShader')
+    tree.links.new(mixEnd.outputs['Shader'], tree.nodes['Material Output'].inputs['Surface'])
+
+    edgeShadow = tree.nodes.new('ShaderNodeHueSaturation')
+    edgeShadow.inputs['Color'].default_value = meshColor
+    edgeShadow.inputs['Saturation'].default_value = saturation
+    edgeShadow.inputs['Value'].default_value = brightness / 5
+    tree.links.new(edgeShadow.outputs['Color'], mixEnd.inputs[2])
+
+    fresnelEnd = tree.nodes.new('ShaderNodeFresnel')
+    RampEnd = tree.nodes.new('ShaderNodeValToRGB')
+    RampEnd.color_ramp.elements[1].position = shadowSize
+    tree.links.new(fresnelEnd.outputs[0], RampEnd.inputs['Fac'])
+    tree.links.new(RampEnd.outputs['Color'], mixEnd.inputs[0])
+    tree.links.new(addShader.outputs[0], mixEnd.inputs[1])
 
     # add normal to the color
     fresnelNode = tree.nodes.new('ShaderNodeFresnel')
