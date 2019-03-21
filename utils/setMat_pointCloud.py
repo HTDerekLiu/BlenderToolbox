@@ -1,6 +1,10 @@
 import bpy
 
-def drawPointCloud(mesh, ptColor, ptSize, numPt, ptSaturation = 1.0, ptBrightness = 1.0): 
+def setMat_pointCloud(mesh, \
+                ptColor, \
+                ptSize, \
+                ptSaturation = 1.0, \
+                ptBrightness = 1.0): 
     # initialize a primitive sphere
     bpy.ops.mesh.primitive_uv_sphere_add(radius = 1.0, location = (1e7,1e7,1e7))
     sphere = bpy.context.object
@@ -19,12 +23,12 @@ def drawPointCloud(mesh, ptColor, ptSize, numPt, ptSaturation = 1.0, ptBrightnes
     # init particle system
     bpy.context.view_layer.objects.active = mesh
     bpy.ops.object.particle_system_add()
-    bpy.data.particles["ParticleSettings"].count = numPt
+    bpy.data.particles["ParticleSettings"].count = len(mesh.data.vertices)
     bpy.data.particles["ParticleSettings"].frame_start = 0
     bpy.data.particles["ParticleSettings"].frame_end = 0
     bpy.data.particles["ParticleSettings"].render_type = 'OBJECT'
     bpy.data.particles["ParticleSettings"].instance_object = sphere
-    bpy.data.particles["ParticleSettings"].emit_from = 'VERT' # place points on either 'VERT' or 'FACE'
+    bpy.data.particles["ParticleSettings"].emit_from = 'VERT'
     bpy.data.particles["ParticleSettings"].particle_size = ptSize
     bpy.data.particles["ParticleSettings"].physics_type = 'NO'
     bpy.data.particles["ParticleSettings"].use_emit_random = False

@@ -1,10 +1,10 @@
 import sys
-sys.path.append('/Users/hsuehtil/Dropbox/BlenderToolbox')
+sys.path.append('/home/hsuehtil/Dropbox/BlenderToolbox')
 
 from include import *
 import bpy
 
-outputPath = './results/demo_vertPointCloud.png'
+outputPath = './results/demo_vertexPoints.png'
 
 # # init blender
 imgRes_x = 1000 # should set to > 2000 for paper figures
@@ -14,19 +14,35 @@ exposure = 2.0
 blenderInit(imgRes_x, imgRes_y, numSamples, exposure)
 
 # # read mesh 
-meshPath = './meshes/spot_pt.ply'
+meshPath = './meshes/spot.ply' 
 location = (-0.3, 0.6, -0.04)
 rotation = (90, 0,0)
 scale = (1.5,1.5,1.5)
 mesh = readPLY(meshPath, location, rotation, scale)
 
-# # draw point cloud
+# # set shading
+# bpy.ops.object.shade_smooth()
+bpy.ops.object.shade_flat()
+
+# # subdivision
+level = 0
+subdivision(mesh, level)
+
+# # set mesh material
+saturation = 1.0
+brightness = 2.0
+meshColor = (1,1,1,1)
+AOStrength = 0.0
+setMat_singleColor(mesh, saturation, brightness, meshColor, AOStrength)
+
+# # draw points on vertices
 ptColor = (144.0/255, 210.0/255, 236.0/255, 0)
 ptSaturation = 1.8
 ptBrightness = 0.8
 ptSize = 0.014
-numPt = len(mesh.data.vertices) # this needs to be the number of vertices for vertex_point_cloud
-drawPointCloud(mesh, ptColor, ptSize, numPt, ptSaturation, ptBrightness)
+emitType = 'VERT'
+showMesh = True
+drawPoints(mesh, ptColor, ptSize, ptSaturation, ptBrightness, emitType, showMesh)
 
 # # set invisible plane (shadow catcher)
 groundCenter = (0,0,0)
