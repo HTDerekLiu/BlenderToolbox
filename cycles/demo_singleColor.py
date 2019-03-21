@@ -1,20 +1,19 @@
 import sys
-sys.path.append('/Users/hsuehtil/Dropbox/BlenderToolbox')
-
+sys.path.append('/Users/hsuehtil/Dropbox/BlenderToolbox/cycles')
 from include import *
 import bpy
 
-outputPath = './results/demo_vertexColor.png'
+outputPath = './results/demo_singleColor.png'
 
 # # init blender
 imgRes_x = 1000 # should set to > 2000 for paper figures
 imgRes_y = 1000 # should set to > 2000 for paper figures
 numSamples = 100 # should set to >1000 for high quality paper images
-exposure = 2.0
+exposure = 2.0 # need to double check
 blenderInit(imgRes_x, imgRes_y, numSamples, exposure)
 
-# # read mesh 
-meshPath = './meshes/spot.ply'
+# read mesh 
+meshPath = '../meshes/spot.ply'
 location = (-0.3, 0.6, -0.04)
 rotation = (90, 0,0)
 scale = (1.5,1.5,1.5)
@@ -28,10 +27,12 @@ bpy.ops.object.shade_smooth()
 level = 2
 subdivision(mesh, level)
 
-# # set material (option3: show vertex color)
-saturation = 1.2
+# # set material (option2: normal mode)
+saturation = 1.8
 brightness = 1.0
-setMat_VColor(mesh, saturation, brightness)
+meshColor = derekBlue
+AOStrength = 0.5
+setMat_singleColor(mesh, saturation, brightness, meshColor, AOStrength)
 
 # # set invisible plane (shadow catcher)
 groundCenter = (0,0,0)
