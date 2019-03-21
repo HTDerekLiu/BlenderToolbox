@@ -1,5 +1,5 @@
 import sys
-sys.path.append('/Users/hsuehtil/Dropbox/BlenderToolbox/cycles')
+sys.path.append('/home/hsuehtil/Dropbox/BlenderToolbox/cycles')
 from include import *
 import bpy
 
@@ -29,15 +29,15 @@ subdivision(mesh, level)
 
 # # set material (option1: render mesh with edges)
 colorPos = (0.05, 0.25) # the length is the number of discrete color (0~1)
+colorDark = (0.9, 0.15, 0.45) # len(colorDark) = len(colorPos) + 1
 saturation = 1.5
 brightness = 1.0
 meshColor = coralRed
-hsv_Vrange = (0.9, 0.15)
-setMat_toon(mesh, meshColor, saturation, brightness, colorPos, hsv_Vrange)
+setMat_toon(mesh, meshColor, saturation, brightness, colorPos, colorDark)
 
 # # set invisible plane (shadow catcher)
 groundCenter = (0,0,0)
-shadowDarkeness = 0.05
+shadowDarkeness = 0.7
 groundSize = 20
 invisibleGround(groundCenter, groundSize, shadowDarkeness)
 

@@ -1,5 +1,5 @@
 import sys
-sys.path.append('/Users/hsuehtil/Dropbox/BlenderToolbox/cycles')
+sys.path.append('/home/hsuehtil/Dropbox/BlenderToolbox/cycles')
 
 from include import *
 import bpy
@@ -29,7 +29,7 @@ setMat_pointCloud(mesh, ptColor, ptSize, ptSaturation, ptBrightness)
 
 # # set invisible plane (shadow catcher)
 groundCenter = (0,0,0)
-shadowDarkeness = 0.05
+shadowDarkeness = 0.6
 groundSize = 20
 invisibleGround(groundCenter, groundSize, shadowDarkeness)
 
