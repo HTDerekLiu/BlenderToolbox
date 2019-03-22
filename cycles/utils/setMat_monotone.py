@@ -1,12 +1,13 @@
 import bpy
 import numpy as np
 
-def setMat_tone(mesh, \
+def setMat_monotone(mesh, \
             meshColor, \
             saturation, \
             brightness, \
             shadowSize = 0.4, \
-            colorPos = (0.05, 0.15),\
+            colorPos = (0.05, 0.4),\
+            colorPosMidPercent = (0.9, 0.5),\
             hsv_V = (0.6, 0.0, 0.3)):
     mat = bpy.data.materials.new('MeshMaterial')
     mesh.data.materials.append(mat)
@@ -46,8 +47,11 @@ def setMat_tone(mesh, \
         DiffList[ii] = tree.nodes.new('ShaderNodeBsdfDiffuse')
         # Color Ramp
         RampList[ii] = tree.nodes.new('ShaderNodeValToRGB')
-        RampList[ii].color_ramp.interpolation = 'CONSTANT'
-        RampList[ii].color_ramp.elements[1].position = colorPos[ii]
+        RampList[ii].color_ramp.interpolation = 'EASE'
+        RampList[ii].color_ramp.elements.new(0.5)
+        RampList[ii].color_ramp.elements[1].position = colorPos[ii] * colorPosMidPercent[ii]
+        RampList[ii].color_ramp.elements[1].color = (0,0,0,1)
+        RampList[ii].color_ramp.elements[2].position = colorPos[ii]
         # Mix shader
         MixList[ii] = tree.nodes.new('ShaderNodeMixShader')
         # Link shaders
@@ -78,7 +82,9 @@ def setMat_tone(mesh, \
     edgeShadow.inputs['Color'].default_value = meshColor
     edgeShadow.inputs['Saturation'].default_value = saturation
     edgeShadow.inputs['Value'].default_value = brightness / 5
-    tree.links.new(edgeShadow.outputs['Color'], mixEnd.inputs[2])
+    diffEnd = tree.nodes.new('ShaderNodeBsdfDiffuse')
+    tree.links.new(edgeShadow.outputs['Color'], diffEnd.inputs['Color'])
+    tree.links.new(diffEnd.outputs['BSDF'], mixEnd.inputs[2])
 
     fresnelEnd = tree.nodes.new('ShaderNodeFresnel')
     RampEnd = tree.nodes.new('ShaderNodeValToRGB')
