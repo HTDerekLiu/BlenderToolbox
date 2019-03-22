@@ -1,5 +1,5 @@
 import sys
-sys.path.append('/home/hsuehtil/Dropbox/BlenderToolbox/cycles')
+sys.path.append('/Users/hsuehtil/Dropbox/BlenderToolbox/cycles')
 from include import *
 import bpy
 
@@ -30,11 +30,11 @@ subdivision(mesh, level)
 # # set material (option1: render mesh with edges)
 colorPos = (0.05, 0.4) # the "size" of each discrete color (0~1), the "len(colorPos)+1" is the number of discrete colors
 colorPosMidPercent = (0.9, 0.5) # (0~1) control the smooth of the transition between colors (the smaller the smoother)
-colorDarkness = (0.7, 0.45, 0.25) # darkness if each discrete color, len(colorDark) = len(colorPos) + 1
+colorDarkness = (0.8, 0.3, 0) # darkness if each discrete color, len(colorDark) = len(colorPos) + 1
 saturation = 1.5
 brightness = 1.0
 shadowSize = 0.4
-meshColor = coralRed
+meshColor = derekBlue
 setMat_monotone(mesh, meshColor, saturation, brightness,shadowSize, colorPos, colorPosMidPercent, colorDarkness)
 
 # # set invisible plane (shadow catcher)
