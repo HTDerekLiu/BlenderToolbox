@@ -2,9 +2,7 @@ import bpy
 
 def setMat_pointCloud(mesh, \
                 ptColor, \
-                ptSize, \
-                ptSaturation = 1.0, \
-                ptBrightness = 1.0): 
+                ptSize): 
     # initialize a primitive sphere
     bpy.ops.mesh.primitive_uv_sphere_add(radius = 1.0, location = (1e7,1e7,1e7))
     sphere = bpy.context.object
@@ -15,9 +13,10 @@ def setMat_pointCloud(mesh, \
     mat.use_nodes = True
     tree = mat.node_tree
     tree.nodes.new('ShaderNodeHueSaturation')
-    tree.nodes["Hue Saturation Value"].inputs['Color'].default_value = ptColor
-    tree.nodes["Hue Saturation Value"].inputs['Saturation'].default_value = ptSaturation
-    tree.nodes["Hue Saturation Value"].inputs['Value'].default_value = ptBrightness
+    tree.nodes["Hue Saturation Value"].inputs['Color'].default_value = ptColor.RGBA
+    tree.nodes["Hue Saturation Value"].inputs['Saturation'].default_value = ptColor.S
+    tree.nodes["Hue Saturation Value"].inputs['Value'].default_value = ptColor.V
+    tree.nodes["Hue Saturation Value"].inputs['Hue'].default_value = ptColor.H
     tree.links.new(tree.nodes["Hue Saturation Value"].outputs['Color'], tree.nodes['Principled BSDF'].inputs['Base Color'])
 
     # init particle system

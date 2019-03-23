@@ -2,9 +2,7 @@ import bpy
 
 def setMat_edge(mesh, \
 				edgeThickness, \
-				edgeColor = (0,0,0,0), \
-				edgesaturation = 1.0, \
-				edgebrightness = 1.0, \
+				edgeColor, \
 				meshColor = (0.7,0.7,0.7,1), \
 				AOStrength = 1.0):
 	mat = bpy.data.materials.new('MeshMaterial')
@@ -38,9 +36,10 @@ def setMat_edge(mesh, \
 	mat_wire = tree.nodes[-1]
 	tree.nodes.new('ShaderNodeHueSaturation')
 	tree.links.new(tree.nodes["Hue Saturation Value"].outputs['Color'],mat_wire.inputs['Color'])
-	tree.nodes["Hue Saturation Value"].inputs['Color'].default_value = edgeColor
-	tree.nodes["Hue Saturation Value"].inputs['Saturation'].default_value = edgesaturation
-	tree.nodes["Hue Saturation Value"].inputs['Value'].default_value = edgebrightness
+	tree.nodes["Hue Saturation Value"].inputs['Color'].default_value = edgeColor.RGBA
+	tree.nodes["Hue Saturation Value"].inputs['Saturation'].default_value = edgeColor.S
+	tree.nodes["Hue Saturation Value"].inputs['Value'].default_value = edgeColor.V
+	tree.nodes["Hue Saturation Value"].inputs['Hue'].default_value = edgeColor.H
 	tree.nodes.new('ShaderNodeMixShader')
 	tree.links.new(wire.outputs[0], tree.nodes['Mix Shader'].inputs[0])
 	tree.links.new(mat_wire.outputs['BSDF'], tree.nodes['Mix Shader'].inputs[2])

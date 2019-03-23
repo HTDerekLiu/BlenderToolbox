@@ -1,5 +1,5 @@
 import sys
-sys.path.append('/home/hsuehtil/Dropbox/BlenderToolbox/cycles')
+sys.path.append('/Users/hsuehtil/Dropbox/BlenderToolbox/cycles')
 
 from include import *
 import bpy
@@ -29,20 +29,16 @@ level = 0
 subdivision(mesh, level)
 
 # # set mesh material
-saturation = 1.0
-brightness = 2.0
-meshColor = (1,1,1,1)
+meshColor = HSVColor(0.5, 1.0, 2.0, (1,1,1,1)) # HSVColor(H, S, V, RGBA)
 AOStrength = 0.0
-setMat_singleColor(mesh, saturation, brightness, meshColor, AOStrength)
+setMat_singleColor(mesh, meshColor, AOStrength)
 
 # # draw points on face
-ptColor = (144.0/255, 210.0/255, 236.0/255, 0)
-ptSaturation = 1.8
-ptBrightness = 0.8
+ptColor = HSVColor(0.5, 1.8, 0.8, derekBlue) # HSVColor(H, S, V, RGBA)
 ptSize = 0.014
 emitType = 'FACE'
 showMesh = True
-drawPoints(mesh, ptColor, ptSize, ptSaturation, ptBrightness, emitType, showMesh)
+drawPoints(mesh, ptColor, ptSize, emitType, showMesh)
 
 # # set invisible plane (shadow catcher)
 groundCenter = (0,0,0)

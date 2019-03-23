@@ -1,5 +1,5 @@
 import sys
-sys.path.append('/home/hsuehtil/Dropbox/BlenderToolbox/cycles')
+sys.path.append('/Users/hsuehtil/Dropbox/BlenderToolbox/cycles')
 
 from include import *
 import bpy
@@ -21,11 +21,9 @@ scale = (1.5,1.5,1.5)
 mesh = readPLY(meshPath, location, rotation, scale)
 
 # # draw point cloud
-ptColor = (144.0/255, 210.0/255, 236.0/255, 0)
-ptSaturation = 1.8
-ptBrightness = 0.8
+ptColor = HSVColor(0.5, 1.8, 0.8, derekBlue) # HSVColor(H, S, V, RGBA)
 ptSize = 0.014
-setMat_pointCloud(mesh, ptColor, ptSize, ptSaturation, ptBrightness)
+setMat_pointCloud(mesh, ptColor, ptSize)
 
 # # set invisible plane (shadow catcher)
 groundCenter = (0,0,0)

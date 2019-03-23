@@ -1,5 +1,5 @@
 import sys
-sys.path.append('/home/hsuehtil/Dropbox/BlenderToolbox/cycles')
+sys.path.append('/Users/hsuehtil/Dropbox/BlenderToolbox/cycles')
 
 from include import *
 import bpy
@@ -30,12 +30,10 @@ bpy.ops.object.shade_flat()
 
 # # set material (option1: render mesh with edges)
 edgeThickness = 0.004
-edgeColor = (0,0,0,0)
-edgeColorSaturation = 1.0
-edgeColorBrightness = 1.0
+edgeColor = HSVColor(0.5, 1.0, 1.0, (0,0,0,0)) # HSVColor(H, S, V, RGBA)
 meshColor = (0.8,0.8,0.8,0)
 AOStrength = 1.0
-setMat_edge(mesh, edgeThickness, edgeColor, edgeColorSaturation, edgeColorBrightness, meshColor, AOStrength)
+setMat_edge(mesh, edgeThickness, edgeColor, meshColor, AOStrength)
 
 # # set invisible plane (shadow catcher)
 groundCenter = (0,0,0)

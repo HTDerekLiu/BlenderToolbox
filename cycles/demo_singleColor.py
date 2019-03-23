@@ -1,5 +1,5 @@
 import sys
-sys.path.append('/home/hsuehtil/Dropbox/BlenderToolbox/cycles')
+sys.path.append('/Users/hsuehtil/Dropbox/BlenderToolbox/cycles')
 from include import *
 import bpy
 
@@ -28,11 +28,9 @@ level = 2
 subdivision(mesh, level)
 
 # # set material (option2: normal mode)
-saturation = 1.8
-brightness = 1.0
-meshColor = derekBlue
+meshColor = HSVColor(0.5, 1.9, 1.0, derekBlue) # HSVColor(H, S, V, RGBA)
 AOStrength = 0.5
-setMat_singleColor(mesh, saturation, brightness, meshColor, AOStrength)
+setMat_singleColor(mesh, meshColor, AOStrength)
 
 # # set invisible plane (shadow catcher)
 groundCenter = (0,0,0)

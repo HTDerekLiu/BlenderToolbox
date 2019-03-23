@@ -1,6 +1,6 @@
 import bpy
 
-def setMat_singleColor(mesh, saturation = 1.0, brightness = 0.8, meshColor = (144.0/255.0, 210.0/255.0, 236.0/255.0,0), AOStrength = 1.0):
+def setMat_singleColor(mesh, meshColor, AOStrength):
 	mat = bpy.data.materials.new('MeshMaterial')
 	mesh.data.materials.append(mat)
 	mesh.active_material = mat
@@ -21,9 +21,10 @@ def setMat_singleColor(mesh, saturation = 1.0, brightness = 0.8, meshColor = (14
 
 	# set color using Hue/Saturation node
 	tree.nodes.new('ShaderNodeHueSaturation')
-	tree.nodes["Hue Saturation Value"].inputs['Color'].default_value = meshColor
-	tree.nodes["Hue Saturation Value"].inputs['Saturation'].default_value = saturation
-	tree.nodes["Hue Saturation Value"].inputs['Value'].default_value = brightness
+	tree.nodes["Hue Saturation Value"].inputs['Color'].default_value = meshColor.RGBA
+	tree.nodes["Hue Saturation Value"].inputs['Saturation'].default_value = meshColor.S
+	tree.nodes["Hue Saturation Value"].inputs['Value'].default_value = meshColor.V
+	tree.nodes["Hue Saturation Value"].inputs['Hue'].default_value = meshColor.H
 
 	# link all the nodes
 	tree.links.new(tree.nodes["Hue Saturation Value"].outputs['Color'], tree.nodes['Ambient Occlusion'].inputs['Color'])

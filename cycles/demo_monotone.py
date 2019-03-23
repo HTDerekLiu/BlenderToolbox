@@ -27,15 +27,18 @@ bpy.ops.object.shade_smooth()
 level = 2
 subdivision(mesh, level)
 
-# # set material (option1: render mesh with edges)
-colorPos = (0.05, 0.4) # the "size" of each discrete color (0~1), the "len(colorPos)+1" is the number of discrete colors
-colorPosMidPercent = (0.9, 0.5) # (0~1) control the smooth of the transition between colors (the smaller the smoother)
-colorDarkness = (0.8, 0.3, 0) # darkness if each discrete color, len(colorDark) = len(colorPos) + 1
+# # set material Note: discreteColor(bright, pos1, pos2)
+numColor = 3
+CList = [None] * numColor
+CList[0] = discreteColor(0.8, None, None)
+CList[1] = discreteColor(0.3, 0.045, 0.05)
+CList[2] = discreteColor(0.0, 0.2  , 0.4)
 saturation = 1.5
 brightness = 1.0
+RGBA = derekBlue
+meshColor = HSVColor(0.5, 1.0, 1.0, RGBA)
 shadowSize = 0.4
-meshColor = derekBlue
-setMat_monotone(mesh, meshColor, saturation, brightness,shadowSize, colorPos, colorPosMidPercent, colorDarkness)
+setMat_monotone(mesh, meshColor, CList, shadowSize)
 
 # # set invisible plane (shadow catcher)
 groundCenter = (0,0,0)

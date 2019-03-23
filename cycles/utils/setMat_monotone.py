@@ -1,21 +1,14 @@
 import bpy
 import numpy as np
 
-def setMat_monotone(mesh, \
-            meshColor, \
-            saturation, \
-            brightness, \
-            shadowSize = 0.4, \
-            colorPos = (0.05, 0.4),\
-            colorPosMidPercent = (0.9, 0.5),\
-            hsv_V = (0.6, 0.0, 0.3)):
+def setMat_monotone(mesh, meshColor, CList, shadowSize):
     mat = bpy.data.materials.new('MeshMaterial')
     mesh.data.materials.append(mat)
     mesh.active_material = mat
     mat.use_nodes = True
     tree = mat.node_tree
 
-    numColor = len(hsv_V) # numColor >= 3
+    numColor = len(CList) # numColor >= 3
 
     # set principled	
     principleNode = tree.nodes["Principled BSDF"]
@@ -28,7 +21,7 @@ def setMat_monotone(mesh, \
     initRGB.inputs['Color'].default_value = (.5,.5,.5,1)
     initRGB.inputs['Hue'].default_value = 0
     initRGB.inputs['Saturation'].default_value = 0
-    initRGB.inputs['Value'].default_value = hsv_V[0]
+    initRGB.inputs['Value'].default_value = CList[0].brightness
     initDiff = tree.nodes.new('ShaderNodeBsdfDiffuse')
     tree.links.new(initRGB.outputs['Color'], initDiff.inputs['Color'])
 
@@ -43,16 +36,16 @@ def setMat_monotone(mesh, \
         RGBList[ii].inputs['Color'].default_value = (.5,.5,.5,1)
         RGBList[ii].inputs['Hue'].default_value = 0
         RGBList[ii].inputs['Saturation'].default_value = 0
-        RGBList[ii].inputs['Value'].default_value = hsv_V[ii+1]
+        RGBList[ii].inputs['Value'].default_value = CList[ii+1].brightness
         # Diffuse after RGB
         DiffList[ii] = tree.nodes.new('ShaderNodeBsdfDiffuse')
         # Color Ramp
         RampList[ii] = tree.nodes.new('ShaderNodeValToRGB')
         RampList[ii].color_ramp.interpolation = 'EASE'
         RampList[ii].color_ramp.elements.new(0.5)
-        RampList[ii].color_ramp.elements[1].position = colorPos[ii] * colorPosMidPercent[ii]
+        RampList[ii].color_ramp.elements[1].position = CList[ii+1].rampElement1_pos
         RampList[ii].color_ramp.elements[1].color = (0,0,0,1)
-        RampList[ii].color_ramp.elements[2].position = colorPos[ii]
+        RampList[ii].color_ramp.elements[2].position = CList[ii+1].rampElement2_pos
         # Mix shader
         MixList[ii] = tree.nodes.new('ShaderNodeMixShader')
         # Link shaders
@@ -61,12 +54,14 @@ def setMat_monotone(mesh, \
         tree.links.new(RampList[ii].outputs['Color'], MixList[ii].inputs[0])
         tree.links.new(RGBList[ii].outputs['Color'], DiffList[ii].inputs['Color'])
         tree.links.new(DiffList[ii].outputs['BSDF'], MixList[ii].inputs[2])
+        # set node location
 
     # color of the mesh
     mainColor = tree.nodes.new('ShaderNodeHueSaturation')
-    mainColor.inputs['Color'].default_value = meshColor
-    mainColor.inputs['Saturation'].default_value = saturation
-    mainColor.inputs['Value'].default_value = brightness
+    mainColor.inputs['Color'].default_value = meshColor.RGBA
+    mainColor.inputs['Hue'].default_value = meshColor.H
+    mainColor.inputs['Saturation'].default_value = meshColor.S
+    mainColor.inputs['Value'].default_value = meshColor.V
 
     # initial and end links
     addShader = tree.nodes.new('ShaderNodeAddShader')
@@ -80,9 +75,10 @@ def setMat_monotone(mesh, \
     tree.links.new(mixEnd.outputs['Shader'], tree.nodes['Material Output'].inputs['Surface'])
 
     edgeShadow = tree.nodes.new('ShaderNodeHueSaturation')
-    edgeShadow.inputs['Color'].default_value = meshColor
-    edgeShadow.inputs['Saturation'].default_value = saturation
-    edgeShadow.inputs['Value'].default_value = brightness / 5
+    edgeShadow.inputs['Color'].default_value = meshColor.RGBA
+    edgeShadow.inputs['Hue'].default_value = meshColor.H
+    edgeShadow.inputs['Saturation'].default_value = meshColor.S
+    edgeShadow.inputs['Value'].default_value = meshColor.V / 5
     diffEnd = tree.nodes.new('ShaderNodeBsdfDiffuse')
     tree.links.new(edgeShadow.outputs['Color'], diffEnd.inputs['Color'])
     tree.links.new(diffEnd.outputs['BSDF'], mixEnd.inputs[2])
@@ -100,3 +96,24 @@ def setMat_monotone(mesh, \
     tree.links.new(textureNode.outputs['Normal'], fresnelNode.inputs['Normal'])
     for ii in range(len(RampList)):
         tree.links.new(fresnelNode.outputs[0], RampList[ii].inputs['Fac'])
+
+    # set node location
+    for node in tree.nodes:
+        node.location.x = 0
+        node.location.y = 0
+    yLoc = 0
+    xLoc = -400
+    RampEnd.location.x = xLoc
+    RampEnd.location.y = -300
+    for node in RampList:
+        node.location.x = xLoc
+        node.location.y = yLoc
+        yLoc += 300
+    yLoc = 0
+    xLoc = -600
+    initRGB.location.x = xLoc
+    initRGB.location.y = -200
+    for node in RGBList:
+        node.location.x = xLoc
+        node.location.y = yLoc
+        yLoc += 200
