@@ -39,9 +39,9 @@ setMat_monotone(mesh, meshColor, saturation, brightness,shadowSize, colorPos, co
 
 # # set invisible plane (shadow catcher)
 groundCenter = (0,0,0)
-shadowDarkeness = 0.7
+shadowLight = 0.95
 groundSize = 20
-invisibleGround(groundCenter, groundSize, shadowDarkeness)
+invisibleGround(groundCenter, groundSize, shadowLight)
 
 # # set camera
 camLocation = (1.9,2,2.2)
@@ -52,7 +52,7 @@ cam = setCamera(camLocation, lookAtLocation, focalLength)
 # # set sunlight
 lightAngle = (-15,-34,-155) 
 strength = 2
-shadowSoftness = 0.1
+shadowSoftness = 0.0
 sun = setLight_sun(lightAngle, strength, shadowSoftness)
 
 # # set ambient light
