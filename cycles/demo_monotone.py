@@ -33,10 +33,7 @@ CList = [None] * numColor
 CList[0] = discreteColor(0.8, None, None)
 CList[1] = discreteColor(0.3, 0.045, 0.05)
 CList[2] = discreteColor(0.0, 0.2  , 0.4)
-saturation = 1.5
-brightness = 1.0
-RGBA = derekBlue
-meshColor = HSVColor(0.5, 1.0, 1.0, RGBA)
+meshColor = HSVColor(0.5, 1.5, 1.0, derekBlue) # HSVColor(H, S, V, RGBA)
 shadowSize = 0.4
 setMat_monotone(mesh, meshColor, CList, shadowSize)
 
