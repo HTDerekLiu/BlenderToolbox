@@ -29,13 +29,13 @@ class discreteColor(object):
         self.rampElement1_pos = pos1
         self.rampElement2_pos = pos2
 
-class HSVColor(object):
-    def __init__(self, \
-    hue = 0.5, \
-    saturation = 1.0, \
-    brightness = 1.0,\
-    RGBA = derekBlue):
-        self.H = hue
-        self.S = saturation
-        self.V = brightness
+class colorObj(object):
+    def __init__(self, RGBA = derekBlue, \
+    H = 0.5, S = 1.0, V = 1.0,\
+    B = 0.0, C = 0.0):
+        self.H = H # hue
+        self.S = S # saturation
+        self.V = V # value
         self.RGBA = RGBA
+        self.B = B # birghtness
+        self.C = C # contrast

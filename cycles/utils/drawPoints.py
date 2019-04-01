@@ -14,12 +14,21 @@ def drawPoints(mesh, \
     sphere.active_material = mat
     mat.use_nodes = True
     tree = mat.node_tree
-    tree.nodes.new('ShaderNodeHueSaturation')
-    tree.nodes["Hue Saturation Value"].inputs['Color'].default_value = ptColor.RGBA
-    tree.nodes["Hue Saturation Value"].inputs['Saturation'].default_value = ptColor.S
-    tree.nodes["Hue Saturation Value"].inputs['Value'].default_value = ptColor.V
-    tree.nodes["Hue Saturation Value"].inputs['Hue'].default_value = ptColor.H
-    tree.links.new(tree.nodes["Hue Saturation Value"].outputs['Color'], tree.nodes['Principled BSDF'].inputs['Base Color'])
+
+    # HSV
+    HSVNode = tree.nodes.new('ShaderNodeHueSaturation')
+    HSVNode.inputs['Color'].default_value = ptColor.RGBA
+    HSVNode.inputs['Saturation'].default_value = ptColor.S
+    HSVNode.inputs['Value'].default_value = ptColor.V
+    HSVNode.inputs['Hue'].default_value = ptColor.H
+
+	# set color brightness/contrast
+    BCNode = tree.nodes.new('ShaderNodeBrightContrast')
+    BCNode.inputs['Bright'].default_value = ptColor.B
+    BCNode.inputs['Contrast'].default_value = ptColor.C
+
+    tree.links.new(HSVNode.outputs['Color'], BCNode.inputs['Color'])
+    tree.links.new(BCNode.outputs['Color'], tree.nodes['Principled BSDF'].inputs['Base Color'])
 
     # init particle system
     bpy.context.view_layer.objects.active = mesh

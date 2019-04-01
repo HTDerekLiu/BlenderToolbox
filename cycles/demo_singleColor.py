@@ -6,10 +6,10 @@ import bpy
 outputPath = './results/demo_singleColor.png'
 
 # # init blender
-imgRes_x = 1000 # should set to > 2000 for paper figures
-imgRes_y = 1000 # should set to > 2000 for paper figures
-numSamples = 100 # should set to >1000 for high quality paper images
-exposure = 2.0 # need to double check
+imgRes_x = 720 # should set to > 2000 for paper figures
+imgRes_y = 720 # should set to > 2000 for paper figures
+numSamples = 50 # should set to >1000 for high quality paper images
+exposure = 1.0 # need to double check
 blenderInit(imgRes_x, imgRes_y, numSamples, exposure)
 
 # read mesh 
@@ -27,8 +27,9 @@ bpy.ops.object.shade_smooth()
 level = 2
 subdivision(mesh, level)
 
-# # set material (option2: normal mode)
-meshColor = HSVColor(0.5, 1.9, 1.0, derekBlue) # HSVColor(H, S, V, RGBA)
+# # set material
+# colorObj(RGBA, H, S, V, Bright, Contrast)
+meshColor = colorObj(derekBlue, 0.5, 1.0, 1.0, 0.0, 2.0)
 AOStrength = 0.5
 setMat_singleColor(mesh, meshColor, AOStrength)
 

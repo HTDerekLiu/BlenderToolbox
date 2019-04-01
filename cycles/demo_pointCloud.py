@@ -7,10 +7,10 @@ import bpy
 outputPath = './results/demo_pointCloud.png'
 
 # # init blender
-imgRes_x = 1000 # should set to > 2000 for paper figures
-imgRes_y = 1000 # should set to > 2000 for paper figures
-numSamples = 100 # should set to >1000 for high quality paper images
-exposure = 2.0
+imgRes_x = 720 # should set to > 2000 for paper figures
+imgRes_y = 720 # should set to > 2000 for paper figures
+numSamples = 50 # should set to >1000 for high quality paper images
+exposure = 1.0
 blenderInit(imgRes_x, imgRes_y, numSamples, exposure)
 
 # # read mesh 
@@ -21,7 +21,7 @@ scale = (1.5,1.5,1.5)
 mesh = readPLY(meshPath, location, rotation, scale)
 
 # # draw point cloud
-ptColor = HSVColor(0.5, 1.8, 0.8, derekBlue) # HSVColor(H, S, V, RGBA)
+ptColor = colorObj(derekBlue, 0.5, 1.3, 1.0, 0.0, 0.0)
 ptSize = 0.014
 setMat_pointCloud(mesh, ptColor, ptSize)
 

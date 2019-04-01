@@ -1,7 +1,7 @@
 import bpy
 import numpy as np
 
-def setMat_monotone(mesh, meshColor, CList, shadowSize):
+def setMat_monotone(mesh, meshColor, CList, silhouetteColor, shadowSize):
     mat = bpy.data.materials.new('MeshMaterial')
     mesh.data.materials.append(mat)
     mesh.active_material = mat
@@ -57,11 +57,17 @@ def setMat_monotone(mesh, meshColor, CList, shadowSize):
         # set node location
 
     # color of the mesh
-    mainColor = tree.nodes.new('ShaderNodeHueSaturation')
-    mainColor.inputs['Color'].default_value = meshColor.RGBA
-    mainColor.inputs['Hue'].default_value = meshColor.H
-    mainColor.inputs['Saturation'].default_value = meshColor.S
-    mainColor.inputs['Value'].default_value = meshColor.V
+    mainColor_HSV = tree.nodes.new('ShaderNodeHueSaturation')
+    mainColor_HSV.inputs['Color'].default_value = meshColor.RGBA
+    mainColor_HSV.inputs['Hue'].default_value = meshColor.H
+    mainColor_HSV.inputs['Saturation'].default_value = meshColor.S
+    mainColor_HSV.inputs['Value'].default_value = meshColor.V
+
+    # main color BC
+    mainColor = tree.nodes.new('ShaderNodeBrightContrast')
+    mainColor.inputs['Bright'].default_value = meshColor.B
+    mainColor.inputs['Contrast'].default_value = meshColor.C
+    tree.links.new(mainColor_HSV.outputs['Color'], mainColor.inputs['Color'])
 
     # initial and end links
     addShader = tree.nodes.new('ShaderNodeAddShader')
@@ -70,15 +76,22 @@ def setMat_monotone(mesh, meshColor, CList, shadowSize):
     tree.links.new(mainColor.outputs['Color'], principleNode.inputs['Base Color'])
     tree.links.new(principleNode.outputs['BSDF'], addShader.inputs[1])
 
-    # add darkness to the edges
+    # add silhouette 
     mixEnd = tree.nodes.new('ShaderNodeMixShader')
     tree.links.new(mixEnd.outputs['Shader'], tree.nodes['Material Output'].inputs['Surface'])
 
-    edgeShadow = tree.nodes.new('ShaderNodeHueSaturation')
-    edgeShadow.inputs['Color'].default_value = meshColor.RGBA
-    edgeShadow.inputs['Hue'].default_value = meshColor.H
-    edgeShadow.inputs['Saturation'].default_value = meshColor.S
-    edgeShadow.inputs['Value'].default_value = meshColor.V / 5
+    edgeShadow_HSV = tree.nodes.new('ShaderNodeHueSaturation')
+    edgeShadow_HSV.inputs['Color'].default_value = silhouetteColor.RGBA
+    edgeShadow_HSV.inputs['Hue'].default_value = silhouetteColor.H
+    edgeShadow_HSV.inputs['Saturation'].default_value = silhouetteColor.S
+    edgeShadow_HSV.inputs['Value'].default_value = silhouetteColor.V
+
+    edgeShadow = tree.nodes.new('ShaderNodeBrightContrast')
+    edgeShadow.inputs['Bright'].default_value = silhouetteColor.B
+    edgeShadow.inputs['Contrast'].default_value = silhouetteColor.C
+    
+    tree.links.new(edgeShadow_HSV.outputs['Color'], edgeShadow.inputs['Color'])
+
     diffEnd = tree.nodes.new('ShaderNodeBsdfDiffuse')
     tree.links.new(edgeShadow.outputs['Color'], diffEnd.inputs['Color'])
     tree.links.new(diffEnd.outputs['BSDF'], mixEnd.inputs[2])
@@ -117,3 +130,12 @@ def setMat_monotone(mesh, meshColor, CList, shadowSize):
         node.location.x = xLoc
         node.location.y = yLoc
         yLoc += 200
+
+    mainColor.location.x = -800
+    mainColor.location.y = 0
+    mainColor_HSV.location.x = -1000
+    mainColor_HSV.location.y = 0
+    edgeShadow.location.x = -800
+    edgeShadow.location.y = 200
+    edgeShadow_HSV.location.x = -1000
+    edgeShadow_HSV.location.y = 200

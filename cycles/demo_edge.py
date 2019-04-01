@@ -7,10 +7,10 @@ import bpy
 outputPath = './results/demo_edge.png'
 
 # # init blender
-imgRes_x = 1000 # should set to > 2000 for paper figures
-imgRes_y = 1000 # should set to > 2000 for paper figures
-numSamples = 100 # should set to >1000 for high quality paper images
-exposure = 1.8
+imgRes_x = 720 # should set to > 2000 for paper figures
+imgRes_y = 720 # should set to > 2000 for paper figures
+numSamples = 50 # should set to >1000 for high quality paper images
+exposure = 1.0 # need to double check
 blenderInit(imgRes_x, imgRes_y, numSamples, exposure)
 
 # # read mesh 
@@ -30,10 +30,10 @@ bpy.ops.object.shade_flat()
 
 # # set material (option1: render mesh with edges)
 edgeThickness = 0.004
-edgeColor = HSVColor(0.5, 1.0, 1.0, (0,0,0,0)) # HSVColor(H, S, V, RGBA)
-meshColor = (0.8,0.8,0.8,0)
+edgeColor = colorObj((0,0,0,0),0.5, 1.0, 1.0, 0.0, 0.0)
+meshRGBA = (1,1,1,0)
 AOStrength = 1.0
-setMat_edge(mesh, edgeThickness, edgeColor, meshColor, AOStrength)
+setMat_edge(mesh, edgeThickness, edgeColor, meshRGBA, AOStrength)
 
 # # set invisible plane (shadow catcher)
 groundCenter = (0,0,0)

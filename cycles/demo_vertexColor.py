@@ -1,15 +1,15 @@
 import sys
-sys.path.append('/home/hsuehtil/Dropbox/BlenderToolbox/cycles')
+sys.path.append('/Users/hsuehtil/Dropbox/BlenderToolbox/cycles')
 from include import *
 import bpy
 
 outputPath = './results/demo_vertexColor.png'
 
 # # init blender
-imgRes_x = 1000 # should set to > 2000 for paper figures
-imgRes_y = 1000 # should set to > 2000 for paper figures
-numSamples = 100 # should set to >1000 for high quality paper images
-exposure = 2.0
+imgRes_x = 720 # should set to > 2000 for paper figures
+imgRes_y = 720 # should set to > 2000 for paper figures
+numSamples = 50 # should set to >1000 for high quality paper images
+exposure = 1.0
 blenderInit(imgRes_x, imgRes_y, numSamples, exposure)
 
 # # read mesh 
@@ -28,9 +28,8 @@ level = 2
 subdivision(mesh, level)
 
 # # set material (option3: show vertex color)
-saturation = 1.2
-brightness = 1.0
-setMat_VColor(mesh, saturation, brightness)
+meshVColor = colorObj([], 0.5, 1.0, 1.0, 0.0, 0.0)
+setMat_VColor(mesh, meshVColor)
 
 # # set invisible plane (shadow catcher)
 groundCenter = (0,0,0)

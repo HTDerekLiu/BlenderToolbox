@@ -7,10 +7,10 @@ import bpy
 outputPath = './results/demo_facePoints.png'
 
 # # init blender
-imgRes_x = 1000 # should set to > 2000 for paper figures
-imgRes_y = 1000 # should set to > 2000 for paper figures
-numSamples = 100 # should set to >1000 for high quality paper images
-exposure = 2.0
+imgRes_x = 720 # should set to > 2000 for paper figures
+imgRes_y = 720 # should set to > 2000 for paper figures
+numSamples = 50 # should set to >1000 for high quality paper images
+exposure = 1.5 # need to double check
 blenderInit(imgRes_x, imgRes_y, numSamples, exposure)
 
 # # read mesh 
@@ -29,12 +29,12 @@ level = 0
 subdivision(mesh, level)
 
 # # set mesh material
-meshColor = HSVColor(0.5, 1.0, 2.0, (1,1,1,1)) # HSVColor(H, S, V, RGBA)
+meshColor = colorObj((1,1,1,1), 0.5, 1.0, 2.0, 0.5, 0.0)
 AOStrength = 0.0
 setMat_singleColor(mesh, meshColor, AOStrength)
 
 # # draw points on face
-ptColor = HSVColor(0.5, 1.8, 0.8, derekBlue) # HSVColor(H, S, V, RGBA)
+ptColor = colorObj(derekBlue, 0.5, 1.2, 1.0, 0.0, 0.5) 
 ptSize = 0.014
 emitType = 'FACE'
 showMesh = True
@@ -54,7 +54,7 @@ cam = setCamera(camLocation, lookAtLocation, focalLength)
 
 # # set sunlight
 lightAngle = (-15,-34,-155) 
-strength = 2
+strength = 1.5
 shadowSoftness = 0.1
 sun = setLight_sun(lightAngle, strength, shadowSoftness)
 

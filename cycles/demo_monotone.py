@@ -6,10 +6,10 @@ import bpy
 outputPath = './results/demo_monotone.png'
 
 # # init blender
-imgRes_x = 1000 # should set to > 2000 for paper figures
-imgRes_y = 1000 # should set to > 2000 for paper figures
-numSamples = 100 # should set to >1000 for high quality paper images
-exposure = 1.5
+imgRes_x = 720 # should set to > 2000 for paper figures
+imgRes_y = 720 # should set to > 2000 for paper figures
+numSamples = 50 # should set to >1000 for high quality paper images
+exposure = 1.0
 blenderInit(imgRes_x, imgRes_y, numSamples, exposure)
 
 # # read mesh 
@@ -30,12 +30,13 @@ subdivision(mesh, level)
 # # set material Note: discreteColor(bright, pos1, pos2)
 numColor = 3
 CList = [None] * numColor
-CList[0] = discreteColor(0.8, None, None)
-CList[1] = discreteColor(0.3, 0.045, 0.05)
-CList[2] = discreteColor(0.0, 0.2  , 0.4)
-meshColor = HSVColor(0.5, 1.5, 1.0, derekBlue) # HSVColor(H, S, V, RGBA)
+CList[0] = discreteColor(brightness=0.8, pos1=None, pos2=None)
+CList[1] = discreteColor(brightness=0.3, pos1=0.045, pos2=0.05)
+CList[2] = discreteColor(brightness=0.0, pos1=0.2, pos2=0.4)
+meshColor = colorObj(derekBlue, 0.5, 1.2, 1.0, 0.0, 0.5) 
+silhouetteColor = colorObj(derekBlue, 0.5, 1.2, 1.0 * 0.3, 0.0, 0.5) 
 shadowSize = 0.4
-setMat_monotone(mesh, meshColor, CList, shadowSize)
+setMat_monotone(mesh, meshColor, CList, silhouetteColor, shadowSize)
 
 # # set invisible plane (shadow catcher)
 groundCenter = (0,0,0)
