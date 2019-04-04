@@ -28,7 +28,7 @@ level = 2
 subdivision(mesh, level)
 
 # append shader
-mat = loadShader('EeveeToon', mesh)
+mat = loadShader('EeveeToon', mesh) # this shader is created by Paul Caggegi
 
 # EEVEETOON parameters
 mat.inputs[0].default_value = 10.0 # ShadowBanding
