@@ -1,6 +1,7 @@
 import bpy, bmesh
 import numpy as np
 
+from utils.initColorNode import *
 from utils.blenderInit import *
 from utils.colorMap import *
 from utils.drawPoints import *
@@ -13,6 +14,9 @@ from utils.setCamera import *
 from utils.setLight_sun import *
 from utils.setLight_ambient import *
 from utils.setMat_amber import *
+from utils.setMat_carPaint import *
+from utils.setMat_crackedCeramic import *
+from utils.setMat_ceramic import *
 from utils.setMat_edge import *
 from utils.setMat_singleColor import *
 from utils.setMat_pointCloud import *

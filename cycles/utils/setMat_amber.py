@@ -1,4 +1,5 @@
 import bpy
+from include import *
 
 def setMat_amber(mesh, meshColor):
     mat = bpy.data.materials.new('MeshMaterial')
@@ -8,15 +9,7 @@ def setMat_amber(mesh, meshColor):
     tree = mat.node_tree
 
     # init color node
-    HSVNode = tree.nodes.new('ShaderNodeHueSaturation')
-    HSVNode.inputs['Color'].default_value = meshColor.RGBA
-    HSVNode.inputs['Saturation'].default_value = meshColor.S
-    HSVNode.inputs['Value'].default_value = meshColor.V
-    HSVNode.inputs['Hue'].default_value = meshColor.H
-    BCNode = tree.nodes.new('ShaderNodeBrightContrast')
-    BCNode.inputs['Bright'].default_value = meshColor.B
-    BCNode.inputs['Contrast'].default_value = meshColor.C
-    tree.links.new(HSVNode.outputs['Color'], BCNode.inputs['Color'])
+    BCNode = initColorNode(tree, meshColor)
 
     # construct amber node
     fresnel = tree.nodes.new('ShaderNodeFresnel')
