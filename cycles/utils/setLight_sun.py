@@ -8,6 +8,12 @@ def setLight_sun(rotation_euler, strength, shadow_soft_size = 0.05):
 	angle = (x,y,z)
 	bpy.ops.object.light_add(type = 'SUN', rotation = angle)
 	lamp = bpy.data.lights['Sun']
-	bpy.context.object.data.shadow_soft_size = shadow_soft_size
-	lamp.node_tree.nodes["Emission"].inputs['Strength'].default_value = strength
+	lamp.shadow_soft_size = shadow_soft_size
+	
+	# robust to EEVEE or CYCLES
+	if bpy.context.scene.render.engine.title() == 'Blender_Eevee':
+		lamp.energy = strength
+	else:
+		lamp.node_tree.nodes["Emission"].inputs['Strength'].default_value = strength
+
 	return lamp

@@ -1,7 +1,10 @@
 *.json
 *.pyc
-*.blend
-*.blend1
+cycles/*.blend
+cycles/*.blend1
+eevee/*.blend
+eevee/*.blend1
+*.DS_Store
 eevee/
 meshes/*.m
 cycles/*.sh
