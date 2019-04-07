@@ -8,3 +8,4 @@ eevee/*.blend1
 eevee/
 meshes/*.m
 cycles/*.sh
+myScripts/
