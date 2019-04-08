@@ -8,7 +8,7 @@ outputPath = './results/demo_amber.png'
 # # init blender
 imgRes_x = 720 # should set to > 2000 for paper figures
 imgRes_y = 720 # should set to > 2000 for paper figures
-numSamples = 50 # should set to >1000 for high quality paper images
+numSamples = 50 # usually set to > 250 for high quality paper images
 exposure = 1.0 # need to double check
 blenderInit(imgRes_x, imgRes_y, numSamples, exposure)
 
