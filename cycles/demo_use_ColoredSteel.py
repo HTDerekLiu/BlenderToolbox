@@ -28,8 +28,8 @@ level = 2
 subdivision(mesh, level)
 
 # append shader
-mat = loadShader('ColoredSteel', mesh) 
-mat.inputs[0].default_value = royalBlue
+mat = loadShader('ColoredSteel', mesh)  # this shader is from "blendersauce.com"
+mat.inputs[0].default_value = royalBlue # main color
 
 # set invisible plane (shadow catcher)
 groundCenter = (0,0,0)

@@ -12,6 +12,9 @@ def loadShader(shaderName, mesh):
     elif shaderName is "ColoredSteel":
         matName = "Blued_Steel"
         blenderFileName = 'ColoredSteel.blend'
+    elif shaderName is "Wax":
+        matName = "Wax_PBR_SSS"
+        blenderFileName = 'Wax.blend'
 
     # load shaders to the mesh
     path = pwd + '/../shaders/' + blenderFileName + "\\Material\\"
