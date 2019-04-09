@@ -9,8 +9,9 @@ def loadShader(shaderName, mesh):
         bpy.context.scene.render.alpha_mode = 'TRANSPARENT'
         matName = "ToonShade_EV"
         blenderFileName = 'EeveeToon.blend'
-
-
+    elif shaderName is "ColoredSteel":
+        matName = "Blued_Steel"
+        blenderFileName = 'ColoredSteel.blend'
 
     # load shaders to the mesh
     path = pwd + '/../shaders/' + blenderFileName + "\\Material\\"
