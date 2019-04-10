@@ -15,6 +15,9 @@ def loadShader(shaderName, mesh):
     elif shaderName is "Wax":
         matName = "Wax_PBR_SSS"
         blenderFileName = 'Wax.blend'
+    elif shaderName is "Wood":
+        matName = "UCP wood-v-1-1"
+        blenderFileName = 'UCPWood.blend' # createy by Elbriga
 
     # load shaders to the mesh
     path = pwd + '/../shaders/' + blenderFileName + "\\Material\\"
