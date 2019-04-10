@@ -1,6 +1,8 @@
 import bpy
 import os
-pwd = os.getcwd()
+# pwd = os.getcwd()
+import os 
+pwd = os.path.dirname(os.path.realpath(__file__))
 
 def loadShader(shaderName, mesh):
     # switch to different shader names
@@ -20,7 +22,7 @@ def loadShader(shaderName, mesh):
         blenderFileName = 'UCPWood.blend' # createy by Elbriga
 
     # load shaders to the mesh
-    path = pwd + '/../shaders/' + blenderFileName + "\\Material\\"
+    path = pwd + '/../../shaders/' + blenderFileName + "\\Material\\"
     bpy.ops.wm.append(filename=matName, directory=path)
     mat = bpy.data.materials.get(matName)
     mesh.data.materials.append(mat)

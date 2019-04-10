@@ -1,0 +1,5 @@
+Here are the sources of these great shaders made by amazing artists. Please cite them properly if using them.
+- ColoredSteel: blendersauce.com
+- EeveeToon: created by Paul Caggegi
+- UCPWood: by Elbriga (www.cyn-prod.com)
+- Wax: blendersauce.com

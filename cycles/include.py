@@ -15,6 +15,7 @@ from utils.setLight_sun import *
 from utils.setLight_ambient import *
 from utils.setMat_amber import *
 from utils.setMat_carPaint import *
+from utils.setMat_chrome import *
 from utils.setMat_crackedCeramic import *
 from utils.setMat_ceramic import *
 from utils.setMat_edge import *
