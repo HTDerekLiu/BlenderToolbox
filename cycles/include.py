@@ -21,6 +21,7 @@ from utils.setMat_ceramic import *
 from utils.setMat_edge import *
 from utils.setMat_glass import *
 from utils.setMat_singleColor import *
+from utils.setMat_transparent import *
 from utils.setMat_pointCloud import *
 from utils.setMat_VColor import *
 from utils.setMat_monotone import *
