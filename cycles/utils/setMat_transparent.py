@@ -1,7 +1,7 @@
 import bpy
 from include import *
 
-def setMat_transparent(mesh, meshColor, transparency):
+def setMat_transparent(mesh, meshColor, transparency, transmission):
 	mat = bpy.data.materials.new('MeshMaterial')
 	mesh.data.materials.append(mat)
 	mesh.active_material = mat
@@ -15,6 +15,7 @@ def setMat_transparent(mesh, meshColor, transparency):
 	# set principled BSDF
 	tree.nodes["Principled BSDF"].inputs['Roughness'].default_value = 0.7
 	tree.nodes["Principled BSDF"].inputs['Sheen Tint'].default_value = 0
+	tree.nodes["Principled BSDF"].inputs['Transmission'].default_value = transmission
 
 	# init transparent BSDF
 	T = tree.nodes.new('ShaderNodeBsdfTransparent')

@@ -31,7 +31,8 @@ subdivision(mesh, level)
 # colorObj(RGBA, H, S, V, Bright, Contrast)
 meshColor = colorObj(derekBlue, 0.5, 1.5, 1.0, 0.0, 0.0)
 transparency = 0.7
-setMat_transparent(mesh, meshColor, transparency)
+transmission = 0.5
+setMat_transparent(mesh, meshColor, transparency, transmission)
 
 # # set invisible plane (shadow catcher)
 groundCenter = (0,0,0)
