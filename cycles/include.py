@@ -35,6 +35,16 @@ coralRed = (250.0/255, 114.0/255, 104.0/255, 1)
 iglGreen = (153.0/255, 203.0/255, 67.0/255, 1)
 royalBlue = (0/255, 35/255, 102/255, 1)
 
+# color palette for colr blindness (source: http://mkweb.bcgsc.ca/colorblind)
+cb_black = (0/255.0, 0/255.0, 236/255.0, 1)
+cb_orange = (230/255.0, 159/255.0, 0/255.0, 1)
+cb_skyBlue = (86/255.0, 180/255.0, 233/255.0, 1)
+cb_green = (0/255.0, 158/255.0, 115/255.0, 1)
+cb_yellow = (240/255.0, 228/255.0, 66/255.0, 1)
+cb_blue = (0/255.0, 114/255.0, 178/255.0, 1)
+cb_vermillion = (213/255.0, 94/255.0, 0/255.0, 1)
+cb_purple = (204/255.0, 121/255.0, 167/255.0, 1)
+
 class discreteColor(object):
     def __init__(self, brightness = 0, pos1 = 0, pos2 = 0):
         self.brightness = brightness
