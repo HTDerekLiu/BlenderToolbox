@@ -5,6 +5,7 @@ from utils.initColorNode import *
 from utils.blenderInit import *
 from utils.colorMap import *
 from utils.drawPoints import *
+from utils.drawLines import *
 from utils.drawVertexSubset import *
 from utils.invisibleGround import *
 from utils.lookAt import *
