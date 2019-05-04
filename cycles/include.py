@@ -7,6 +7,7 @@ from utils.colorMap import *
 from utils.drawPoints import *
 from utils.drawLines import *
 from utils.drawVertexSubset import *
+from utils.drawBoundaryLoop import *
 from utils.invisibleGround import *
 from utils.lookAt import *
 from utils.loadShader import *
