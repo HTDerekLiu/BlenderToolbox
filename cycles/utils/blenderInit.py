@@ -15,3 +15,11 @@ def blenderInit(resolution_x, resolution_y, numSamples = 128, exposure = 1.5):
 	bpy.context.scene.cycles.max_bounces = 6
 	bpy.context.scene.cycles.film_exposure = exposure
 	bpy.data.scenes[0].view_layers['View Layer']['cycles']['use_denoising'] = 1
+
+	# set GPU devices
+	cyclePref  = bpy.context.preferences.addons['cycles'].preferences
+	cyclePref.compute_device_type = 'CUDA'
+	for dev in cyclePref.devices:
+		dev.use = True
+		print (dev)
+		print (dev.use)
