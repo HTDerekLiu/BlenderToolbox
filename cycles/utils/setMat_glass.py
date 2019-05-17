@@ -1,7 +1,7 @@
 import bpy
 from include import *
 
-def setMat_glass(mesh, C1, roughness):
+def setMat_glass(mesh, C1, roughness, transparancy = 0.5):
     mat = bpy.data.materials.new('MeshMaterial')
     mesh.data.materials.append(mat)
     mesh.active_material = mat
@@ -13,6 +13,7 @@ def setMat_glass(mesh, C1, roughness):
 
     # construct car paint node
     LW = tree.nodes.new('ShaderNodeLayerWeight')
+    LW.inputs[0].default_value = transparancy
     GLO = tree.nodes.new('ShaderNodeBsdfGlossy')
     GLO.inputs[1].default_value = roughness
     TRAN = tree.nodes.new('ShaderNodeBsdfTransparent')
