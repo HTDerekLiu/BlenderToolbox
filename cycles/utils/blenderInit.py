@@ -23,3 +23,4 @@ def blenderInit(resolution_x, resolution_y, numSamples = 128, exposure = 1.5):
 		dev.use = True
 		print (dev)
 		print (dev.use)
+	bpy.context.scene.cycles.device = 'GPU'
