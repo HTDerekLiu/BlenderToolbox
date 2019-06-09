@@ -30,6 +30,7 @@ from utils.setMat_transparent import *
 from utils.setMat_texture import *
 from utils.setMat_pointCloud import *
 from utils.setMat_VColor import *
+from utils.setMat_VColorAO import *
 from utils.setMat_monotone import *
 from utils.subdivision import *
 
