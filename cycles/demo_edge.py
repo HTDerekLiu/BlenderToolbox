@@ -29,7 +29,7 @@ bpy.ops.object.shade_flat()
 # subdivision(mesh, level)
 
 # # set material (option1: render mesh with edges)
-edgeThickness = 0.004
+edgeThickness = 0.01
 edgeColor = colorObj((0,0,0,0),0.5, 1.0, 1.0, 0.0, 0.0)
 meshRGBA = (1,1,1,0)
 AOStrength = 1.0
