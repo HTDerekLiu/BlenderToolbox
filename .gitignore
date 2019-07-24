@@ -9,3 +9,4 @@ eevee/
 meshes/*.m
 cycles/*.sh
 myScripts/
+myShapes/
