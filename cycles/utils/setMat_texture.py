@@ -15,7 +15,6 @@ def setMat_texture(mesh, texturePath, meshColor):
 
     TI = tree.nodes.new('ShaderNodeTexImage')
     TI.image = bpy.data.images.load(texturePath)
-    
 
     # set color using Hue/Saturation node
     HSVNode = tree.nodes.new('ShaderNodeHueSaturation')

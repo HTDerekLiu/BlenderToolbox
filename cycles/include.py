@@ -14,6 +14,7 @@ from utils.lookAt import *
 from utils.loadShader import *
 from utils.readPLY import *
 from utils.readOBJ import *
+from utils.readImagePlane import *
 from utils.setCamera import *
 from utils.setLight_sun import *
 from utils.setLight_ambient import *
