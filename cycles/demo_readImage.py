@@ -17,9 +17,9 @@ blenderInit(imgRes_x, imgRes_y, numSamples, exposure)
 imagePath = '../meshes/fmap.png'
 location = (0.06,0.12,0.86)
 rotation = (90, 0, -15.4)
-scale = (1.5,1.5,1.5)
+radius = 1.5
 brightness = 2.0
-img = readImagePlane(imagePath, location, rotation, scale, brightness)
+img = readImagePlane(imagePath, location, rotation, radius, brightness)
 
 # # set invisible plane (shadow catcher)
 groundCenter = (0,0,0)
@@ -46,7 +46,7 @@ setLight_ambient(ambientColor)
 # # save blender file
 bpy.ops.wm.save_mainfile(filepath='./test.blend')
 
-# # save rendering
-bpy.data.scenes['Scene'].render.filepath = outputPath
-bpy.data.scenes['Scene'].camera = cam
-bpy.ops.render.render(write_still = True)
+# # # save rendering
+# bpy.data.scenes['Scene'].render.filepath = outputPath
+# bpy.data.scenes['Scene'].camera = cam
+# bpy.ops.render.render(write_still = True)
