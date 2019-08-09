@@ -8,7 +8,7 @@ def readOBJ(filePath, location, rotation_euler, scale):
 	angle = (x,y,z)
 	bpy.ops.import_scene.obj(filepath=filePath)
 	# mesh = bpy.data.objects[-1]
-	mesh = bpy.context.selected_objects[0]
+	mesh = bpy.context.selected_objects[-1]
 	mesh.location = location
 	mesh.rotation_euler = angle
 	mesh.scale = scale

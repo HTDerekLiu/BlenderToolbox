@@ -30,4 +30,7 @@ def drawLines(p1List, p2List, r, colorList = None):
             mat = bpy.data.materials.new('MeshMaterial')
             bpy.context.object.data.materials.append(mat)
             bpy.context.object.active_material = mat
-            mat.diffuse_color = colorList[ii,:]
+            if len(colorList) != 1:
+                mat.diffuse_color = colorList[ii,:]
+            else:
+                mat.diffuse_color = colorList

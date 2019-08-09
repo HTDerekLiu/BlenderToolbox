@@ -3,10 +3,7 @@ from include import *
 
 def drawVertexSubset(mesh, VIdx, ptSize, ptColor):
     for ii in VIdx:
-        Vloc = mesh.matrix_world.to_3x3() @ mesh.data.vertices[int(ii)].co
-        Vloc[0] += mesh.matrix_world[0][3]
-        Vloc[1] += mesh.matrix_world[1][3]
-        Vloc[2] += mesh.matrix_world[2][3]
+        Vloc = mesh.matrix_world @ mesh.data.vertices[int(ii)].co
         bpy.ops.mesh.primitive_uv_sphere_add(radius = ptSize, location = Vloc)
         sphere = bpy.context.object
         bpy.ops.object.shade_smooth()
