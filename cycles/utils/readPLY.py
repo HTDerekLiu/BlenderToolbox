@@ -11,6 +11,7 @@ def readPLY(filePath, location, rotation_euler, scale):
 	z = rotation_euler[2] * 1.0 / 180.0 * np.pi 
 	angle = (x,y,z)
 	bpy.ops.import_mesh.ply(filepath=filePath)
+	print(list(bpy.data.objects))
 	mesh = bpy.data.objects[-1]
 	mesh.location = location
 	mesh.rotation_euler = angle
