@@ -7,6 +7,7 @@ from utils.colorMap import *
 from utils.drawPoints import *
 from utils.drawLines import *
 from utils.drawVertexSubset import *
+from utils.drawEdgeSubset import *
 from utils.drawBoundaryLoop import *
 from utils.edgeNormals import *
 from utils.invisibleGround import *
@@ -41,6 +42,8 @@ coralRed = (250.0/255, 114.0/255, 104.0/255, 1)
 iglGreen = (153.0/255, 203.0/255, 67.0/255, 1)
 royalBlue = (0/255, 35/255, 102/255, 1)
 royalYellow = (250.0/255,218.0/255,94.0/255, 1)
+white = (1,1,1,1)
+black = (0,0,0,1)
 
 # color palette for colr blindness (source: http://mkweb.bcgsc.ca/colorblind)
 cb_black = (0/255.0, 0/255.0, 236/255.0, 1)
