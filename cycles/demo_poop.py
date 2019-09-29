@@ -3,7 +3,7 @@ sys.path.append('/Users/hsuehtil/Dropbox/BlenderToolbox/cycles')
 from include import *
 import bpy
 
-outputPath = './results/demo_texture.png'
+outputPath = './results/demo_poop.png'
 
 # # init blender
 imgRes_x = 720 # should set to > 2000 for paper figures
@@ -13,11 +13,11 @@ exposure = 1.0 # need to double check
 blenderInit(imgRes_x, imgRes_y, numSamples, exposure)
 
 # read mesh 
-meshPath = '../meshes/spot_UV.obj'
+meshPath = '../meshes/spot.ply'
 location = (-0.3, 0.6, -0.04)
 rotation = (90, 0,0)
 scale = (1.5,1.5,1.5)
-mesh = readOBJ(meshPath, location, rotation, scale)
+mesh = readPLY(meshPath, location, rotation, scale)
 
 # # set shading
 bpy.ops.object.shade_smooth()
@@ -28,12 +28,13 @@ level = 2
 subdivision(mesh, level)
 
 # # set material
-# colorObj(RGBA, H, S, V, Bright, Contrast)
-useless = (0,0,0,1)
-meshColor = colorObj(useless, 0.5, 1.0, 1.0, 0.0, 0.0)
-texturePath = '../meshes/spot_by_keenan.png' 
-# using relative path gives us weired bug...
-setMat_texture(mesh, texturePath, meshColor)
+poopRGB1 = (0.056, 0.034, 0.007,1)
+poopRGB2 = (0.424, 0.259, 0.182,1)
+noiseScale = 10
+noiseDetail = 100
+noiseDistortion = 0.3
+brightness = 0.5
+setMat_poop(mesh, poopRGB1, poopRGB2, noiseScale, noiseDetail, noiseDistortion, brightness)
 
 # # set invisible plane (shadow catcher)
 groundCenter = (0,0,0)

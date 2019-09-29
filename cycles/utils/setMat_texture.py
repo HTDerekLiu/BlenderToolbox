@@ -14,7 +14,8 @@ def setMat_texture(mesh, texturePath, meshColor):
     PRI.inputs['Sheen Tint'].default_value = 0
 
     TI = tree.nodes.new('ShaderNodeTexImage')
-    TI.image = bpy.data.images.load(texturePath)
+    absTexturePath = os.path.abspath(texturePath)
+    TI.image = bpy.data.images.load(absTexturePath)
 
     # set color using Hue/Saturation node
     HSVNode = tree.nodes.new('ShaderNodeHueSaturation')
