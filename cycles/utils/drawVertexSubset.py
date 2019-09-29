@@ -2,10 +2,8 @@ import bpy
 from include import *
 
 def drawVertexSubset(mesh, VIdx, ptSize, ptColor):
-    print(mesh.matrix_world)
     for ii in VIdx:
         Vloc = mesh.matrix_world @ mesh.data.vertices[int(ii)].co
-        print(Vloc)
         bpy.ops.mesh.primitive_uv_sphere_add(radius = ptSize, location = Vloc)
         sphere = bpy.context.object
         bpy.ops.object.shade_smooth()
