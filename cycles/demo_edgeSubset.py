@@ -35,7 +35,6 @@ setMat_singleColor(mesh, meshColor, AOStrength)
 
 # # draw edge subset
 E = np.loadtxt('../meshes/Es.txt').astype(np.int32)
-print(E)
 radius = 0.0075
 edgeColor = derekBlue
 drawEdgeSubset(mesh, E,radius, edgeColor)
@@ -66,6 +65,4 @@ setLight_ambient(ambientColor)
 bpy.ops.wm.save_mainfile(filepath='./test.blend')
 
 # # save rendering
-bpy.data.scenes['Scene'].render.filepath = outputPath
-bpy.data.scenes['Scene'].camera = cam
-bpy.ops.render.render(write_still = True)
+renderImage(outputPath, cam)

@@ -16,7 +16,10 @@ from utils.loadShader import *
 from utils.readPLY import *
 from utils.readOBJ import *
 from utils.readImagePlane import *
+from utils.renderImage import *
+from utils.renderAnimation import *
 from utils.setCamera import *
+from utils.setCameraPath import *
 from utils.setLight_sun import *
 from utils.setLight_ambient import *
 from utils.setMat_amber import *

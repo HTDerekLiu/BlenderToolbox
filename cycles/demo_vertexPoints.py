@@ -65,6 +65,4 @@ setLight_ambient(ambientColor)
 bpy.ops.wm.save_mainfile(filepath='./test.blend')
 
 # # # save rendering
-bpy.data.scenes['Scene'].render.filepath = outputPath
-bpy.data.scenes['Scene'].camera = cam
-bpy.ops.render.render(write_still = True)
+renderImage(outputPath, cam)
