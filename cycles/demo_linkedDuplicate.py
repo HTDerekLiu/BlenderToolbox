@@ -3,7 +3,7 @@ sys.path.append('/Users/hsuehtil/Dropbox/BlenderToolbox/cycles')
 from include import *
 import bpy
 
-outputPath = './results/demo_vertexSubset.png'
+outputPath = './results/demo_linkedDuplicate.png'
 
 # # init blender
 imgRes_x = 720 # should set to > 2000 for paper figures
@@ -35,11 +35,31 @@ setMat_singleColor(mesh, meshColor, AOStrength)
 # # draw a subset of vertices
 ptSize = 0.033
 ptColor = colorObj(derekBlue, 0.5, 1.0, 1.0, 0.0, 2.0)
-ptLocation = (1e10,1e10,1e10) # some random pos
-templateObj = drawSphere(ptSize,ptColor,ptLocation)
+VIdx = [0, 50, 100, 150, 200, 250, 300] # it would be slow if too many indices
+# drawVertexSubset(mesh, VIdx, ptSize, ptColor)
 
-VIdx = [0, 50, 100, 150, 200, 250, 300] 
-copyToVertexSubset(mesh, templateObj, VIdx)
+bpy.ops.mesh.primitive_uv_sphere_add(radius = ptSize)
+sphere = bpy.context.object
+sphere.location = (1,0,0)
+bpy.ops.object.shade_smooth()
+
+mat = bpy.data.materials.new('sphere_mat')
+sphere.data.materials.append(mat)
+mat.use_nodes = True
+tree = mat.node_tree
+
+BCNode = initColorNode(tree, ptColor)
+
+tree.nodes["Principled BSDF"].inputs['Roughness'].default_value = 1.0
+tree.nodes["Principled BSDF"].inputs['Sheen Tint'].default_value = 0
+tree.links.new(BCNode.outputs['Color'], tree.nodes['Principled BSDF'].inputs['Base Color'])
+
+for ii in VIdx:
+    Vloc = mesh.matrix_world @ mesh.data.vertices[int(ii)].co
+    bpy.ops.object.duplicate({"object" : sphere}, linked=True)
+    objCopy = bpy.context.object
+    objCopy.location = Vloc
+    # objCopy.scale = (1,1,1)
 
 # # set invisible plane (shadow catcher)
 groundCenter = (0,0,0)
@@ -67,4 +87,4 @@ setLight_ambient(ambientColor)
 bpy.ops.wm.save_mainfile(filepath='./test.blend')
 
 # # save rendering
-renderImage(outputPath, cam)
+# renderImage(outputPath,cam)

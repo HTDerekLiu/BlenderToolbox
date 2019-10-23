@@ -1,8 +1,17 @@
 import bpy
 import math
 import numpy as np
+from include import *
 
-def drawEdgeSubset(mesh, E, r, colorList = None):
+def drawEdgeSubset(mesh, E, r, edgeColor):
+    bpy.ops.mesh.primitive_cylinder_add(radius = r, location = (1e10,1e10,1e10))
+    cylinder = bpy.context.object
+
+    mat = bpy.data.materials.new('MeshMaterial')
+    cylinder.data.materials.append(mat)
+    cylinder.active_material = mat
+    mat.diffuse_color = edgeColor
+
     for ii in range(E.shape[0]): 
         p1Idx = E[ii,0]
         p2Idx = E[ii,1]
@@ -17,22 +26,13 @@ def drawEdgeSubset(mesh, E, r, colorList = None):
         dx = x2 - x1
         dy = y2 - y1
         dz = z2 - z1    
-        dist = math.sqrt(dx**2 + dy**2 + dz**2)
-        bpy.ops.mesh.primitive_cylinder_add(
-            radius = r, 
-            depth = dist,
-            location = (dx/2 + x1, dy/2 + y1, dz/2 + z1)   
-        ) 
+        dist = math.sqrt(dx**2 + dy**2 + dz**2) 
+
+        bpy.ops.object.duplicate({"object" : cylinder}, linked=True)
+        objCopy = bpy.context.object
+        objCopy.dimensions = (r,r,dist)
+        objCopy.location = (dx/2 + x1, dy/2 + y1, dz/2 + z1)
         phi = math.atan2(dy, dx) 
         theta = math.acos(dz/dist) 
         bpy.context.object.rotation_euler[1] = theta 
         bpy.context.object.rotation_euler[2] = phi 
-
-        if colorList is not None:
-            mat = bpy.data.materials.new('MeshMaterial')
-            bpy.context.object.data.materials.append(mat)
-            bpy.context.object.active_material = mat
-            if len(colorList) != 4:
-                mat.diffuse_color = colorList[ii,:]
-            else:
-                mat.diffuse_color = colorList

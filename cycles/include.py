@@ -4,11 +4,12 @@ import numpy as np
 from utils.initColorNode import *
 from utils.blenderInit import *
 from utils.colorMap import *
+from utils.copyToVertexSubset import *
 from utils.drawPoints import *
 from utils.drawLines import *
-from utils.drawVertexSubset import *
 from utils.drawEdgeSubset import *
 from utils.drawBoundaryLoop import *
+from utils.drawSphere import *
 from utils.edgeNormals import *
 from utils.invisibleGround import *
 from utils.lookAt import *
@@ -32,6 +33,7 @@ from utils.setMat_glass import *
 from utils.setMat_singleColor import *
 from utils.setMat_stone import *
 from utils.setMat_transparent import *
+from utils.setMat_transparentWithEdge import *
 from utils.setMat_texture import *
 from utils.setMat_pointCloud import *
 from utils.setMat_poop import *

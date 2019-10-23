@@ -3,12 +3,12 @@ sys.path.append('/Users/hsuehtil/Dropbox/BlenderToolbox/cycles')
 from include import *
 import bpy
 
-outputPath = './results/demo_edgeSubset.png'
+outputPath = './results/demo_transparentWithEdge.png'
 
 # # init blender
 imgRes_x = 720 # should set to > 2000 for paper figures
 imgRes_y = 720 # should set to > 2000 for paper figures
-numSamples = 50 # usually set to > 250 for high quality paper images
+numSamples = 100 # usually set to > 250 for high quality paper images
 exposure = 1.0 # need to double check
 blenderInit(imgRes_x, imgRes_y, numSamples, exposure)
 
@@ -24,20 +24,17 @@ mesh = readPLY(meshPath, location, rotation, scale)
 bpy.ops.object.shade_flat()
 
 # # subdivision
-level = 0
-subdivision(mesh, level)
+# level = 2
+# subdivision(mesh, level)
 
-# # set material (single color first)
+# # set material
 # colorObj(RGBA, H, S, V, Bright, Contrast)
-meshColor = colorObj((.5,.5,.5,1), 0.5, 1.0, 1.0, 0.0, 0.0)
-AOStrength = 0.5
-setMat_singleColor(mesh, meshColor, AOStrength)
-
-# # draw edge subset
-E = np.loadtxt('../meshes/Es.txt').astype(np.int32)
-radius = 0.01
-edgeColor = derekBlue
-drawEdgeSubset(mesh, E,radius, edgeColor)
+meshColor = colorObj(derekBlue, 0.5, 1.5, 1.0, 0.0, 0.0)
+transparency = 0.7
+transmission = 0.5
+edgeThickness = 0.005
+edgeColor = colorObj((0,0,0,0),0.5, 1.0, 1.0, 0.0, 0.0)
+setMat_transparentWithEdge(mesh, edgeThickness, edgeColor,meshColor, transparency, transmission)
 
 # # set invisible plane (shadow catcher)
 groundCenter = (0,0,0)
