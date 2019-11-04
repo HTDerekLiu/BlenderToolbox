@@ -1,5 +1,6 @@
 import bpy
 import numpy as np
+import bmesh
 
 def readOBJ(filePath, location, rotation_euler, scale):
 	x = rotation_euler[0] * 1.0 / 180.0 * np.pi 
@@ -20,4 +21,6 @@ def readOBJ(filePath, location, rotation_euler, scale):
 	mesh.location = location
 	mesh.rotation_euler = angle
 	mesh.scale = scale
+	bpy.context.view_layer.update()
+
 	return mesh 

@@ -28,4 +28,5 @@ def readPLY(filePath, location, rotation_euler, scale):
 	mesh.location = location
 	mesh.rotation_euler = angle
 	mesh.scale = scale
+	bpy.context.view_layer.update()
 	return mesh 

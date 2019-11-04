@@ -5,6 +5,8 @@ from utils.initColorNode import *
 from utils.blenderInit import *
 from utils.colorMap import *
 from utils.copyToVertexSubset import *
+from utils.copyArrowToVertex import *
+from utils.createArrow import *
 from utils.drawPoints import *
 from utils.drawLines import *
 from utils.drawEdgeSubset import *
@@ -19,6 +21,8 @@ from utils.readOBJ import *
 from utils.readImagePlane import *
 from utils.renderImage import *
 from utils.renderAnimation import *
+from utils.recalculateNormals import *
+from utils.selectOBJ import *
 from utils.setCamera import *
 from utils.setCameraPath import *
 from utils.setLight_sun import *
