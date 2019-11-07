@@ -4,7 +4,7 @@ cycles/*.blend
 cycles/*.blend1
 eevee/*.blend
 eevee/*.blend1
-*.DS_Store
+.DS_Store
 eevee/
 meshes/*.m
 cycles/*.sh
