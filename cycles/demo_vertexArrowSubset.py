@@ -6,9 +6,9 @@ import bpy
 outputPath = './results/demo_vertexArrowSubset.png'
 
 # # init blender
-imgRes_x = 720 # should set to > 2000 for paper figures
-imgRes_y = 720 # should set to > 2000 for paper figures
-numSamples = 50 # usually set to > 250 for high quality paper images
+imgRes_x = 720 
+imgRes_y = 720 
+numSamples = 50 
 exposure = 1.0
 blenderInit(imgRes_x, imgRes_y, numSamples, exposure)
 

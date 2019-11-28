@@ -48,6 +48,7 @@ from utils.setMat_monotone import *
 from utils.setMat_matcap import *
 from utils.setMat_muscle import *
 from utils.subdivision import *
+from utils.shadowThreshold import *
 
 derekBlue = (144.0/255, 210.0/255, 236.0/255, 1)
 coralRed = (250.0/255, 114.0/255, 104.0/255, 1)

@@ -3,7 +3,7 @@ sys.path.append('/Users/hsuehtil/Dropbox/BlenderToolbox/cycles')
 from include import *
 import bpy
 
-outputPath = './results/demo_boundaryLoop.png'
+outputPath = './results/demo_composite.png'
 
 # # init blender
 imgRes_x = 720 
@@ -12,12 +12,12 @@ numSamples = 50
 exposure = 1.0
 blenderInit(imgRes_x, imgRes_y, numSamples, exposure)
 
-# read mesh 
-meshPath = '../meshes/lilium.obj'
-location = (-0.26, -0.62, 0.41)
-rotation = (0, 0,0)
-scale = (1,1,1)
-mesh = readOBJ(meshPath, location, rotation, scale)
+# # read mesh 
+meshPath = '../meshes/spot.ply'
+location = (-0.3, 0.6, -0.04)
+rotation = (90, 0,0)
+scale = (1.5,1.5,1.5)
+mesh = readPLY(meshPath, location, rotation, scale)
 
 # # set shading
 bpy.ops.object.shade_smooth()
@@ -27,16 +27,10 @@ bpy.ops.object.shade_smooth()
 level = 2
 subdivision(mesh, level)
 
-# # set material
-# colorObj(RGBA, H, S, V, Bright, Contrast)
-meshColor = colorObj(derekBlue, 0.5, 1.0, 1.0, 0.0, 2.0)
-AOStrength = 0.5
-setMat_singleColor(mesh, meshColor, AOStrength)
-
-# # draw doundary loop
-r = 0.1
-bdColor = colorObj(coralRed, 0.5, 1.0, 1.0, 0.0, 0.0)
-drawBoundaryLoop(mesh, r, bdColor)
+# # set material (option3: show vertex color)
+meshVColor = colorObj([], 0.5, 1.0, 1.0, 0.0, 0.0)
+AOPercent = 0.5
+setMat_VColorAO(mesh, meshVColor, AOPercent)
 
 # # set invisible plane (shadow catcher)
 groundCenter = (0,0,0)
@@ -45,20 +39,25 @@ groundSize = 20
 invisibleGround(groundCenter, groundSize, shadowDarkeness)
 
 # # set camera
-camLocation = (4,4,4)
+camLocation = (1.9,2,2.2)
 lookAtLocation = (0,0,0.5)
-focalLength = 70
+focalLength = 45
 cam = setCamera(camLocation, lookAtLocation, focalLength)
 
 # # set sunlight
-lightAngle = (51,-32.9,-161) 
+lightAngle = (-15,-34,-155) 
 strength = 2
-shadowSoftness = 0.1
+shadowSoftness = 0.5
 sun = setLight_sun(lightAngle, strength, shadowSoftness)
 
 # # set ambient light
-ambientColor = (0.1,0.1,0.1,1)
+ambientColor = (0.2,0.2,0.2,1)
 setLight_ambient(ambientColor)
+
+# composite 
+alphaThreshold = 0.05
+mode = 'CARDINAL'
+shadowThreshold(alphaThreshold,mode)
 
 # # save blender file
 bpy.ops.wm.save_mainfile(filepath='./test.blend')
