@@ -10,7 +10,7 @@ def setMat_ceramic(mesh, meshC, subC):
 
     # init color node
     C1Node = initColorNode(tree, meshC)
-    C2Node = initColorNode(tree, subC)
+    C2Node = initColorNode(tree, subC, [200, 400], [200, 200])
 
     DIF = tree.nodes.new('ShaderNodeBsdfDiffuse')
     tree.links.new(C1Node.outputs['Color'], DIF.inputs['Color'])

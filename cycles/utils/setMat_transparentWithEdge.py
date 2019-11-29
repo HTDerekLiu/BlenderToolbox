@@ -25,22 +25,31 @@ def setMat_transparentWithEdge(mesh, edgeThickness, edgeColor, meshColor, transp
 	# link to mix
 	MIX = tree.nodes.new('ShaderNodeMixShader')
 	MIX.inputs['Fac'].default_value = transparency
+	MIX.location.x -= 200
+	MIX.location.y -= 200
 	tree.links.new(tree.nodes['Principled BSDF'].outputs[0], MIX.inputs[1])
 	tree.links.new(T.outputs[0], MIX.inputs[2])
 
 	# add edge wireframe
 	WIRE = tree.nodes.new(type="ShaderNodeWireframe")
 	WIRE.inputs[0].default_value = edgeThickness
+	WIRE.location.x -= 600
+	WIRE.location.y += 200
+
 	WIRE_MAT = tree.nodes.new(type="ShaderNodeBsdfDiffuse")
 	HSVNode = tree.nodes.new('ShaderNodeHueSaturation')
 	HSVNode.inputs['Color'].default_value = edgeColor.RGBA
 	HSVNode.inputs['Saturation'].default_value = edgeColor.S
 	HSVNode.inputs['Value'].default_value = edgeColor.V
 	HSVNode.inputs['Hue'].default_value = edgeColor.H
+	HSVNode.location.x -= 200
+	HSVNode.location.y += 200
 	# set color brightness/contrast
 	BCNode = tree.nodes.new('ShaderNodeBrightContrast')
 	BCNode.inputs['Bright'].default_value = edgeColor.B
 	BCNode.inputs['Contrast'].default_value = edgeColor.C
+	BCNode.location.x -= 400
+	BCNode.location.y += 200
 
 	tree.links.new(HSVNode.outputs['Color'],BCNode.inputs['Color'])
 	tree.links.new(BCNode.outputs['Color'],WIRE_MAT.inputs['Color'])

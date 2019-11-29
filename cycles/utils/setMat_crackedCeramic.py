@@ -23,10 +23,14 @@ def setMat_crackedCeramic(mesh, meshColor, crackScale, crackDisp):
 
     VOR = tree.nodes.new('ShaderNodeTexVoronoi')
     VOR.inputs['Scale'].default_value = crackScale
+    VOR.location.x -= 200
+    VOR.location.y -= 200
 
     DISP = tree.nodes.new('ShaderNodeDisplacement')
     DISP.inputs[1].default_value = 0.0
     DISP.inputs[2].default_value = crackDisp
+    DISP.location.x -= 400
+    DISP.location.y -= 200
     tree.links.new(VOR.outputs['Fac'], DISP.inputs['Height'])
     
     tree.links.new(MIXS.outputs[0], tree.nodes['Material Output'].inputs['Surface'])

@@ -10,7 +10,7 @@ def setMat_carPaint(mesh, C1, C2):
 
     # init color node
     C1_BS = initColorNode(tree, C1)
-    C2_BS = initColorNode(tree, C2)
+    C2_BS = initColorNode(tree, C2, [200, 400], [200, 200])
 
     # construct car paint node
     LW = tree.nodes.new('ShaderNodeLayerWeight')

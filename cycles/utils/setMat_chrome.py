@@ -18,6 +18,7 @@ def setMat_chrome(mesh, roughness):
     CR.color_ramp.elements[1].color = (0,0,0,1)
     GLO = tree.nodes.new('ShaderNodeBsdfGlossy')
     GLO.inputs[1].default_value = roughness
+    GLO.location.x -= 200
     
     tree.links.new(LW.outputs[1], CR.inputs['Fac'])
     tree.links.new(CR.outputs['Color'], GLO.inputs['Color'])

@@ -15,11 +15,13 @@ def setMat_VColorAO(mesh, meshVColor, AOPercent):
     HSVNode.inputs['Saturation'].default_value = meshVColor.S
     HSVNode.inputs['Value'].default_value = meshVColor.V
     HSVNode.inputs['Hue'].default_value = meshVColor.H
+    HSVNode.location.x -= 200
 
     # set color brightness/contrast
     BCNode = tree.nodes.new('ShaderNodeBrightContrast')
     BCNode.inputs['Bright'].default_value = meshVColor.B
     BCNode.inputs['Contrast'].default_value = meshVColor.C
+    BCNode.location.x -= 400
 
     # set principled BSDF
     tree.nodes["Principled BSDF"].inputs['Roughness'].default_value = 1.0
@@ -46,6 +48,8 @@ def setMat_VColorAO(mesh, meshVColor, AOPercent):
 
     MIX = tree.nodes.new('ShaderNodeMixShader')
     MIX.inputs[0].default_value = AOPercent
+    MIX.location.x -= 200
+    MIX.location.y -= 200
     tree.links.new(tree.nodes['Principled BSDF'].outputs[0], MIX.inputs[1])
     tree.links.new(DIF.outputs[0], MIX.inputs[2])
     tree.links.new(MIX.outputs[0], tree.nodes['Material Output'].inputs['Surface'])

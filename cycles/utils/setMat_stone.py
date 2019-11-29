@@ -15,6 +15,9 @@ def setMat_stone(mesh, meshColor, noiseScale, distortion, AOStrength):
     TN = tree.nodes.new('ShaderNodeTexNoise')
     TN.inputs['Scale'].default_value = noiseScale
     TN.inputs['Distortion'].default_value = distortion
+    TN.location.x -= 200
+    TN.location.y -= 200
+
     tree.links.new(TC.outputs[0], TN.inputs[0])
     RGB2BW = tree.nodes.new('ShaderNodeRGBToBW')
     tree.links.new(TN.outputs[0], RGB2BW.inputs[0])
@@ -45,6 +48,7 @@ def setMat_stone(mesh, meshColor, noiseScale, distortion, AOStrength):
     MIX2 = tree.nodes.new('ShaderNodeMixRGB')
     MIX2.blend_type = 'MULTIPLY'
     GM.inputs["Gamma"].default_value = AOStrength
+    GM.location.x -= 600
     AO.inputs["Distance"].default_value = 10.0
 
     tree.links.new(BC.outputs['Color'], AO.inputs['Color'])

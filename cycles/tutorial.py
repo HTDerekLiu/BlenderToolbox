@@ -25,9 +25,9 @@ MINIMUM RENDER STEPS:
 outputPath = './results/tutorial.png'
 
 ## initialize blender
-imgRes_x = 480 # (UI: Scene > Output > Resolution X)
-imgRes_y = 480 # (UI: Scene > Output > Resolution Y)
-numSamples = 25 # set to >= 200 for paper images (UI: Scene > Render > Sampling > Render)
+imgRes_x = 480 # recommend > 2000 (UI: Scene > Output > Resolution X)
+imgRes_y = 480 # recommend > 2000 (UI: Scene > Output > Resolution Y)
+numSamples = 25 # recommend > 200 for paper images (UI: Scene > Render > Sampling > Render)
 exposure = 1.0 # exposure of the entire image (UI: Scene > Render > Film > Exposure)
 blenderInit(imgRes_x, imgRes_y, numSamples, exposure)
 
@@ -61,7 +61,7 @@ setMat_singleColor(mesh, meshColor, AOStrength)
 ## set invisible plane (shadow catcher)
 invisibleGround(shadowBrightness = 0.7)
 
-## set camera (recommend to change mesh instead of camera, unless you want to adjust Elevation angle)
+## set camera (recommend to change mesh instead of camera, unless you want to adjust the Elevation)
 camLocation = (1.9,2,2.2)
 lookAtLocation = (0,0,0.5)
 focalLength = 45 # (UI: click camera > Object Data > Focal Length)
@@ -79,7 +79,7 @@ setLight_ambient(ambientColor)
 
 ## set gray shadow to completely white with a threshold (optional)
 alphaThreshold = 0.025
-shadowThreshold(alphaThreshold,mode = 'CARDINAL')
+shadowThreshold(alphaThreshold, interpolationMode = 'CARDINAL')
 
 ## save blender file so that you can adjust parameters in the UI
 bpy.ops.wm.save_mainfile(filepath='./test.blend')

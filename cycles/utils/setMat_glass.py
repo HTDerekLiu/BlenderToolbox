@@ -14,8 +14,12 @@ def setMat_glass(mesh, C1, roughness, transparancy = 0.5):
     # construct car paint node
     LW = tree.nodes.new('ShaderNodeLayerWeight')
     LW.inputs[0].default_value = transparancy
+    LW.location.x -= 200
+    LW.location.y -= 200
     GLO = tree.nodes.new('ShaderNodeBsdfGlossy')
     GLO.inputs[1].default_value = roughness
+    GLO.location.x -= 400
+    GLO.location.y -= 200
     TRAN = tree.nodes.new('ShaderNodeBsdfTransparent')
     tree.links.new(C1.outputs['Color'], TRAN.inputs['Color'])
     tree.links.new(C1.outputs['Color'], GLO.inputs['Color'])

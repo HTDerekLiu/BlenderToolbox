@@ -18,13 +18,15 @@ def setMat_transparent(mesh, meshColor, transparency, transmission):
 	tree.nodes["Principled BSDF"].inputs['Metallic'].default_value = 0.0
 	tree.nodes["Principled BSDF"].inputs['Sheen Tint'].default_value = 0
 	tree.nodes["Principled BSDF"].inputs['Transmission'].default_value = transmission
-
+	
 	# init transparent BSDF
 	T = tree.nodes.new('ShaderNodeBsdfTransparent')
 
 	# link to mix
 	MIX = tree.nodes.new('ShaderNodeMixShader')
 	MIX.inputs['Fac'].default_value = transparency
+	MIX.location.x -= 200
+	MIX.location.y -= 200
 	tree.links.new(tree.nodes['Principled BSDF'].outputs[0], MIX.inputs[1])
 	tree.links.new(T.outputs[0], MIX.inputs[2])
 

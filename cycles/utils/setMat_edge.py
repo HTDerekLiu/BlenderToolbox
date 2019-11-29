@@ -21,6 +21,7 @@ def setMat_edge(mesh, \
 	tree.nodes.new('ShaderNodeMixRGB')
 	tree.nodes["Mix"].blend_type = 'MULTIPLY'
 	tree.nodes["Gamma"].inputs["Gamma"].default_value = AOStrength
+	tree.nodes["Gamma"].location.x -= 600
 	tree.nodes["Ambient Occlusion"].inputs["Distance"].default_value = 10.0
 	tree.nodes["Ambient Occlusion"].inputs["Color"].default_value = meshColor
 	tree.links.new(tree.nodes["Ambient Occlusion"].outputs['Color'], tree.nodes['Mix'].inputs['Color1'])
@@ -32,6 +33,8 @@ def setMat_edge(mesh, \
 	tree.nodes.new(type="ShaderNodeWireframe")
 	wire = tree.nodes[-1]
 	wire.inputs[0].default_value = edgeThickness
+	wire.location.x -= 200
+	wire.location.y -= 200
 	tree.nodes.new(type="ShaderNodeBsdfDiffuse")
 	mat_wire = tree.nodes[-1]
 	HSVNode = tree.nodes.new('ShaderNodeHueSaturation')
@@ -39,10 +42,12 @@ def setMat_edge(mesh, \
 	HSVNode.inputs['Saturation'].default_value = edgeColor.S
 	HSVNode.inputs['Value'].default_value = edgeColor.V
 	HSVNode.inputs['Hue'].default_value = edgeColor.H
+	HSVNode.location.x -= 200
 	# set color brightness/contrast
 	BCNode = tree.nodes.new('ShaderNodeBrightContrast')
 	BCNode.inputs['Bright'].default_value = edgeColor.B
 	BCNode.inputs['Contrast'].default_value = edgeColor.C
+	BCNode.location.x -= 400
 
 	tree.links.new(HSVNode.outputs['Color'],BCNode.inputs['Color'])
 	tree.links.new(BCNode.outputs['Color'],mat_wire.inputs['Color'])

@@ -13,6 +13,7 @@ def setMat_poop(mesh, poopRGB1, poopRGB2, noiseScale, noiseDetail, noiseDistorti
     TN.inputs['Scale'].default_value = noiseScale
     TN.inputs['Detail'].default_value = noiseDetail
     TN.inputs['Distortion'].default_value = noiseDistortion
+    TN.location.x -= 200
 
     MUL = tree.nodes.new('ShaderNodeMath')
     MUL.inputs[1].default_value = 3.9
@@ -21,11 +22,13 @@ def setMat_poop(mesh, poopRGB1, poopRGB2, noiseScale, noiseDetail, noiseDistorti
 
     CR1 = tree.nodes.new('ShaderNodeValToRGB')
     CR1.color_ramp.elements[0].position = brightness
+    CR1.location.x -= 500
 
     CR2 = tree.nodes.new('ShaderNodeValToRGB')
     CR2.color_ramp.elements[0].position = 0.605
     CR2.color_ramp.elements[0].color = poopRGB1
     CR2.color_ramp.elements[1].color = poopRGB2
+    CR2.location.x -= 800
 
     PRIN = tree.nodes["Principled BSDF"]
     PRIN.inputs["Specular"].default_value = 0
