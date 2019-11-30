@@ -46,11 +46,7 @@ focalLength = 45
 cam = setCamera(camLocation, lookAtLocation, focalLength)
 
 # set three lighting system
-radius = 4
-height = 10
-intensity = 2000
-softness = 6
-setLight_threePoints(radius, height, intensity, softness)
+setLight_threePoints(radius=4, height=10, intensity=2000, softness=6)
 
 # # set ambient light
 ambientColor = (0.1,0.1,0.1,1)
