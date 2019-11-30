@@ -66,7 +66,13 @@ focalLength = 45 # (UI: click camera > Object Data > Focal Length)
 cam = setCamera(camLocation, lookAtLocation, focalLength)
 
 ## set light
+## Option1: Three Point Light System (recommended)
 setLight_threePoints(radius=4, height=10, intensity=2000, softness=6)
+## Option2: simple sun light
+# lightAngle = (-15,-34,-155) 
+# strength = 2
+# shadowSoftness = 0.1
+# sun = setLight_sun(lightAngle, strength, shadowSoftness)
 
 ## set ambient light
 setLight_ambient(color=(0.1,0.1,0.1,1)) # (UI: Scene > World > Surface > Color)
