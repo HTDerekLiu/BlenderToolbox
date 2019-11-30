@@ -27,6 +27,7 @@ from utils.setCamera import *
 from utils.setCameraPath import *
 from utils.setLight_sun import *
 from utils.setLight_ambient import *
+from utils.setLight_threePoints import *
 from utils.setMat_amber import *
 from utils.setMat_carPaint import *
 from utils.setMat_chrome import *
