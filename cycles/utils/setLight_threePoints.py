@@ -11,7 +11,7 @@ def setLight_threePoints(
     bpy.ops.object.light_add(type='POINT', radius=softness, location=(0,radius,0.6*height))
     FillL = bpy.data.lights['Point.001']
     FillL.energy = intensity * 0.5
-    bpy.ops.object.light_add(type='POINT', radius=softness, location=(0,-radius,0.6*height))
+    bpy.ops.object.light_add(type='POINT', radius=softness, location=(0,-radius,height))
     RimL = bpy.data.lights['Point.002']
-    RimL.energy = intensity * 0.2
+    RimL.energy = intensity * 0.1
     return [KeyL, FillL, RimL]
