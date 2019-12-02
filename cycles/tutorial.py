@@ -67,7 +67,7 @@ cam = setCamera(camLocation, lookAtLocation, focalLength)
 
 ## set light
 ## Option1: Three Point Light System (recommended)
-setLight_threePoints(radius=4, height=10, intensity=1700, softness=6)
+setLight_threePoints(radius=4, height=10, intensity=1700, softness=6, keyLoc='left')
 ## Option2: simple sun light
 # lightAngle = (-15,-34,-155) 
 # strength = 2
