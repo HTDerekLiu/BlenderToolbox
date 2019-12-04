@@ -1,6 +1,8 @@
 import sys
 sys.path.append('/Users/hsuehtil/Dropbox/BlenderToolbox/cycles') # your path to “BlenderToolbox/cycles”
 from include import *
+import os
+cwd = os.getcwd()
 
 '''
 MINIMUM RENDER STEPS:
@@ -21,7 +23,7 @@ MINIMUM RENDER STEPS:
 7. run "blender --background --python tutorial.py" again to output your final image
 '''
 
-outputPath = './results/tutorial.png'
+outputPath = os.path.join(cwd, './results/tutorial.png') # make it abs path for windows
 
 ## initialize blender
 imgRes_x = 480 # recommend > 2000 (UI: Scene > Output > Resolution X)
@@ -65,15 +67,17 @@ camLocation = (2,2,2)
 lookAtLocation = (0,0,0.5)
 focalLength = 45 # (UI: click camera > Object Data > Focal Length)
 cam = setCamera(camLocation, lookAtLocation, focalLength)
+bpy.context.object.data.type = 'ORTHO'
+
 
 ## set light
 ## Option1: Three Point Light System (recommended)
-setLight_threePoints(radius=4, height=10, intensity=1700, softness=6, keyLoc='left')
+# setLight_threePoints(radius=4, height=10, intensity=1700, softness=6, keyLoc='left')
 ## Option2: simple sun light
-# lightAngle = (-15,-34,-155) 
-# strength = 2
-# shadowSoftness = 0.1
-# sun = setLight_sun(lightAngle, strength, shadowSoftness)
+lightAngle = (-15,-34,-155) 
+strength = 2
+shadowSoftness = 0.1
+sun = setLight_sun(lightAngle, strength, shadowSoftness)
 
 ## set ambient light
 setLight_ambient(color=(0.1,0.1,0.1,1)) # (UI: Scene > World > Surface > Color)
