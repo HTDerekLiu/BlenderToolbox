@@ -50,7 +50,8 @@ subdivision(mesh, level = 2)
 ## Set your material here (see other demo scripts)
 
 # colorObj(RGBA, H, S, V, Bright, Contrast)
-meshColor = colorObj(derekBlue, 0.5, 1.0, 1.0, 0.0, 2.0)
+RGBA = (144.0/255, 210.0/255, 236.0/255, 1)
+meshColor = colorObj(RGBA, 0.5, 1.0, 1.0, 0.0, 2.0)
 setMat_singleColor(mesh, meshColor, AOStrength = 0.5)
 
 ## End material
