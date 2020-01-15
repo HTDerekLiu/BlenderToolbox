@@ -1,7 +1,8 @@
 import bpy
 
 def getEdgeWire(mesh, radius):
-	
+
+    bpy.context.view_layer.objects.active = mesh
     bpy.ops.object.mode_set(mode='EDIT')
     mesh.select_set(True) 
     bpy.ops.mesh.delete(type='ONLY_FACE')
