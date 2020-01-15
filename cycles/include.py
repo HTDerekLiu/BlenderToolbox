@@ -13,6 +13,7 @@ from utils.drawEdgeSubset import *
 from utils.drawBoundaryLoop import *
 from utils.drawSphere import *
 from utils.edgeNormals import *
+from utils.getEdgeWire import *
 from utils.invisibleGround import *
 from utils.lookAt import *
 from utils.loadShader import *
