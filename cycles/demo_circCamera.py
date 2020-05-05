@@ -7,9 +7,9 @@ import bpy
 outputFolder = './results/demo_circCamera/'
 
 # # init blender
-imgRes_x = 720 
-imgRes_y = 720 
-numSamples = 50 
+imgRes_x = 720  # increase this for paper figures
+imgRes_y = 720  # increase this for paper figures
+numSamples = 50 # usually increase it to >200 for paper figures
 exposure = 1.0
 blenderInit(imgRes_x, imgRes_y, numSamples, exposure)
 

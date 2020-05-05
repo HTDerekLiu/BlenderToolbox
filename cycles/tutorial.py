@@ -5,7 +5,7 @@ import os
 cwd = os.getcwd()
 
 '''
-MINIMUM RENDER STEPS:
+RENDER AN IMAGE STEP-BY-STEP:
 1. copy "tutorial.py" to your preferred local folder
 2. In "tutorial.py":
     - change meshPath and readPLY/readOBJ
@@ -14,10 +14,10 @@ MINIMUM RENDER STEPS:
 3. run "blender --background --python tutorial.py" in terminal, this outputs a "test.blend"
 4. open "test.blend" with your blender software
 5. In blender UI, adjust:
-    - mesh (location, rotation, scale) 
+    - location, rotation, scale of the mesh
     - material parameters
 6. In "tutorial.py":
-    - type in the adjust parameters from UI 
+    - type in the adjusted parameters from UI 
     - uncomment the last line "renderImage"
     - set outputPath and increase imgRes_x, imgRes_y, numSamples
 7. run "blender --background --python tutorial.py" again to output your final image
@@ -71,7 +71,7 @@ bpy.context.object.data.type = 'ORTHO'
 
 
 ## set light
-## Option1: Three Point Light System (recommended)
+## Option1: Three Point Light System 
 # setLight_threePoints(radius=4, height=10, intensity=1700, softness=6, keyLoc='left')
 ## Option2: simple sun light
 lightAngle = (-15,-34,-155) 
