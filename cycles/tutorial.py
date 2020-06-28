@@ -67,8 +67,6 @@ camLocation = (2,2,2)
 lookAtLocation = (0,0,0.5)
 focalLength = 45 # (UI: click camera > Object Data > Focal Length)
 cam = setCamera(camLocation, lookAtLocation, focalLength)
-bpy.context.object.data.type = 'ORTHO'
-
 
 ## set light
 ## Option1: Three Point Light System 
