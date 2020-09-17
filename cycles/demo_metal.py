@@ -33,12 +33,12 @@ scale = (1.5,1.5,1.5)
 mesh = readPLY(meshPath, location, rotation, scale)
 
 # # set shading
-bpy.ops.object.shade_smooth()
-# bpy.ops.object.shade_flat()
+# bpy.ops.object.shade_smooth()
+bpy.ops.object.shade_flat()
 
 # # subdivision
-level = 2
-subdivision(mesh, level)
+# level = 2
+# subdivision(mesh, level)
 
 # # set material
 # colorObj(RGBA, H, S, V, Bright, Contrast)
