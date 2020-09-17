@@ -16,12 +16,14 @@ sys.path.append('/Users/hsuehtil/Dropbox/BlenderToolbox/cycles')
 from include import *
 import bpy
 
-outputPath = './results/demo_amber.png'
+import numpy as np
+
+outputPath = './results/demo_orthocamera.png'
 
 # # init blender
 imgRes_x = 720  # increase this for paper figures
 imgRes_y = 720  # increase this for paper figures
-numSamples = 50 # usually increase it to >200 for paper figures
+numSamples = 20 # usually increase it to >200 for paper figures
 exposure = 1.0
 blenderInit(imgRes_x, imgRes_y, numSamples, exposure)
 
@@ -42,9 +44,9 @@ subdivision(mesh, level)
 
 # # set material
 # colorObj(RGBA, H, S, V, Bright, Contrast)
-amberRGBA = (100/255.0,75/255.0,0/255.0,255/255.0) 
-meshColor = colorObj(amberRGBA, 0.5, 1.0, 1.0, 0.4, 0.0)
-setMat_amber(mesh, meshColor)
+meshColor = colorObj(derekBlue, 0.5, 1.0, 1.0, 0.0, 2.0)
+AOStrength = 0.5
+setMat_singleColor(mesh, meshColor, AOStrength)
 
 # # set invisible plane (shadow catcher)
 groundCenter = (0,0,0)
@@ -55,8 +57,11 @@ invisibleGround(groundCenter, groundSize, shadowDarkeness)
 # # set camera
 camLocation = (1.9,2,2.2)
 lookAtLocation = (0,0,0.5)
-focalLength = 45
-cam = setCamera(camLocation, lookAtLocation, focalLength)
+left = -1.0
+right = 1.0
+top = 1.0
+bottom = -1.0
+cam = setCamera_orthographic(camLocation, lookAtLocation, top, bottom, left, right)
 
 # # set sunlight
 lightAngle = (-15,-34,-155) 

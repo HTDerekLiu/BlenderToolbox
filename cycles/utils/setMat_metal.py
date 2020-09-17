@@ -13,7 +13,7 @@
 # limitations under the License.
 import bpy
 
-def setMat_singleColor(mesh, meshColor, AOStrength):
+def setMat_metal(mesh, meshColor, AOStrength, metalVal = 0.9):
 	mat = bpy.data.materials.new('MeshMaterial')
 	mesh.data.materials.append(mat)
 	mesh.active_material = mat
@@ -23,6 +23,7 @@ def setMat_singleColor(mesh, meshColor, AOStrength):
 	# set principled BSDF
 	tree.nodes["Principled BSDF"].inputs['Roughness'].default_value = 0.7
 	tree.nodes["Principled BSDF"].inputs['Sheen Tint'].default_value = 0
+	tree.nodes["Principled BSDF"].inputs['Metallic'].default_value = metalVal
 
 	# add Ambient Occlusion
 	tree.nodes.new('ShaderNodeAmbientOcclusion')

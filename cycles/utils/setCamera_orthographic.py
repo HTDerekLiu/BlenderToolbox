@@ -16,11 +16,17 @@ import math
 import mathutils
 from utils.lookAt import *
 
-def setCamera(camLocation, lookAtLocation = (0,0,0), focalLength = 35):
-	# initialize camera
-	bpy.ops.object.camera_add(location = camLocation) # name 'Camera'
-	cam = bpy.context.object
-	cam.data.lens = focalLength
-	loc = mathutils.Vector(lookAtLocation)
-	lookAt(cam, loc)
-	return cam
+def setCamera_orthographic(camLocation, lookAtLocation, top, bottom, left, right):
+	# scale the resolution y using resolution x
+  assert(abs(left-right)>0)
+  assert(abs(top-bottom)>0)
+  aspectRatio = abs(right - left)*1.0 / abs(top - bottom)
+  bpy.context.scene.render.resolution_y = bpy.context.scene.render.resolution_x / aspectRatio
+
+  bpy.ops.object.camera_add(location = camLocation)
+  cam = bpy.context.object
+  bpy.context.object.data.type = 'ORTHO'
+  cam.data.ortho_scale = abs(left-right)
+  loc = mathutils.Vector(lookAtLocation)
+  lookAt(cam, loc)
+  return cam

@@ -16,7 +16,7 @@ sys.path.append('/Users/hsuehtil/Dropbox/BlenderToolbox/cycles')
 from include import *
 import bpy
 
-outputPath = './results/demo_amber.png'
+outputPath = './results/demo_metal.png'
 
 # # init blender
 imgRes_x = 720  # increase this for paper figures
@@ -42,9 +42,10 @@ subdivision(mesh, level)
 
 # # set material
 # colorObj(RGBA, H, S, V, Bright, Contrast)
-amberRGBA = (100/255.0,75/255.0,0/255.0,255/255.0) 
-meshColor = colorObj(amberRGBA, 0.5, 1.0, 1.0, 0.4, 0.0)
-setMat_amber(mesh, meshColor)
+meshColor = colorObj(derekBlue, 0.5, 1.0, 1.0, 0.0, 2.0)
+AOStrength = 0.5
+metalVal = 0.9
+setMat_metal(mesh, meshColor, AOStrength, metalVal)
 
 # # set invisible plane (shadow catcher)
 groundCenter = (0,0,0)
