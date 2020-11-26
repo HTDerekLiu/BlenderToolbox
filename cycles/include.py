@@ -44,6 +44,7 @@ from utils.setMat_transparentWithEdge import *
 from utils.setMat_texture import *
 from utils.setMat_pointCloud import *
 from utils.setMat_poop import *
+from utils.setMat_plastic import *
 from utils.setMat_VColor import *
 from utils.setMat_VColorAO import *
 from utils.setMat_VColorEdge import *

@@ -1,5 +1,5 @@
 import sys
-sys.path.append('/Users/hsuehtil/Dropbox/BlenderToolbox/cycles') # your path to “BlenderToolbox/cycles”
+sys.path.append('/Users/hsuehtil/Dropbox/BlenderToolbox/cycles') # CHANGE this to your path to “BlenderToolbox/cycles”
 from include import *
 import os
 cwd = os.getcwd()
