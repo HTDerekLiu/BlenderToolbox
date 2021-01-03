@@ -37,6 +37,7 @@ from utils.setMat_crackedCeramic import *
 from utils.setMat_ceramic import *
 from utils.setMat_edge import *
 from utils.setMat_glass import *
+from utils.setMat_honey import *
 from utils.setMat_singleColor import *
 from utils.setMat_stone import *
 from utils.setMat_transparent import *
