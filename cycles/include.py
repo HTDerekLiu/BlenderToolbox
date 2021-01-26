@@ -31,6 +31,7 @@ from utils.setLight_sun import *
 from utils.setLight_ambient import *
 from utils.setLight_threePoints import *
 from utils.setMat_amber import *
+from utils.setMat_balloon import *
 from utils.setMat_carPaint import *
 from utils.setMat_chrome import *
 from utils.setMat_crackedCeramic import *
