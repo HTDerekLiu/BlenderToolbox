@@ -21,7 +21,7 @@ arguments = {
   "image_resolution": [720, 720], # recommend >1080 for paper figures
   "number_of_samples": 200, # recommend ~200 for paper figures
   "mesh_path": "./meshes/spot.ply", # either .ply or .obj
-  "mesh_location": (1.12, -0.14, 0), # UI: click mesh > Transform > Location
+  "mesh_position": (1.12, -0.14, 0), # UI: click mesh > Transform > Location
   "mesh_rotation": (90, 0, 227), # UI: click mesh > Transform > Rotation
   "mesh_scale": (1.5,1.5,1.5), # UI: click mesh > Transform > Scale
   "shading": "smooth", # either "flat" or "smooth"

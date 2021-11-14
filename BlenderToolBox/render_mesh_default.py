@@ -33,7 +33,7 @@ def render_mesh_default(args):
 
   ## read mesh (choose either readPLY or readOBJ)
   meshPath = args["mesh_path"]
-  location = args["mesh_location"]
+  location = args["mesh_position"]
   rotation = args["mesh_rotation"]
   scale = args["mesh_scale"]
   mesh = readMesh(meshPath, location, rotation, scale)
