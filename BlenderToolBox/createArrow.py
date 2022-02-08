@@ -32,7 +32,8 @@ def createArrow(length, location, rotation_euler, scale):
     bpy.ops.object.modifier_add(type='BOOLEAN')
     sphere.modifiers["Boolean"].operation = 'UNION'
     sphere.modifiers["Boolean"].object = cone
-    bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Boolean")
+    # bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Boolean") # for blender 2.8
+    bpy.ops.object.modifier_apply(modifier="Boolean")
 
     bpy.ops.object.select_all(action = 'DESELECT')
     cone.select_set(True)

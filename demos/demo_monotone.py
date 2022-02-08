@@ -60,7 +60,7 @@ bt.setLight_ambient(color=(0.1,0.1,0.1,1))
 bt.shadowThreshold(alphaThreshold = 0.05, interpolationMode = 'CARDINAL')
 
 ## save blender file so that you can adjust parameters in the UI
-bpy.ops.wm.save_mainfile(filepath='./test.blend')
+bpy.ops.wm.save_mainfile(filepath=os.getcwd() + '/test.blend')
 
 ## save rendering
 bt.renderImage(outputPath, cam)

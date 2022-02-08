@@ -1,11 +1,12 @@
 # Blender Toolbox
 
-This is a set of Python scripts for rendering 3D shapes in [Blender 2.8](https://www.blender.org) (haven't tested on newer versions). These scripts are just from my personal codebase for rendering paper-worthy figures. To use them, make sure you have installed Blender and you can run the demo by typing 
+This is a set of Python scripts for rendering 3D shapes in [Blender 3.2](https://www.blender.org). These scripts are just from my personal codebase for rendering paper-worthy figures. To use them, make sure you have installed Blender and you can run the demo by typing 
 ```
 blender --background --python template.py
 ```
+You may need to create an alias if you cannot run `blender` from the terminal.  
 
-This toolbox contains a set of stand alone demos in `./demos/` to demonstrate different rendering effects. You can browse the results of the demos in `./demos/*.png`. You can also find some documented template demos in the main folder `./`:
+This toolbox contains a set of standalone demos in `./demos/` to demonstrate different rendering effects. You can browse the results of the demos in `./demos/*.png`. You can also find some documented template demos in the main folder `./`:
 - The `template.py` is a customizable template script for users to plug-and-play different materials and parameters from the examples in `./demos`.
 - The `template_pointCloud.py` is a demo for rendering point clouds as tiny spheres. 
 - The `template_lazy.py` is the minimum version for you to render a mesh with the default camera, lighting, material. If you just want a quick rendering pipeline to visualize your triangle meshes, you can follow the lazy pipeline section below to see how easy it is to use `template_lazy.py`.
@@ -14,9 +15,9 @@ This toolbox contains a set of stand alone demos in `./demos/` to demonstrate di
 
 This is the step-by-step tutorial on how to use the `template_lazy.py` to render a mesh in 5 minutes.
 
-First, in `template_lazy.py`, append the path where you clone the toolbox
+First, in `template_lazy.py`, append the path where you clone the toolbox. For example, if you download the repository to `path/to/BlenderToolBox-master/`, then you should add
 ```
-sys.path.append('path/to/BlenderToolbox/')
+sys.path.append('path/to/BlenderToolBox-master/')
 ```
 Then set `mesh_path` to your desired mesh path
 ```
@@ -51,7 +52,7 @@ This will output a `.png` file as your final rendering result.
 
 I also expose other commonly adjusted parameters, such as lighting angle, mesh color, image resolution, etc. For more details, please read the comments in the `template_lazy.py`.
 
-The sample rendering pipeline works for all the demo files in the repository. Other "non-lazy" demos expose more parameters for users to tune. However, in order to know how to adjust those parameters require some background knowledge in Blender. I refer users to a quick introduction to Blender UI from Silvia's [website](https://www.silviasellan.com/blender_figure.html). There are also a ton of online tutorials which offer more advanced stuff way beyond what I have covered here.
+The sample rendering pipeline works for all the demo files in the repository. Other "non-lazy" demos expose more parameters for users to tune. However, in order to know how to adjust those parameters require some background knowledge in Blender. I refer users to a quick introduction to Blender UI from Silvia's [website](https://www.silviasellan.com/blender_figure.html). There are also a ton of online tutorials which off er more advanced stuff way beyond what I have covered here.
 
 ## Notes
 

@@ -77,7 +77,7 @@ def render_mesh_default(args):
   shadowThreshold(alphaThreshold = 0.05, interpolationMode = 'CARDINAL')
 
   ## save blender file so that you can adjust parameters in the UI
-  bpy.ops.wm.save_mainfile(filepath='./test.blend')
+  bpy.ops.wm.save_mainfile(filepath=os.getcwd() + '/test.blend')
 
   ## save rendering
   renderImage(args["output_path"], cam)

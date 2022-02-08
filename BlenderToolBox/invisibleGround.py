@@ -17,7 +17,10 @@ def invisibleGround(location = (0,0,0), groundSize = 100, shadowBrightness = 0.7
 	# initialize a ground for shadow
 	bpy.context.scene.cycles.film_transparent = True
 	bpy.ops.mesh.primitive_plane_add(location = location, size = groundSize)
-	bpy.context.object.cycles.is_shadow_catcher = True
+	try:
+		bpy.context.object.is_shadow_catcher = True # for blender 3.X
+	except:
+		bpy.context.object.cycles.is_shadow_catcher = True # for blender 2.X
 
 	# # set material
 	ground = bpy.context.object

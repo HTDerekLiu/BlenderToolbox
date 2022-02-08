@@ -14,7 +14,7 @@
 import bpy
 
 # follow the instruction by Ned Poreyra
-def setMat_muscle(mesh, meshColor, fiberShape, bumpStrength = 0.4, wrinkleness = 0.03, maxBrightness = 0.85, minBrightness = 0.1):
+def setMat_muscle(mesh, meshColor, fiberShape, bumpStrength = 0.4, wrinkleness = 0.03, maxBrightness = 1.0, minBrightness = 0.1):
     mat = bpy.data.materials.new('MeshMaterial')
     mesh.data.materials.append(mat)
     mesh.active_material = mat
@@ -37,9 +37,9 @@ def setMat_muscle(mesh, meshColor, fiberShape, bumpStrength = 0.4, wrinkleness =
 
     MAP = tree.nodes.new('ShaderNodeMapping')
     MAP.vector_type = "POINT"
-    MAP.scale[0] = fiberShape[0] # this controls the shape of the fiber
-    MAP.scale[1] = fiberShape[1] # this controls the shape of the fiber
-    MAP.scale[2] = fiberShape[2] # this controls the shape of the fiber
+    MAP.inputs["Scale"].default_value[0] = fiberShape[0] # this controls the shape of the fiber
+    MAP.inputs["Scale"].default_value[1] = fiberShape[1] # this controls the shape of the fiber
+    MAP.inputs["Scale"].default_value[2] = fiberShape[2] # this controls the shape of the fiber
     MAP.location.x -= 700
 
     COORD = tree.nodes.new('ShaderNodeTexCoord')

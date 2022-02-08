@@ -27,13 +27,13 @@ bpy.ops.object.shade_smooth()
 ## subdivision
 bt.subdivision(mesh, level = 2)
 
-# # set material (TODO: this has some new issue due to new version of Blender)
+# # set material
 useless = (0,0,0,0)
 meshColor = bt.colorObj(useless, 0.5, 1.0, 1.4, 0.0, 0.0) # the color is fixed to blood red
-fiberShape = [5.0,2.0,0.4] # this controls the muscle pattern (requires tuning)
+fiberShape = [7.0,2.0,0.4] # this controls the muscle pattern (requires tuning)
 bumpStrength = 0.4 # you can leave this as default
 wrinkleness = 0.03 # you can leave this as default
-maxBrightness = 0.85 # you can leave this as default
+maxBrightness = 1.0 # you can leave this as default
 minBrightness = 0.3 # you can leave this as default
 bt.setMat_muscle(mesh, meshColor, fiberShape, bumpStrength, wrinkleness, maxBrightness,minBrightness)
 
@@ -59,7 +59,7 @@ bt.setLight_ambient(color=(0.1,0.1,0.1,1))
 bt.shadowThreshold(alphaThreshold = 0.05, interpolationMode = 'CARDINAL')
 
 ## save blender file so that you can adjust parameters in the UI
-bpy.ops.wm.save_mainfile(filepath='./test.blend')
+bpy.ops.wm.save_mainfile(filepath=os.getcwd() + '/test.blend')
 
 ## save rendering
 bt.renderImage(outputPath, cam)

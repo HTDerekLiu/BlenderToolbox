@@ -1,5 +1,5 @@
 import sys
-sys.path.append('/Users/hsuehtil/Dropbox/BlenderToolbox/') # change this to your path to “path/to/BlenderToolbox/
+sys.path.append('/Users/hsuehtil/Dropbox/BlenderToolbox/') # change this to your path to “path/to/BlenderToolbox/"
 import BlenderToolBox as bt
 import os, bpy, bmesh
 import numpy as np
@@ -52,7 +52,7 @@ bt.setLight_ambient(color=(0.1,0.1,0.1,1))
 bt.shadowThreshold(alphaThreshold = 0.05, interpolationMode = 'CARDINAL')
 
 ## save blender file so that you can adjust parameters in the UI
-bpy.ops.wm.save_mainfile(filepath='./test.blend')
+bpy.ops.wm.save_mainfile(filepath=os.getcwd() + '/test.blend')
 
 ## save rendering
 bt.renderImage(outputPath, cam)

@@ -60,6 +60,7 @@ def drawBoundaryLoop(mesh, r, bdColor):
     
     # update bmesh
     bm.to_mesh(bdMesh)
+    bm.free()
 
     # bevel with a circle
     bpy.ops.object.select_all(action='DESELECT')
@@ -77,6 +78,7 @@ def drawBoundaryLoop(mesh, r, bdColor):
     bpy.ops.object.modifier_add(type='SUBSURF')
     bdObj.modifiers["Subdivision"].render_levels = level
     bdObj.modifiers["Subdivision"].levels = level 
+    bdObj.data.bevel_depth = r
 
     # add material
     mat = bpy.data.materials.new('MeshMaterial')
