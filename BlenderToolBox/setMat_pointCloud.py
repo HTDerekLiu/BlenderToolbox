@@ -39,14 +39,15 @@ def setMat_pointCloud(mesh, \
     tree.links.new(BCNode.outputs['Color'], tree.nodes['Principled BSDF'].inputs['Base Color'])
 
     # init particle system
-    bpy.context.view_layer.objects.active = mesh
-    bpy.ops.object.particle_system_add()
-    bpy.data.particles["ParticleSettings"].count = len(mesh.data.vertices)
-    bpy.data.particles["ParticleSettings"].frame_start = 0
-    bpy.data.particles["ParticleSettings"].frame_end = 0
-    bpy.data.particles["ParticleSettings"].render_type = 'OBJECT'
-    bpy.data.particles["ParticleSettings"].instance_object = sphere
-    bpy.data.particles["ParticleSettings"].emit_from = 'VERT'
-    bpy.data.particles["ParticleSettings"].particle_size = ptSize
-    bpy.data.particles["ParticleSettings"].physics_type = 'NO'
-    bpy.data.particles["ParticleSettings"].use_emit_random = False
+    mesh.modifiers.new("part", type='PARTICLE_SYSTEM')
+    ps = mesh.particle_systems[0]
+    ps.settings.count = len(mesh.data.vertices)
+    ps.settings.frame_start = 0
+    ps.settings.frame_end = 0
+    ps.settings.emit_from = 'VERT'
+    ps.settings.physics_type = 'NO'
+    ps.settings.particle_size = ptSize
+    ps.settings.render_type = 'OBJECT'
+    ps.settings.instance_object = sphere
+    ps.settings.use_emit_random = False
+
