@@ -26,6 +26,7 @@ from . render_mesh_default import render_mesh_default
 from . recalculateNormals import recalculateNormals
 from . selectOBJ import selectOBJ
 from . setCamera import setCamera
+from .setCamera_from_UI import setCamera_from_UI
 from . setCamera_orthographic import setCamera_orthographic
 from . setCameraPath import setCameraPath
 from . setLight_sun import setLight_sun
