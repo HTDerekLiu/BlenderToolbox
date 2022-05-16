@@ -39,6 +39,7 @@ from . setMat_chrome import setMat_chrome
 from . setMat_crackedCeramic import setMat_crackedCeramic
 from . setMat_ceramic import setMat_ceramic
 from . setMat_edge import setMat_edge
+from . setMat_emission import setMat_emission
 from . setMat_glass import setMat_glass
 from . setMat_honey import setMat_honey
 from . setMat_singleColor import setMat_singleColor

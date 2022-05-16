@@ -14,19 +14,22 @@
 import bpy
 from . initColorNode import initColorNode
 
-def setMat_transparent(mesh, meshColor, transparency, transmission, roughness = 0.7):
+def setMat_emission(mesh, meshColor, emission_strength):
 	mat = bpy.data.materials.new('MeshMaterial')
 	mesh.data.materials.append(mat)
 	mesh.active_material = mat
 	mat.use_nodes = True
 	tree = mat.node_tree
 
-	# set principled BSDF
-	tree.nodes["Principled BSDF"].inputs['Roughness'].default_value = roughness
-	tree.nodes["Principled BSDF"].inputs['Sheen Tint'].default_value = 0
-	tree.nodes["Principled BSDF"].inputs['Metallic'].default_value = 0.0
-	tree.nodes["Principled BSDF"].inputs['Transmission'].default_value = transmission
-	tree.nodes["Principled BSDF"].inputs['Alpha'].default_value = transparency
+	# # set principled BSDF
+	# tree.nodes["Principled BSDF"].inputs['Roughness'].default_value = roughness
+	# tree.nodes["Principled BSDF"].inputs['Sheen Tint'].default_value = 0
+	# tree.nodes["Principled BSDF"].inputs['Metallic'].default_value = 0.0
+	# tree.nodes["Principled BSDF"].inputs['Transmission'].default_value = transmission
+	# tree.nodes["Principled BSDF"].inputs['Alpha'].default_value = transparency
+	tree.nodes["Principled BSDF"].inputs['Emission'].default_value = meshColor.RGBA # emission color
+	tree.nodes["Principled BSDF"].inputs['Emission Strength'].default_value = emission_strength # emission color
+
 
 	# set color using Hue/Saturation node
 	HSVNode = tree.nodes.new('ShaderNodeHueSaturation')
