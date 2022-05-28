@@ -16,10 +16,11 @@ from . invisibleGround import invisibleGround
 from . initColorNode import initColorNode
 from . lookAt import lookAt
 from . loadShader import loadShader
-from . readPLY import readPLY
-from . readOBJ import readOBJ
-from . readMesh import readMesh
 from . readImagePlane import readImagePlane
+from . readMesh import readMesh
+from . readNumpyMesh import readNumpyMesh
+from . readOBJ import readOBJ
+from . readPLY import readPLY
 from . renderImage import renderImage
 from . renderAnimation import renderAnimation
 from . render_mesh_default import render_mesh_default
@@ -78,20 +79,3 @@ cb_yellow = (240/255.0, 228/255.0, 66/255.0, 1)
 cb_blue = (0/255.0, 114/255.0, 178/255.0, 1)
 cb_vermillion = (213/255.0, 94/255.0, 0/255.0, 1)
 cb_purple = (204/255.0, 121/255.0, 167/255.0, 1)
-
-# class discreteColor(object):
-#     def __init__(self, brightness = 0, pos1 = 0, pos2 = 0):
-#         self.brightness = brightness
-#         self.rampElement1_pos = pos1
-#         self.rampElement2_pos = pos2
-
-# class colorObj(object):
-#     def __init__(self, RGBA = derekBlue, \
-#     H = 0.5, S = 1.0, V = 1.0,\
-#     B = 0.0, C = 0.0):
-#         self.H = H # hue
-#         self.S = S # saturation
-#         self.V = V # value
-#         self.RGBA = RGBA
-#         self.B = B # birghtness
-#         self.C = C # contrast

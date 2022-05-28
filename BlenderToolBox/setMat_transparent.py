@@ -14,7 +14,7 @@
 import bpy
 from . initColorNode import initColorNode
 
-def setMat_transparent(mesh, meshColor, transparency, transmission, roughness = 0.7):
+def setMat_transparent(mesh, meshColor, alpha, transmission, roughness = 0.7):
 	mat = bpy.data.materials.new('MeshMaterial')
 	mesh.data.materials.append(mat)
 	mesh.active_material = mat
@@ -26,7 +26,7 @@ def setMat_transparent(mesh, meshColor, transparency, transmission, roughness = 
 	tree.nodes["Principled BSDF"].inputs['Sheen Tint'].default_value = 0
 	tree.nodes["Principled BSDF"].inputs['Metallic'].default_value = 0.0
 	tree.nodes["Principled BSDF"].inputs['Transmission'].default_value = transmission
-	tree.nodes["Principled BSDF"].inputs['Alpha'].default_value = transparency
+	tree.nodes["Principled BSDF"].inputs['Alpha'].default_value = alpha
 
 	# set color using Hue/Saturation node
 	HSVNode = tree.nodes.new('ShaderNodeHueSaturation')
