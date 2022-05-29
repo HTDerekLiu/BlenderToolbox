@@ -19,6 +19,7 @@ from . loadShader import loadShader
 from . readImagePlane import readImagePlane
 from . readMesh import readMesh
 from . readNumpyMesh import readNumpyMesh
+from . readNumpyPoints import readNumpyPoints
 from . readOBJ import readOBJ
 from . readPLY import readPLY
 from . renderImage import renderImage
@@ -37,6 +38,7 @@ from . setMat_amber import setMat_amber
 from . setMat_balloon import setMat_balloon
 from . setMat_carPaint import setMat_carPaint
 from . setMat_chrome import setMat_chrome
+from . setMat_pointCloudColored import setMat_pointCloudColored
 from . setMat_crackedCeramic import setMat_crackedCeramic
 from . setMat_ceramic import setMat_ceramic
 from . setMat_edge import setMat_edge
