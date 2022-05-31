@@ -5,7 +5,7 @@ import os, bpy, bmesh
 import numpy as np
 cwd = os.getcwd()
 
-outputPath = os.path.join(cwd, './demo_numpyIsoline.png') # make it abs path for windows
+outputPath = os.path.join(cwd, './demo_isolineNumpy.png') # make it abs path for windows
 
 ## initialize blender
 imgRes_x = 480 
