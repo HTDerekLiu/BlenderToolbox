@@ -17,7 +17,7 @@ from . colorMap import colorMap
 
 def setMeshScalars(mesh_obj, C, color_map_name = 'default', type = None):
     """
-    This function set per vertex/face colors of a mesh with a numpy array of RGB colors (between 0 and 1)
+    This function set per vertex/face color of a mesh with a numpy array of scalars
 
     Inputs
     mesh_obj: bpy.object of the mesh

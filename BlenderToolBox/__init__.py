@@ -66,6 +66,7 @@ from . setPointColors import setPointColors
 from . setPointScalars import setPointScalars
 from . subdivision import subdivision
 from . shadowThreshold import shadowThreshold
+from . vertexScalarToUV import vertexScalarToUV
 
 derekBlue = (144.0/255, 210.0/255, 236.0/255, 1)
 coralRed = (250.0/255, 114.0/255, 104.0/255, 1)

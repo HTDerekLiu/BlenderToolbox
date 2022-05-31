@@ -16,7 +16,7 @@ import numpy as np
 
 def setPointColors(mesh_obj, C):
     """
-    This function set per vertex/face colors of a mesh with a numpy array of RGB colors (between 0 and 1)
+    This function set per point colors of a point cloud with a numpy array of RGB colors (between 0 and 1)
 
     Inputs
     mesh_obj: bpy.object of the point cloud
