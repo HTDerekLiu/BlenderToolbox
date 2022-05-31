@@ -21,7 +21,7 @@ def setMeshScalars(mesh_obj, C, color_map_name = 'default', type = None):
 
     Inputs
     mesh_obj: bpy.object of the mesh
-    C: |V| (|F|) numpy array of vertex (face) scalars, each row is a rgb color between [0,1]
+    C: |V| (|F|) numpy array of vertex (face) scalars
     color_map_name: name of the color maps (see colorMap.py)
     type: a string of either "vertex" or "face" specifying the type of colors. One can also use None to let the program figure it out
 

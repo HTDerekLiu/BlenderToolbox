@@ -5,7 +5,7 @@ import os, bpy, bmesh
 import numpy as np
 cwd = os.getcwd()
 
-outputPath = os.path.join(cwd, './demo_pointCloudColored.png') # make it abs path for windows
+outputPath = os.path.join(cwd, './demo_pointCloudColors.png') # make it abs path for windows
 
 ## initialize blender
 imgRes_x = 480 
@@ -19,8 +19,11 @@ location = (0,0,0.67)
 rotation = (0,0,0) 
 scale = (.5,.5,.5)
 P = np.array([[1,1,1],[-1,1,-1],[-1,-1,1],[1,-1,-1]], dtype=np.float32) # point location
+mesh = bt.readNumpyPoints(P,location,rotation,scale)
+
+## add color to point cloud
 PC = np.array([[0.8,0,0],[0,0.8,0],[0,0,0.8],[.8,.8,.8]]) # point colors
-mesh = bt.readNumpyPoints(P,location,rotation,scale,PC)
+mesh = bt.setPointColors(mesh, PC)
 
 ## set material ptColor = (vertex_RGBA, H, S, V, Bright, Contrast)
 ptColor = bt.colorObj([], 0.5, 1.0, 1.0, 0.0, 0.0)

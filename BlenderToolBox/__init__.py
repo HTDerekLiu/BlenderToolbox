@@ -62,6 +62,8 @@ from . setMat_muscle import setMat_muscle
 from . setMat_metal import setMat_metal
 from . setMeshColors import setMeshColors
 from . setMeshScalars import setMeshScalars
+from . setPointColors import setPointColors
+from . setPointScalars import setPointScalars
 from . subdivision import subdivision
 from . shadowThreshold import shadowThreshold
 
