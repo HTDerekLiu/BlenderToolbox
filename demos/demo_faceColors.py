@@ -5,7 +5,7 @@ import os, bpy, bmesh
 import numpy as np
 cwd = os.getcwd()
 
-outputPath = os.path.join(cwd, './demo_vertexColor.png') # make it abs path for windows
+outputPath = os.path.join(cwd, './demo_faceColors.png') # make it abs path for windows
 
 ## initialize blender
 imgRes_x = 480 
@@ -14,23 +14,28 @@ numSamples = 100
 exposure = 1.5 
 bt.blenderInit(imgRes_x, imgRes_y, numSamples, exposure)
 
-## read mesh (choose either readPLY or readOBJ)
-meshPath = '../meshes/spot.ply'
-location = (1.12, -0.14, 0) # (UI: click mesh > Transform > Location)
-rotation = (90, 0, 227) # (UI: click mesh > Transform > Rotation)
-scale = (1.5,1.5,1.5) # (UI: click mesh > Transform > Scale)
-mesh = bt.readMesh(meshPath, location, rotation, scale)
+## read mesh from numpy array
+location = (0,0,0.67)
+rotation = (0,0,0) 
+scale = (.5,.5,.5)
+
+V = np.array([[1,1,1],[-1,1,-1],[-1,-1,1],[1,-1,-1]], dtype=np.float32) # vertex list
+F = np.array([[0,1,2],[0,2,3],[0,3,1],[2,1,3]], dtype=np.int32) # face list
+mesh = bt.readNumpyMesh(V,F,location,rotation,scale)
+
+face_colors = np.array([[1,0,0],[0,1,0],[0,0,1],[1,1,1]]) # face color list
+color_type = 'face'
+mesh = bt.setMeshColors(mesh, face_colors, color_type)
 
 ## set shading (uncomment one of them)
-bpy.ops.object.shade_smooth() 
+# bpy.ops.object.shade_smooth() 
 
 ## subdivision
-bt.subdivision(mesh, level = 2)
+# bt.subdivision(mesh, level = 0)
 
-# # set material (TODO: this has some new issue due to new version of Blender)
+# # set material 
 meshVColor = bt.colorObj([], 0.5, 1.0, 1.0, 0.0, 0.0)
 bt.setMat_VColor(mesh, meshVColor)
-
 
 ## set invisible plane (shadow catcher)
 bt.invisibleGround(shadowBrightness=0.9)

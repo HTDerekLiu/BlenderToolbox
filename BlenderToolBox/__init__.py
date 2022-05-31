@@ -28,7 +28,7 @@ from . render_mesh_default import render_mesh_default
 from . recalculateNormals import recalculateNormals
 from . selectOBJ import selectOBJ
 from . setCamera import setCamera
-from .setCamera_from_UI import setCamera_from_UI
+from . setCamera_from_UI import setCamera_from_UI
 from . setCamera_orthographic import setCamera_orthographic
 from . setCameraPath import setCameraPath
 from . setLight_sun import setLight_sun
@@ -60,6 +60,8 @@ from . setMat_monotone import setMat_monotone
 from . setMat_matcap import setMat_matcap
 from . setMat_muscle import setMat_muscle
 from . setMat_metal import setMat_metal
+from . setMeshColors import setMeshColors
+from . setMeshScalars import setMeshScalars
 from . subdivision import subdivision
 from . shadowThreshold import shadowThreshold
 

@@ -14,7 +14,7 @@
 import bpy
 import numpy as np
 
-def readNumpyMesh(V,F,location,rotation_euler,scale,vertex_colors=None,face_colors=None):
+def readNumpyMesh(V,F,location,rotation_euler,scale):
     """
     this function creates a blender mesh from numpy array
 
@@ -24,8 +24,6 @@ def readNumpyMesh(V,F,location,rotation_euler,scale,vertex_colors=None,face_colo
     location: (3,) long tuple of mesh locations (same values as UI)
     rotation: (3,) long tuple of rotation angles (same values as UI)
     scale: (3,) long tuple of per-axis mesh scaling (same values as UI)
-    vertex_colors: (optional) |V|x3 list of vertex colors, each row is a rgb color between [0,1]
-    face_colors: (optional) |F|x3 list of face colors, each row is a rgb color between [0,1]
 
     Output
     mesh_obj a blender object
@@ -45,25 +43,25 @@ def readNumpyMesh(V,F,location,rotation_euler,scale,vertex_colors=None,face_colo
     mesh_obj.scale = scale
     bpy.context.scene.collection.objects.link(mesh_obj)
     bpy.context.view_layer.update()
-
-    if vertex_colors is not None: # if specified vertex colors
-        # Note: blender use name to reference an object, so I use "Col" here. If we change to another name, we will need to change other parts in the toolbox
-        color_layer = mesh.vertex_colors.new(name='Col') 
-        idx = 0
-        if V.shape[0] != vertex_colors.shape[0]:
-            raise ValueError('Error in "readNumpyMesh": vertex colors must have the same length as the number of vertices')
-        for vIdx in F.flatten():
-            # blender use per-corner color so we loop over each face one-by-one
-            color_layer.data[idx].color = (vertex_colors[vIdx,0],vertex_colors[vIdx,1],vertex_colors[vIdx,2], 1.0)
-            idx += 1
-
-    if face_colors is not None:
-        color_layer = mesh.vertex_colors.new(name='Col') 
-        idx = 0
-        if F.shape[0] != face_colors.shape[0]:
-            raise ValueError('Error in "readNumpyMesh": face colors must have the same length as the number of faces')
-        for ii in range(F.shape[0]):
-            color_layer.data[ii*3].color = (face_colors[ii,0],face_colors[ii,1],face_colors[ii,2], 1.0)
-            color_layer.data[ii*3+1].color = (face_colors[ii,0],face_colors[ii,1],face_colors[ii,2], 1.0)
-            color_layer.data[ii*3+2].color = (face_colors[ii,0],face_colors[ii,1],face_colors[ii,2], 1.0)
     return mesh_obj 
+
+    # if vertex_colors is not None: # if specified vertex colors
+    #     # Note: blender use name to reference an object, so I use "Col" here. If we change to another name, we will need to change other parts in the toolbox
+    #     color_layer = mesh.vertex_colors.new(name='Col') 
+    #     idx = 0
+    #     if V.shape[0] != vertex_colors.shape[0]:
+    #         raise ValueError('Error in "readNumpyMesh": vertex colors must have the same length as the number of vertices')
+    #     for vIdx in F.flatten():
+    #         # blender use per-corner color so we loop over each face one-by-one
+    #         color_layer.data[idx].color = (vertex_colors[vIdx,0],vertex_colors[vIdx,1],vertex_colors[vIdx,2], 1.0)
+    #         idx += 1
+
+    # if face_colors is not None:
+    #     color_layer = mesh.vertex_colors.new(name='Col') 
+    #     idx = 0
+    #     if F.shape[0] != face_colors.shape[0]:
+    #         raise ValueError('Error in "readNumpyMesh": face colors must have the same length as the number of faces')
+    #     for ii in range(F.shape[0]):
+    #         color_layer.data[ii*3].color = (face_colors[ii,0],face_colors[ii,1],face_colors[ii,2], 1.0)
+    #         color_layer.data[ii*3+1].color = (face_colors[ii,0],face_colors[ii,1],face_colors[ii,2], 1.0)
+    #         color_layer.data[ii*3+2].color = (face_colors[ii,0],face_colors[ii,1],face_colors[ii,2], 1.0)

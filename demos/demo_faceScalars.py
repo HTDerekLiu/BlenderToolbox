@@ -5,7 +5,7 @@ import os, bpy, bmesh
 import numpy as np
 cwd = os.getcwd()
 
-outputPath = os.path.join(cwd, './demo_numpyMeshFColor.png') # make it abs path for windows
+outputPath = os.path.join(cwd, './demo_faceScalars.png') # make it abs path for windows
 
 ## initialize blender
 imgRes_x = 480 
@@ -21,8 +21,12 @@ scale = (.5,.5,.5)
 
 V = np.array([[1,1,1],[-1,1,-1],[-1,-1,1],[1,-1,-1]], dtype=np.float32) # vertex list
 F = np.array([[0,1,2],[0,2,3],[0,3,1],[2,1,3]], dtype=np.int32) # face list
-FC = np.array([[1,0,0],[0,1,0],[0,0,1],[1,1,1]]) # vertex color list
-mesh = bt.readNumpyMesh(V,F,location,rotation,scale,None,FC)
+mesh = bt.readNumpyMesh(V,F,location,rotation,scale)
+
+face_scalars = np.array([0.,1.,2.,3.]) # face scalar list
+color_type = 'face'
+color_map = 'red'
+mesh = bt.setMeshScalars(mesh, face_scalars, color_map, color_type)
 
 ## set shading (uncomment one of them)
 # bpy.ops.object.shade_smooth() 

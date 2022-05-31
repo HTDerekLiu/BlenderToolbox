@@ -5,7 +5,7 @@ import os, bpy, bmesh
 import numpy as np
 cwd = os.getcwd()
 
-outputPath = os.path.join(cwd, './demo_numpyMeshVColor.png') # make it abs path for windows
+outputPath = os.path.join(cwd, './demo_vertexColors.png') # make it abs path for windows
 
 ## initialize blender
 imgRes_x = 480 
@@ -21,8 +21,13 @@ scale = (.5,.5,.5)
 
 V = np.array([[1,1,1],[-1,1,-1],[-1,-1,1],[1,-1,-1]], dtype=np.float32) # vertex list
 F = np.array([[0,1,2],[0,2,3],[0,3,1],[2,1,3]], dtype=np.int32) # face list
-VC = np.array([[1,0,0],[0,1,0],[0,0,1],[1,1,1]]) # vertex color list
-mesh = bt.readNumpyMesh(V,F,location,rotation,scale,VC)
+mesh = bt.readNumpyMesh(V,F,location,rotation,scale)
+
+
+
+vertex_colors = np.array([[1,0,0],[0,1,0],[0,0,1],[1,1,1]]) # vertex color list
+color_type = 'vertex'
+mesh = bt.setMeshColors(mesh, vertex_colors, color_type)
 
 ## set shading (uncomment one of them)
 # bpy.ops.object.shade_smooth() 
@@ -58,5 +63,5 @@ bt.shadowThreshold(alphaThreshold = 0.05, interpolationMode = 'CARDINAL')
 ## save blender file so that you can adjust parameters in the UI
 bpy.ops.wm.save_mainfile(filepath=os.getcwd() + '/test.blend')
 
-## save rendering
+# save rendering
 bt.renderImage(outputPath, cam)
