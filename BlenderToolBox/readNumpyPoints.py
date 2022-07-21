@@ -27,6 +27,10 @@ def readNumpyPoints(P,location,rotation_euler,scale,point_colors=None):
 
     Output
     mesh_obj a blender object
+
+    Note
+    We should update this structure (using a mesh to encode point clouds) when the PointCloud data becomes mature.
+
     """
     x = rotation_euler[0] * 1.0 / 180.0 * np.pi 
     y = rotation_euler[1] * 1.0 / 180.0 * np.pi 
@@ -34,23 +38,25 @@ def readNumpyPoints(P,location,rotation_euler,scale,point_colors=None):
     angle = (x,y,z)
 
     mesh = bpy.data.meshes.new(name='numpy point cloud')
-    F = [np.arange(P.shape[0])] # the face of a point cloud is a single large polygonal face because blender mesh only support face colors
-    mesh.from_pydata(P,[],F)
+    # F = [np.arange(P.shape[0])] # the face of a point cloud is a single large polygonal face because blender mesh only support face colors 
+    mesh.from_pydata(P,[],[])
     mesh.update()
     mesh.validate()
     mesh_obj = bpy.data.objects.new('numpy point cloud object', mesh)
     mesh_obj.location = location
     mesh_obj.rotation_euler = angle
     mesh_obj.scale = scale
-    bpy.context.scene.collection.objects.link(mesh_obj)
+
+    # add object to scene collection
+    bpy.data.collections[0].objects.link(mesh_obj)
     bpy.context.view_layer.update()
 
-    if point_colors is not None: # if specified vertex colors
-        # Note: blender use name to reference an object, so I use "Col" here. If we change to another name, we will need to change other parts in the toolbox
-        color_layer = mesh.vertex_colors.new(name='Col') 
-        if P.shape[0] != point_colors.shape[0]:
-            raise ValueError('Error in "readNumpyPoints": point colors must have the same length as the number of points')
-        for vIdx in range(P.shape[0]):
-            # blender use per-corner color so we loop over each face one-by-one
-            color_layer.data[vIdx].color = (point_colors[vIdx,0],point_colors[vIdx,1],point_colors[vIdx,2], 1.0)
+    # if point_colors is not None: # if specified vertex colors
+    #     # Note: blender use name to reference an object, so I use "Col" here. If we change to another name, we will need to change other parts in the toolbox
+    #     color_layer = mesh.vertex_colors.new(name='Col') 
+    #     if P.shape[0] != point_colors.shape[0]:
+    #         raise ValueError('Error in "readNumpyPoints": point colors must have the same length as the number of points')
+    #     for vIdx in range(P.shape[0]):
+    #         # blender use per-corner color so we loop over each face one-by-one
+    #         color_layer.data[vIdx].color = (point_colors[vIdx,0],point_colors[vIdx,1],point_colors[vIdx,2], 1.0)
     return mesh_obj 

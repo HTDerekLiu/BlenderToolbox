@@ -12,9 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 import bpy
+from mathutils import Vector
 
 def setMat_pointCloudColored(mesh, meshColor, ptSize): 
     mat = bpy.data.materials.new('MeshMaterial')
+    mesh.data.materials.append(mat)
+    mesh.active_material = mat
     mat.use_nodes = True
     tree = mat.node_tree
 
@@ -44,18 +47,37 @@ def setMat_pointCloudColored(mesh, meshColor, ptSize):
     mesh.select_set(True)
     bpy.context.view_layer.objects.active = mesh
 
+    # this if else is a quick hack to handle blender 3.2.x vs earlier versions
     bpy.ops.object.modifier_add(type='NODES')
-    tree = mesh.modifiers[-1].node_group
-    IN = tree.nodes['Group Input']
-    OUT = tree.nodes['Group Output']
-    MESH2POINT = tree.nodes.new('GeometryNodeMeshToPoints')
+    if mesh.modifiers[-1].node_group:
+        geo_tree = mesh.modifiers[-1].node_group    
+    else:
+        geo_tree = new_GeometryNodes_group()
+        mesh.modifiers[-1].node_group = geo_tree
+    IN = geo_tree.nodes['Group Input']
+    OUT = geo_tree.nodes['Group Output']
+    MESH2POINT = geo_tree.nodes.new('GeometryNodeMeshToPoints')
     MESH2POINT.location.x -= 100
     MESH2POINT.inputs['Radius'].default_value = ptSize
-    MATERIAL = tree.nodes.new('GeometryNodeSetMaterial')
+    MATERIAL = geo_tree.nodes.new('GeometryNodeSetMaterial')
 
-    tree.links.new(IN.outputs['Geometry'], MESH2POINT.inputs['Mesh'])
-    tree.links.new(MESH2POINT.outputs['Points'], MATERIAL.inputs['Geometry'])
-    tree.links.new(MATERIAL.outputs['Geometry'], OUT.inputs['Geometry'])
+    geo_tree.links.new(IN.outputs['Geometry'], MESH2POINT.inputs['Mesh'])
+    geo_tree.links.new(MESH2POINT.outputs['Points'], MATERIAL.inputs['Geometry'])
+    geo_tree.links.new(MATERIAL.outputs['Geometry'], OUT.inputs['Geometry'])
 
     # assign the material to point cloud
     MATERIAL.inputs[2].default_value = mat
+
+def new_GeometryNodes_group():
+    ''' Create a new empty node group that can be used
+        in a GeometryNodes modifier.
+    '''
+    node_group = bpy.data.node_groups.new('GeometryNodes', 'GeometryNodeTree')
+    inNode = node_group.nodes.new('NodeGroupInput')
+    inNode.outputs.new('NodeSocketGeometry', 'Geometry')
+    outNode = node_group.nodes.new('NodeGroupOutput')
+    outNode.inputs.new('NodeSocketGeometry', 'Geometry')
+    node_group.links.new(inNode.outputs['Geometry'], outNode.inputs['Geometry'])
+    inNode.location = Vector((-1.5*inNode.width, 0))
+    outNode.location = Vector((1.5*outNode.width, 0))
+    return node_group

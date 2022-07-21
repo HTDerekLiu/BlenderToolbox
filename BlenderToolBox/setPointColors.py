@@ -27,24 +27,29 @@ def setPointColors(mesh_obj, C):
     """
     mesh = mesh_obj.data
     nV = len(mesh.vertices)
-    nF = len(mesh.polygons)
 
     # guess the type of colors
     if C.shape[0] != nV:
         raise ValueError('Error in "setPointColors": input color format must be eithe |P|x3 array of point colors')
 
-    if nF != 1:
-        raise ValueError('Error in "setPointColors": please switch to "readNumpyPoints" to read the input point cloud')
-
-    # assigning vertex colors
-    color_layer = mesh.vertex_colors.new(name='Col') 
-    idx = 0
-    for fIdx in range(nF):
-        for vIdx in mesh.polygons[fIdx].vertices:
-            color_layer.data[idx].color = (C[vIdx,0],C[vIdx,1],C[vIdx,2], 1.0)
-            idx += 1
+    color_layer = mesh.attributes.new(name="Col", type='FLOAT_COLOR', domain='POINT')
+    for ii in range(nV):
+        color_layer.data[ii].color = (C[ii,0],C[ii,1],C[ii,2], 1.0)
     
     return mesh_obj
+
+
+# RIP for Blender before 3.2 Alpha
+# if nF != 1:
+#     raise ValueError('Error in "setPointColors": please switch to "readNumpyPoints" to read the input point cloud')
+
+# # assigning vertex colors
+# color_layer = mesh.vertex_colors.new(name='Col') 
+# idx = 0
+# for fIdx in range(nF):
+#     for vIdx in mesh.polygons[fIdx].vertices:
+#         color_layer.data[idx].color = (C[vIdx,0],C[vIdx,1],C[vIdx,2], 1.0)
+#         idx += 1
 
 
 

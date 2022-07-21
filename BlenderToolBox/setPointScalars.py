@@ -39,25 +39,29 @@ def setPointScalars(mesh_obj, C, color_map_name = 'default'):
     """
     mesh = mesh_obj.data
     nV = len(mesh.vertices)
-    nF = len(mesh.polygons)
+    # nF = len(mesh.polygons)
 
     # guess the type of colors
     if C.shape[0] != nV:
         raise ValueError('Error in "setPointColors": input color format must be eithe |P|x3 array of point colors')
 
-    if nF != 1:
-        raise ValueError('Error in "setPointColors": please switch to "readNumpyPoints" to read the input point cloud')
+    # if nF != 1:
+    #     raise ValueError('Error in "setPointColors": please switch to "readNumpyPoints" to read the input point cloud')
     
     C_RGB = colorMap(C, color_map_name)
 
-    # assigning vertex colors
-    color_layer = mesh.vertex_colors.new(name='Col') 
-    idx = 0
-    for fIdx in range(nF):
-        for vIdx in mesh.polygons[fIdx].vertices:
-            color_layer.data[idx].color = (C_RGB[vIdx,0],C_RGB[vIdx,1],C_RGB[vIdx,2], 1.0)
-            idx += 1
-    
+    # # assigning vertex colors
+    # color_layer = mesh.vertex_colors.new(name='Col') 
+    # idx = 0
+    # for fIdx in range(nF):
+    #     for vIdx in mesh.polygons[fIdx].vertices:
+    #         color_layer.data[idx].color = (C_RGB[vIdx,0],C_RGB[vIdx,1],C_RGB[vIdx,2], 1.0)
+    #         idx += 1
+
+    color_layer = mesh.attributes.new(name="Col", type='FLOAT_COLOR', domain='POINT')
+    for ii in range(nV):
+        color_layer.data[ii].color = (C_RGB[ii,0],C_RGB[ii,1],C_RGB[ii,2], 1.0)
+
     return mesh_obj
 
 
