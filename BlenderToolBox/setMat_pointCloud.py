@@ -64,7 +64,7 @@ def setMat_pointCloud(mesh, \
 
     bpy.ops.object.modifier_add(type='NODES')
     if mesh.modifiers[-1].node_group:
-        tree = curve.modifiers[-1].node_group    
+        tree = mesh.modifiers[-1].node_group    
     else:
         tree = new_GeometryNodes_group()
         mesh.modifiers[-1].node_group = tree
