@@ -1,6 +1,6 @@
 # Blender Toolbox
 
-This is a set of Python scripts for rendering 3D shapes in [Blender 3.2](https://www.blender.org). These scripts are just from my personal codebase for rendering paper-worthy figures. To use them, make sure you have installed Blender and you can run the demo by typing 
+This is a set of Python scripts for rendering 3D shapes in [Blender](https://www.blender.org). These scripts are just from my personal codebase for rendering paper-worthy figures. To use them, make sure you have installed Blender and you can run the demo by typing 
 ```
 blender --background --python template.py
 ```
@@ -60,4 +60,4 @@ Before rendering a scene, you probably need to set up the default rendering devi
 
 ## Contact
 
-If any questions or recommendations, please contact me at hsuehtil@cs.toronto.edu. 
+These scripts are tested on Blender 3.2.1. As the API may change, using a newer version of the Blender may cause some functions not working properly. If you notice some bugs due to Blender updates or any questions/recommendations, please contact me at hsuehtil@cs.toronto.edu. 
