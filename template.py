@@ -9,7 +9,8 @@ cwd = os.getcwd()
 RENDER AN IMAGE STEP-BY-STEP:
 1. copy "template.py" to your preferred local folder
 2. In "template.py":
-    - change meshPath
+    - change the second line to your path to the BlenderToolbox, such as "sys.path.append('path/to/BlenderToolbox/')"
+    - change "meshPath"
     - set your desired material (select one from the demo scripts)
 3. run "blender --background --python template.py" in terminal, then terminate the code when it starts rendering. This step outputs a "test.blend"
 4. open "test.blend" with your blender software
@@ -17,25 +18,25 @@ RENDER AN IMAGE STEP-BY-STEP:
     - location, rotation, scale of the mesh
     - material parameters
 6. In "template.py":
-    - type in the adjusted parameters from UI 
+    - type in the adjusted parameters from GUI 
     - set outputPath and increase imgRes_x, imgRes_y, numSamples
 7. run "blender --background --python template.py" again to output your final image
 '''
 
-outputPath = os.path.join(cwd, './template.png') # make it abs path for windows
+outputPath = os.path.join(cwd, './template.png')
 
 ## initialize blender
-imgRes_x = 720 # recommend > 1080 (UI: Scene > Output > Resolution X)
+imgRes_x = 720 # recommend > 1080 
 imgRes_y = 720 # recommend > 1080 
-numSamples = 200 # recommend > 200 for paper images
+numSamples = 100 # recommend > 200
 exposure = 1.5 
 bt.blenderInit(imgRes_x, imgRes_y, numSamples, exposure)
 
-## read mesh (choose either readPLY or readOBJ)
+## read mesh
 meshPath = './meshes/spot.ply'
-location = (1.12, -0.14, 0) # (UI: click mesh > Transform > Location)
-rotation = (90, 0, 227) # (UI: click mesh > Transform > Rotation)
-scale = (1.5,1.5,1.5) # (UI: click mesh > Transform > Scale)
+location = (1.12, -0.14, 0) # (GUI: click mesh > Transform > Location)
+rotation = (90, 0, 227) # (GUI: click mesh > Transform > Rotation)
+scale = (1.5,1.5,1.5) # (GUI: click mesh > Transform > Scale)
 mesh = bt.readMesh(meshPath, location, rotation, scale)
 
 ## set shading (uncomment one of them)
@@ -44,12 +45,12 @@ bpy.ops.object.shade_smooth() # Option1: Gouraud shading
 # bt.edgeNormals(mesh, angle = 10) # Option3: Edge normal shading
 
 ## subdivision
-bt.subdivision(mesh, level = 2)
+bt.subdivision(mesh, level = 1)
 
 ###########################################
 ## Set your material here (see other demo scripts)
 
-# colorObj(RGBA, H, S, V, Bright, Contrast)
+# bt.colorObj(RGBA, Hue, Saturation, Value, Bright, Contrast)
 RGBA = (144.0/255, 210.0/255, 236.0/255, 1)
 meshColor = bt.colorObj(RGBA, 0.5, 1.0, 1.0, 0.0, 2.0)
 bt.setMat_plastic(mesh, meshColor)
@@ -60,11 +61,17 @@ bt.setMat_plastic(mesh, meshColor)
 ## set invisible plane (shadow catcher)
 bt.invisibleGround(shadowBrightness=0.9)
 
-## set camera (recommend to change mesh instead of camera, unless you want to adjust the Elevation)
+## set camera 
+## Option 1: don't change camera setting, change the mesh location above instead
 camLocation = (3, 0, 2)
 lookAtLocation = (0,0,0.5)
 focalLength = 45 # (UI: click camera > Object Data > Focal Length)
 cam = bt.setCamera(camLocation, lookAtLocation, focalLength)
+## Option 2: if you really want to set camera based on the values in GUI, then
+# camLocation = (3, 0, 2)
+# rotation_euler = (63,0,90)
+# focalLength = 45
+# cam = bt.setCamera_from_UI(camLocation, rotation_euler, focalLength = 35)
 
 ## set light
 ## Option1: Three Point Light System 
