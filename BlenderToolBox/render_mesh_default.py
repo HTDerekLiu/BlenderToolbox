@@ -29,7 +29,8 @@ def render_mesh_default(args):
   imgRes_y = args["image_resolution"][1]
   numSamples = args["number_of_samples"]
   exposure = 1.5 
-  blenderInit(imgRes_x, imgRes_y, numSamples, exposure)
+  use_GPU = True
+  blenderInit(imgRes_x, imgRes_y, numSamples, exposure, use_GPU)
 
   ## read mesh (choose either readPLY or readOBJ)
   meshPath = args["mesh_path"]

@@ -30,7 +30,8 @@ imgRes_x = 720 # recommend > 1080
 imgRes_y = 720 # recommend > 1080 
 numSamples = 100 # recommend > 200
 exposure = 1.5 
-bt.blenderInit(imgRes_x, imgRes_y, numSamples, exposure)
+use_GPU = True
+bt.blenderInit(imgRes_x, imgRes_y, numSamples, exposure, use_GPU)
 
 ## read mesh
 meshPath = './meshes/spot.ply'

@@ -12,7 +12,8 @@ imgRes_x = 720 # recommend > 1080 (UI: Scene > Output > Resolution X)
 imgRes_y = 720 # recommend > 1080 
 numSamples = 200 # recommend > 200 for paper images
 exposure = 1.5 
-bt.blenderInit(imgRes_x, imgRes_y, numSamples, exposure)
+use_GPU = True
+bt.blenderInit(imgRes_x, imgRes_y, numSamples, exposure, use_GPU)
 
 ## read mesh from numpy array
 location = (0,0,0.67) 
