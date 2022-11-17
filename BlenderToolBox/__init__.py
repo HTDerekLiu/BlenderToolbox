@@ -42,6 +42,7 @@ from . setMat_pointCloudColored import setMat_pointCloudColored
 from . setMat_crackedCeramic import setMat_crackedCeramic
 from . setMat_ceramic import setMat_ceramic
 from . setMat_edge import setMat_edge
+from . setMat_edgeWithTexture import setMat_edgeWithTexture
 from . setMat_emission import setMat_emission
 from . setMat_glass import setMat_glass
 from . setMat_honey import setMat_honey

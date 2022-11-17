@@ -5,7 +5,7 @@ import bpy, bmesh
 import numpy as np
 cwd = os.getcwd()
 
-outputPath = os.path.join(cwd, './demo_singleColor.png') # make it abs path for windows
+outputPath = os.path.join(cwd, './demo_edgeWithTexture.png') # make it abs path for windows
 
 ## initialize blender
 imgRes_x = 480 
@@ -15,7 +15,7 @@ exposure = 1.5
 bt.blenderInit(imgRes_x, imgRes_y, numSamples, exposure)
 
 ## read mesh (choose either readPLY or readOBJ)
-meshPath = '../meshes/spot.ply'
+meshPath = '../meshes/spot_UV.obj'
 location = (1.12, -0.14, 0) # (UI: click mesh > Transform > Location)
 rotation = (90, 0, 227) # (UI: click mesh > Transform > Rotation)
 scale = (1.5,1.5,1.5) # (UI: click mesh > Transform > Scale)
@@ -25,12 +25,15 @@ mesh = bt.readMesh(meshPath, location, rotation, scale)
 bpy.ops.object.shade_smooth() 
 
 ## subdivision
-bt.subdivision(mesh, level = 2)
+bt.subdivision(mesh, level = 0)
 
-# # set material (TODO: this has some new issue due to new version of Blender)
-meshColor = bt.colorObj(bt.derekBlue, 0.5, 1.0, 1.0, 0.0, 2.0)
-AOStrength = 0.0
-bt.setMat_singleColor(mesh, meshColor, AOStrength)
+# set material
+# colorObj(RGBA, H, S, V, Bright, Contrast)
+textureHSVBC = bt.colorObj([], 0.5, 1.0, 1.0, 0.0, 0.0)
+texturePath = '../meshes/spot_by_keenan.png' 
+edgeThickness = 0.005
+edgeRGBA = (0,0,0,0)
+bt.setMat_edgeWithTexture(mesh, edgeThickness, edgeRGBA, texturePath, textureHSVBC)
 
 ## set invisible plane (shadow catcher)
 bt.invisibleGround(shadowBrightness=0.9)
