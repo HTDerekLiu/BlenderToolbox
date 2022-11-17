@@ -11,7 +11,7 @@ outputPath = os.path.join(cwd, './demo_edgeWithTexture.png') # make it abs path 
 imgRes_x = 480 
 imgRes_y = 480 
 numSamples = 100 
-exposure = 1.5 
+exposure = 2.0
 bt.blenderInit(imgRes_x, imgRes_y, numSamples, exposure)
 
 ## read mesh (choose either readPLY or readOBJ)
