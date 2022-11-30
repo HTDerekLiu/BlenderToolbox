@@ -4,6 +4,7 @@ from . copyToVertexSubset import copyToVertexSubset
 from . copyArrowToVertex import copyArrowToVertex
 from . colorObj import colorObj
 from . createArrow import createArrow
+from . createVectorFieldMesh import createVectorFieldMesh
 from . drawPoints import drawPoints
 from . drawLines import drawLines
 from . drawEdgeSubset import drawEdgeSubset

@@ -61,7 +61,7 @@ def setMat_edgeWithTexture(mesh, edgeThickness, edgeRGBA, texturePath, textureHS
 	PRI = tree.nodes["Principled BSDF"]
 	PRI.inputs['Roughness'].default_value = 0.3
 	PRI.inputs['Sheen Tint'].default_value = 0
-	PRI.inputs['Specular'].default_value = 0.5
+	PRI.inputs['Specular'].default_value = 0.2
 	PRI.inputs['IOR'].default_value = 1.45
 	PRI.inputs['Transmission'].default_value = 0
 	PRI.inputs['Clearcoat Roughness'].default_value = 0
