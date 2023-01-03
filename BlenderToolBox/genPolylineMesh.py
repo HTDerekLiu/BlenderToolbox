@@ -16,7 +16,7 @@ import bmesh
 import numpy as np
 from . initColorNode import initColorNode
 
-def drawBoundaryLoop(mesh, r, bdColor):
+def genPolylineMesh(mesh, v_list, r, bdColor):
     nV = len(mesh.data.vertices)
     V = np.zeros((nV, 3), dtype = float)
     for ii in range(nV):
@@ -25,39 +25,26 @@ def drawBoundaryLoop(mesh, r, bdColor):
         V[ii,1] += mesh.matrix_local[1][3]
         V[ii,2] += mesh.matrix_local[2][3]
 
-    nF = len(mesh.data.polygons)
-    F = np.zeros((nF, 3), dtype = int)
-    for ii in range(nF):
-        F[ii,:] = mesh.data.polygons[ii].vertices
-
-    halfE = np.concatenate((F[:,[0,1]],F[:,[1,2]],F[:,[2,0]]), axis = 0)
-    halfE = np.sort(halfE)
-    E, counts = np.unique(halfE, return_counts=True, axis = 0)
-    bEIdx = np.where(counts == 1)[0]
-    bE = E[bEIdx,:]
-
-    # Create bmesh 
+    # create a mesh
     bdMesh = bpy.data.meshes.new('boundary') 
     bdObj = bpy.data.objects.new('objBoundary', bdMesh) 
     bpy.context.scene.collection.objects.link(bdObj)
     bm = bmesh.new()  
     bm.from_mesh(bdMesh) 
 
-    unibE, idx = np.unique(bE,  return_inverse=True)
-    bE_new = np.reshape(idx, (int(idx.shape[0]/2), 2))
-
     # add vertices
     VList =  []
-    for ii  in range(len(unibE)):
-        v = bm.verts.new( V[unibE[ii],:] )
+    for ii in range(len(v_list)):
+        v = bm.verts.new( V[v_list[ii],:] )
         VList.append(v)
     
     # addedges
-    for ii in range(bE_new.shape[0]):
-        v1 = VList[bE_new[ii,0]]
-        v2 = VList[bE_new[ii,1]]
+    for ii in range(len(v_list)-1):
+        v1 = VList[ii]
+        v2 = VList[ii+1]
         bm.edges.new((v1, v2))
-    
+
+
     # update bmesh
     bm.to_mesh(bdMesh)
     bm.free()
@@ -94,5 +81,3 @@ def drawBoundaryLoop(mesh, r, bdColor):
     tree.nodes["Principled BSDF"].inputs['Roughness'].default_value = 0.7
     tree.nodes["Principled BSDF"].inputs['Sheen Tint'].default_value = 0
     tree.links.new(BCNode.outputs['Color'], tree.nodes['Principled BSDF'].inputs['Base Color'])
-
-    return bdObj

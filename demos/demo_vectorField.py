@@ -5,7 +5,9 @@ import bpy, bmesh
 import numpy as np
 import math
 cwd = os.getcwd()
-
+###
+# After blender 3.4 this function requires some changes to update the API of Transfer Attribute nodes. Will do it later.
+###
 outputPath = os.path.join(cwd, './demo_vectorField.png') # make it abs path for windows
 
 ## initialize blender

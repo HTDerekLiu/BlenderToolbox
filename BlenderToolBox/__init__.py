@@ -12,6 +12,7 @@ from . drawBoundaryLoop import drawBoundaryLoop
 from . drawSphere import drawSphere
 from . discreteColor import discreteColor
 from . edgeNormals import edgeNormals
+from . genPolylineMesh import genPolylineMesh
 from . getEdgeWire import getEdgeWire
 from . invisibleGround import invisibleGround
 from . initColorNode import initColorNode
@@ -23,6 +24,7 @@ from . readNumpyMesh import readNumpyMesh
 from . readNumpyPoints import readNumpyPoints
 from . readOBJ import readOBJ
 from . readPLY import readPLY
+from . readSTL import readSTL
 from . renderImage import renderImage
 from . renderAnimation import renderAnimation
 from . render_mesh_default import render_mesh_default

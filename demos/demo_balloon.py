@@ -5,7 +5,6 @@ import bpy, bmesh
 import numpy as np
 cwd = os.getcwd()
 
-
 outputPath = os.path.join(cwd, './demo_balloon.png') # make it abs path for windows
 
 ## initialize blender
