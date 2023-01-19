@@ -14,6 +14,7 @@ from . discreteColor import discreteColor
 from . edgeNormals import edgeNormals
 from . genPolylineMesh import genPolylineMesh
 from . getEdgeWire import getEdgeWire
+from . import_scene_from_blend import import_scene_from_blend
 from . invisibleGround import invisibleGround
 from . initColorNode import initColorNode
 from . lookAt import lookAt
@@ -30,6 +31,7 @@ from . renderAnimation import renderAnimation
 from . render_mesh_default import render_mesh_default
 from . recalculateNormals import recalculateNormals
 from . selectOBJ import selectOBJ
+from . set_background import set_background
 from . setCamera import setCamera
 from . setCamera_from_UI import setCamera_from_UI
 from . setCamera_orthographic import setCamera_orthographic
