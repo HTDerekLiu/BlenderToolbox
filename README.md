@@ -61,4 +61,4 @@ Before rendering a scene, you probably need to set up the default rendering devi
 
 ## Contact
 
-These scripts are tested on Blender 3.2.1. As the API may change, using a newer version of the Blender may cause some functions not working properly. If you notice some bugs due to Blender updates or any questions/recommendations, please contact me at hsuehtil@cs.toronto.edu. 
+These scripts are tested on Blender 3.4.1. As the API may change, using a different version of the Blender may cause some functions not working properly. If you notice some bugs due to Blender updates or any questions/recommendations, please contact hsuehtil@gmail.com.
