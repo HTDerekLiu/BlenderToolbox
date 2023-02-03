@@ -57,4 +57,4 @@ bt.shadowThreshold(alphaThreshold = 0.05, interpolationMode = 'CARDINAL')
 bpy.ops.wm.save_mainfile(filepath=os.getcwd() + '/test.blend')
 
 ## save rendering
-# bt.renderImage(outputPath, cam)
+bt.renderImage(outputPath, cam)

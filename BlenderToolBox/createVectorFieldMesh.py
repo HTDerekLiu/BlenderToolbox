@@ -96,8 +96,6 @@ def createVectorFieldMesh(P, PN, thickness, length, location, rotation, scale):
     SNS.data_type = "FLOAT_VECTOR"
     SNS.location.x = -600
     SNS.location.y = -200
-    print(SNS.outputs[2])
-    
     
     # TRANS_AREA = group.nodes.new("GeometryNodeAttributeTransfer")
     # # TRANS_AREA.data_type = "FLOAT"
@@ -134,7 +132,7 @@ def createVectorFieldMesh(P, PN, thickness, length, location, rotation, scale):
     group.links.new(IN.outputs[0], SNS.inputs[0])
     group.links.new(NORMAL.outputs[0], SNS.inputs[3])
     group.links.new(SNS.outputs[2], ALIGN.inputs[2])
-    
+
     # ### group.links.new(IN.outputs[0], TRANS_AREA.inputs[0])
     # group.links.new(FA.outputs["Area"], TRANS_AREA.inputs["Attribute"])
     
