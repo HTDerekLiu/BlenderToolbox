@@ -88,15 +88,21 @@ def createVectorFieldMesh(P, PN, thickness, length, location, rotation, scale):
     FA.location.x = -800
     FA.location.y = -400
 
-    TRANS = group.nodes.new("GeometryNodeAttributeTransfer")
-    TRANS.data_type = "FLOAT_VECTOR"
-    TRANS.location.x = -600
-    TRANS.location.y = -200
+    # this is for versions before 3.4
+    # TRANS = group.nodes.new("GeometryNodeAttributeTransfer")
 
-    TRANS_AREA = group.nodes.new("GeometryNodeAttributeTransfer")
-    # TRANS_AREA.data_type = "FLOAT"
-    TRANS_AREA.location.x = -600
-    TRANS_AREA.location.y = -400
+    # this is for versions after 3.4
+    SNS = group.nodes.new("GeometryNodeSampleNearestSurface")
+    SNS.data_type = "FLOAT_VECTOR"
+    SNS.location.x = -600
+    SNS.location.y = -200
+    print(SNS.outputs[2])
+    
+    
+    # TRANS_AREA = group.nodes.new("GeometryNodeAttributeTransfer")
+    # # TRANS_AREA.data_type = "FLOAT"
+    # TRANS_AREA.location.x = -600
+    # TRANS_AREA.location.y = -400
 
     SQRT = group.nodes.new("ShaderNodeMath")
     SQRT.operation = "SQRT"
@@ -125,17 +131,20 @@ def createVectorFieldMesh(P, PN, thickness, length, location, rotation, scale):
     OBJ.location.y = -200
 
     group.links.new(IN.outputs[0], MESH2PTS.inputs[0])
-    group.links.new(IN.outputs[0], TRANS.inputs[0])
-    # group.links.new(IN.outputs[0], TRANS_AREA.inputs[0])
-    group.links.new(FA.outputs["Area"], TRANS_AREA.inputs["Attribute"])
-    group.links.new(NORMAL.outputs[0], TRANS.inputs[1])
-    group.links.new(TRANS.outputs[0], ALIGN.inputs[2])
-    group.links.new(TRANS_AREA.outputs[0], SQRT.inputs[0])
-    # group.links.new(SQRT.outputs[0], IN2PTS.inputs[6])
+    group.links.new(IN.outputs[0], SNS.inputs[0])
+    group.links.new(NORMAL.outputs[0], SNS.inputs[3])
+    group.links.new(SNS.outputs[2], ALIGN.inputs[2])
+    
+    # ### group.links.new(IN.outputs[0], TRANS_AREA.inputs[0])
+    # group.links.new(FA.outputs["Area"], TRANS_AREA.inputs["Attribute"])
+    
+    # group.links.new(TRANS_AREA.outputs[0], SQRT.inputs[0])
+    # ### group.links.new(SQRT.outputs[0], IN2PTS.inputs[6])
     group.links.new(ALIGN.outputs[0], IN2PTS.inputs[5])
     group.links.new(MESH2PTS.outputs[0], IN2PTS.inputs[0])
     group.links.new(OBJ.outputs[3], IN2PTS.inputs[2])
     group.links.new(IN2PTS.outputs[0], OUT.inputs[0])
+
 
     return arrow_obj
 
