@@ -14,7 +14,7 @@
 import bpy
 import os
 
-def setMat_texture(mesh, texturePath, meshColor):
+def setMat_texture(mesh, texturePath, meshColor, alpha= 1.0):
     mat = bpy.data.materials.new('MeshMaterial')
     mesh.data.materials.append(mat)
     mesh.active_material = mat
@@ -25,6 +25,7 @@ def setMat_texture(mesh, texturePath, meshColor):
     PRI = tree.nodes["Principled BSDF"]
     PRI.inputs['Roughness'].default_value = 1.0
     PRI.inputs['Sheen Tint'].default_value = 0
+    PRI.inputs['Alpha'].default_value = alpha
 
     TI = tree.nodes.new('ShaderNodeTexImage')
     absTexturePath = os.path.abspath(texturePath)
