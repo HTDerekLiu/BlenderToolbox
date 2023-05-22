@@ -14,7 +14,7 @@
 import bpy
 import os
 
-def setMat_texture(mesh, texturePath, meshColor, alpha= 1.0):
+def setMat_texture(mesh, texturePath, meshColor, alpha= 1.0, colorspace_settting='sRGB'):
     mat = bpy.data.materials.new('MeshMaterial')
     mesh.data.materials.append(mat)
     mesh.active_material = mat
@@ -30,6 +30,7 @@ def setMat_texture(mesh, texturePath, meshColor, alpha= 1.0):
     TI = tree.nodes.new('ShaderNodeTexImage')
     absTexturePath = os.path.abspath(texturePath)
     TI.image = bpy.data.images.load(absTexturePath)
+    TI.image.colorspace_settings.name = colorspace_settting
 
     # set color using Hue/Saturation node
     HSVNode = tree.nodes.new('ShaderNodeHueSaturation')
