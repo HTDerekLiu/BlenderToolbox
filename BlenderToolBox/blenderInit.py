@@ -14,7 +14,7 @@
 
 import bpy
 
-def blenderInit(resolution_x, resolution_y, numSamples = 128, exposure = 1.5, use_GPU = True):
+def blenderInit(resolution_x, resolution_y, numSamples = 128, exposure = 1.5, use_GPU = True, resolution_percentage = 100):
 	# clear all
 	bpy.ops.wm.read_homefile()
 	bpy.ops.object.select_all(action = 'SELECT')
@@ -28,6 +28,7 @@ def blenderInit(resolution_x, resolution_y, numSamples = 128, exposure = 1.5, us
 	bpy.context.scene.cycles.samples = numSamples 
 	bpy.context.scene.cycles.max_bounces = 6
 	bpy.context.scene.cycles.film_exposure = exposure
+	bpy.context.scene.render.resolution_percentage = resolution_percentage
 
 	# Denoising
 	# Note: currently I stop denoising as it will also denoise the alpha shadow channel. TODO: implement blurring shadow in the composite node
