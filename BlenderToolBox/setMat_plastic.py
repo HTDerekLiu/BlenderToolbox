@@ -22,11 +22,11 @@ def setMat_plastic(mesh, meshColor, AOStrength = 0.0):
 
 	# set principled BSDF
 	tree.nodes["Principled BSDF"].inputs['Roughness'].default_value = 0.3
-	tree.nodes["Principled BSDF"].inputs['Sheen Tint'].default_value = 0
-	tree.nodes["Principled BSDF"].inputs['Specular'].default_value = 0.5
+	tree.nodes["Principled BSDF"].inputs['Sheen Tint'].default_value = [0, 0, 0, 1]
+	tree.nodes["Principled BSDF"].inputs['Specular IOR Level'].default_value = 0.5
 	tree.nodes["Principled BSDF"].inputs['IOR'].default_value = 1.45
-	tree.nodes["Principled BSDF"].inputs['Transmission'].default_value = 0
-	tree.nodes["Principled BSDF"].inputs['Clearcoat Roughness'].default_value = 0
+	tree.nodes["Principled BSDF"].inputs['Transmission Weight'].default_value = 0
+	tree.nodes["Principled BSDF"].inputs['Coat Roughness'].default_value = 0
 
 	# add Ambient Occlusion
 	tree.nodes.new('ShaderNodeAmbientOcclusion')

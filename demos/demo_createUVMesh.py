@@ -25,5 +25,10 @@ bpy.ops.uv.smart_project()
 bpy.ops.object.editmode_toggle() # enter object mode
 
 ## export obj
-bpy.ops.export_scene.obj(filepath='./test.obj', check_existing=True, filter_glob='*.obj;*.mtl', use_selection=False, use_animation=False, use_mesh_modifiers=True, use_edges=False, use_smooth_groups=False, use_smooth_groups_bitflags=False, use_normals=False, use_uvs=True, use_materials=False, use_triangles=False, use_nurbs=False, use_vertex_groups=False, use_blen_objects=True, group_by_object=False, group_by_material=False, keep_vertex_order=False, global_scale=1.0, path_mode='AUTO', axis_forward='Y', axis_up='Z')
+bpy.ops.wm.obj_export(filepath='./test.obj', check_existing=True, filter_glob='*.obj;*.mtl', export_selected_objects=False,
+                      export_animation=False, apply_modifiers=True,   export_smooth_groups=False,
+                      export_normals=False, export_uv=True, export_materials=False,
+                      export_triangulated_mesh=False, export_curves_as_nurbs=False, export_vertex_groups=False,
+                      export_object_groups=False, export_material_groups=False,  global_scale=1.0,
+                      path_mode='AUTO', forward_axis='Y', up_axis='Z')
 
