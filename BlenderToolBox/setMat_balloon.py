@@ -23,15 +23,16 @@ def setMat_balloon(mesh, meshColor, AOStrength = 0.0):
 	tree = mat.node_tree
 
 	# set principled BSDF
-	tree.nodes["Principled BSDF"].inputs['Specular'].default_value = 0.5
+	tree.nodes["Principled BSDF"].inputs['Specular IOR Level'].default_value = 0.5
 	tree.nodes["Principled BSDF"].inputs['Roughness'].default_value = 0.3
-	tree.nodes["Principled BSDF"].inputs['Sheen Tint'].default_value = 0.5
-	tree.nodes["Principled BSDF"].inputs['Clearcoat Roughness'].default_value = 0.3
-	tree.nodes["Principled BSDF"].inputs['Clearcoat'].default_value = 1
+	tree.nodes["Principled BSDF"].inputs['Sheen Tint'].default_value = [0.5, 0.5, 0.5, 1] # expects a sequence now
+	tree.nodes["Principled BSDF"].inputs['Coat Roughness'].default_value = 0.3
+	tree.nodes["Principled BSDF"].inputs['Coat Weight'].default_value = 1
 
 	# add Ambient Occlusion
 	tree.nodes.new('ShaderNodeAmbientOcclusion')
 	tree.nodes.new('ShaderNodeGamma')
+
 	MIXRGB = tree.nodes.new('ShaderNodeMixRGB')
 	MIXRGB.blend_type = 'MULTIPLY'
 	tree.nodes["Gamma"].inputs["Gamma"].default_value = AOStrength
@@ -55,10 +56,12 @@ def setMat_balloon(mesh, meshColor, AOStrength = 0.0):
 	# link all the nodes
 	tree.links.new(HSVNode.outputs['Color'], BCNode.inputs['Color'])
 	tree.links.new(BCNode.outputs['Color'], tree.nodes['Ambient Occlusion'].inputs['Color'])
+
 	tree.links.new(tree.nodes["Ambient Occlusion"].outputs['Color'], MIXRGB.inputs['Color1'])
 	tree.links.new(tree.nodes["Ambient Occlusion"].outputs['AO'], tree.nodes['Gamma'].inputs['Color'])
 	tree.links.new(tree.nodes["Gamma"].outputs['Color'], MIXRGB.inputs['Color2'])
 	tree.links.new(MIXRGB.outputs['Color'], tree.nodes['Principled BSDF'].inputs['Base Color'])
+
 
 	# add transparent
 	TRAN = tree.nodes.new('ShaderNodeBsdfTransparent')
@@ -78,8 +81,10 @@ def setMat_balloon(mesh, meshColor, AOStrength = 0.0):
 	tree.links.new(DIF.outputs[0], MIX2.inputs[1])
 	tree.links.new(LAY.outputs[1], MIX.inputs[0])
 	tree.links.new(MIX2.outputs[0], MIX.inputs[1])
+
 	tree.links.new(MIXRGB.outputs['Color'], TRAN.inputs[0])
 	tree.links.new(MIXRGB.outputs['Color'], DIF.inputs[0])
+
 	tree.links.new(MIX.outputs[0], tree.nodes['Material Output'].inputs['Surface'])
 
 	

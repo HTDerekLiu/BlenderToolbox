@@ -1,5 +1,7 @@
+
 import sys, os
 sys.path.append(os.path.join(os.path.abspath(os.getcwd()),'..')) # change this to your path to “path/to/BlenderToolbox/
+
 import BlenderToolBox as bt
 import bpy, bmesh
 import numpy as np
