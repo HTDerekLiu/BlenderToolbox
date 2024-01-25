@@ -1,5 +1,5 @@
 import sys
-sys.path.append('/Users/hsuehtil/Dropbox/BlenderToolbox/') # change this to your path to “path/to/BlenderToolbox/
+sys.path.append('..') # change this to your path to “path/to/BlenderToolbox/
 import BlenderToolBox as bt
 import os, bpy, bmesh
 import numpy as np

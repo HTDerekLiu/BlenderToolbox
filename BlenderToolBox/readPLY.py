@@ -27,7 +27,7 @@ def readPLY(filePath, location, rotation_euler, scale):
 	prev = []
 	for ii in range(len(list(bpy.data.objects))):
 		prev.append(bpy.data.objects[ii].name)
-	bpy.ops.import_mesh.ply(filepath=filePath)
+	bpy.ops.wm.ply_import(filepath=filePath)
 	after = []
 	for ii in range(len(list(bpy.data.objects))):
 		after.append(bpy.data.objects[ii].name)

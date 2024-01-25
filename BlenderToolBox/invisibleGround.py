@@ -28,4 +28,4 @@ def invisibleGround(location = (0,0,0), groundSize = 100, shadowBrightness = 0.7
 	ground.data.materials.append(mat)
 	mat.use_nodes = True
 	tree = mat.node_tree
-	tree.nodes["Principled BSDF"].inputs['Transmission'].default_value = shadowBrightness
+	tree.nodes["Principled BSDF"].inputs['Transmission Weight'].default_value = shadowBrightness
