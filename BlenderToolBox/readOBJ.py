@@ -24,7 +24,7 @@ def readOBJ(filePath, location, rotation_euler, scale):
 	prev = []
 	for ii in range(len(list(bpy.data.objects))):
 		prev.append(bpy.data.objects[ii].name)
-	bpy.ops.import_scene.obj(filepath=filePath, split_mode='OFF')
+	bpy.ops.wm.obj_import(filepath=filePath, use_split_groups=False)
 	after = []
 	for ii in range(len(list(bpy.data.objects))):
 		after.append(bpy.data.objects[ii].name)

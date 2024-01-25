@@ -24,7 +24,7 @@ def setMat_texture(mesh, texturePath, meshColor, alpha= 1.0, colorspace_settting
     # set principled BSDF
     PRI = tree.nodes["Principled BSDF"]
     PRI.inputs['Roughness'].default_value = 1.0
-    PRI.inputs['Sheen Tint'].default_value = 0
+    PRI.inputs['Sheen Tint'].default_value = [0, 0, 0, 1]
     PRI.inputs['Alpha'].default_value = alpha
 
     TI = tree.nodes.new('ShaderNodeTexImage')

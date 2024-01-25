@@ -26,8 +26,8 @@ def setMat_monotone(mesh, meshColor, CList, silhouetteColor, shadowSize):
     # set principled	
     principleNode = tree.nodes["Principled BSDF"]
     principleNode.inputs['Roughness'].default_value = 1.0
-    principleNode.inputs['Sheen Tint'].default_value = 0
-    principleNode.inputs['Specular'].default_value = 0.0
+    principleNode.inputs['Sheen Tint'].default_value = [ 0, 0, 0, 1]
+    principleNode.inputs['Specular IOR Level'].default_value = 0.0
 
     # init level
     initRGB = tree.nodes.new('ShaderNodeHueSaturation')

@@ -27,7 +27,7 @@ def setMat_emission(mesh, meshColor, emission_strength):
 	# tree.nodes["Principled BSDF"].inputs['Metallic'].default_value = 0.0
 	# tree.nodes["Principled BSDF"].inputs['Transmission'].default_value = transmission
 	# tree.nodes["Principled BSDF"].inputs['Alpha'].default_value = transparency
-	tree.nodes["Principled BSDF"].inputs['Emission'].default_value = meshColor.RGBA # emission color
+	tree.nodes["Principled BSDF"].inputs['Emission Color'].default_value = meshColor.RGBA # emission color
 	tree.nodes["Principled BSDF"].inputs['Emission Strength'].default_value = emission_strength # emission color
 
 

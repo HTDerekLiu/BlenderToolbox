@@ -22,7 +22,7 @@ def setMat_honey(mesh, meshColor, notTransparency = 0.6):
 
 	# set principled BSDF
 	tree.nodes["Principled BSDF"].inputs['Roughness'].default_value = 0.7
-	tree.nodes["Principled BSDF"].inputs['Sheen Tint'].default_value = 0
+	tree.nodes["Principled BSDF"].inputs['Sheen Tint'].default_value = [0, 0, 0, 1]
 
 	MIXNode = tree.nodes.new('ShaderNodeMixShader')
 	MIXNode.inputs[0].default_value = notTransparency
