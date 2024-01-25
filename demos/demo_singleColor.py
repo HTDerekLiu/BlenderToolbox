@@ -1,7 +1,7 @@
-import sys
-sys.path.append('/Users/hsuehtil/Dropbox/BlenderToolbox/') # change this to your path to “path/to/BlenderToolbox/
+import sys, os
+sys.path.append(os.path.join(os.path.abspath(os.getcwd()),'..')) # change this to your path to “path/to/BlenderToolbox/
 import BlenderToolBox as bt
-import os, bpy, bmesh
+import bpy, bmesh
 import numpy as np
 cwd = os.getcwd()
 

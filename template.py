@@ -1,5 +1,5 @@
-import sys
-sys.path.append('/Users/hsuehtil/Dropbox/BlenderToolbox/') # change this to your path to “path/to/BlenderToolbox/
+import sys, os
+sys.path.append(os.path.join(os.path.abspath(os.getcwd()))) # change this to your path to “path/to/BlenderToolbox/
 import BlenderToolBox as bt
 import os, bpy, bmesh
 import numpy as np
@@ -30,7 +30,8 @@ imgRes_x = 720 # recommend > 1080
 imgRes_y = 720 # recommend > 1080 
 numSamples = 100 # recommend > 200
 exposure = 1.5 
-bt.blenderInit(imgRes_x, imgRes_y, numSamples, exposure)
+use_GPU = True
+bt.blenderInit(imgRes_x, imgRes_y, numSamples, exposure, use_GPU)
 
 ## read mesh
 meshPath = './meshes/spot.ply'

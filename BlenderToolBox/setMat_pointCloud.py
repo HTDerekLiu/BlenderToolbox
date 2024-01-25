@@ -30,8 +30,8 @@ def setMat_pointCloud(mesh, \
     # add Ambient Occlusion
     tree.nodes.new('ShaderNodeAmbientOcclusion')
     tree.nodes.new('ShaderNodeGamma')
-    tree.nodes.new('ShaderNodeMixRGB')
-    tree.nodes["Mix"].blend_type = 'MULTIPLY'
+    MIXRGB = tree.nodes.new('ShaderNodeMixRGB')
+    MIXRGB.blend_type = 'MULTIPLY'
     tree.nodes["Gamma"].inputs["Gamma"].default_value = AOStrength
     tree.nodes["Ambient Occlusion"].inputs["Distance"].default_value = 10.0
     tree.nodes["Gamma"].location.x -= 600
@@ -53,21 +53,18 @@ def setMat_pointCloud(mesh, \
     # link all the nodes
     tree.links.new(HSVNode.outputs['Color'], BCNode.inputs['Color'])
     tree.links.new(BCNode.outputs['Color'], tree.nodes['Ambient Occlusion'].inputs['Color'])
-    tree.links.new(tree.nodes["Ambient Occlusion"].outputs['Color'], tree.nodes['Mix'].inputs['Color1'])
+    tree.links.new(tree.nodes["Ambient Occlusion"].outputs['Color'], MIXRGB.inputs['Color1'])
     tree.links.new(tree.nodes["Ambient Occlusion"].outputs['AO'], tree.nodes['Gamma'].inputs['Color'])
-    tree.links.new(tree.nodes["Gamma"].outputs['Color'], tree.nodes['Mix'].inputs['Color2'])
-    tree.links.new(tree.nodes["Mix"].outputs['Color'], tree.nodes['Principled BSDF'].inputs['Base Color'])
+    tree.links.new(tree.nodes["Gamma"].outputs['Color'], MIXRGB.inputs['Color2'])
+    tree.links.new(MIXRGB.outputs['Color'], tree.nodes['Principled BSDF'].inputs['Base Color'])
 
     # turn a mesh into point cloud using geometry node
     mesh.select_set(True)
     bpy.context.view_layer.objects.active = mesh
 
     bpy.ops.object.modifier_add(type='NODES')
-    if mesh.modifiers[-1].node_group:
-        tree = mesh.modifiers[-1].node_group    
-    else:
-        tree = new_GeometryNodes_group()
-        mesh.modifiers[-1].node_group = tree
+    bpy.ops.node.new_geometry_nodes_modifier()
+    tree = mesh.modifiers[-1].node_group
 
     IN = tree.nodes['Group Input']
     OUT = tree.nodes['Group Output']
@@ -82,18 +79,3 @@ def setMat_pointCloud(mesh, \
 
     # assign the material to point cloud
     MATERIAL.inputs[2].default_value = mat
-
-
-def new_GeometryNodes_group():
-    ''' Create a new empty node group that can be used
-        in a GeometryNodes modifier.
-    '''
-    node_group = bpy.data.node_groups.new('GeometryNodes', 'GeometryNodeTree')
-    inNode = node_group.nodes.new('NodeGroupInput')
-    inNode.outputs.new('NodeSocketGeometry', 'Geometry')
-    outNode = node_group.nodes.new('NodeGroupOutput')
-    outNode.inputs.new('NodeSocketGeometry', 'Geometry')
-    node_group.links.new(inNode.outputs['Geometry'], outNode.inputs['Geometry'])
-    inNode.location = Vector((-1.5*inNode.width, 0))
-    outNode.location = Vector((1.5*outNode.width, 0))
-    return node_group

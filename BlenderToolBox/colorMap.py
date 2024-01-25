@@ -39,6 +39,10 @@ def colorMap(val, colormap = "default"):
 			[255*3/8.0,255*3/8.0,255*3/8.0],[255/2.0,255/2.0,255/2.0],
 			[255*5/8.0,255*5/8.0,255*5/8.0],[255*6/8.0,255*6/8.0,255*6/8.0],
 			[255*7/8.0,255*7/8.0,255*7/8.0],[255,255,255]])
+	elif colormap == "red_error":
+		baseColor = np.array([[255,245,240], [254,230,206], [253,208,162], [253,174,107], [253,141,60] , [241,105,19], [217,72,1], [166,54,3], [127,39,4]])
+	elif colormap == "RdBu":
+		baseColor = np.array([[178,24,43],[214,96,77],[244,165,130],[253,219,199],[247,247,247],[209,229,240],[146,197,222],[67,147,195],[33,102,172]])
 	else: # default
 		baseColor = np.array([[215,48,39],
 			[244,109,67],[253,174,97],
@@ -49,7 +53,7 @@ def colorMap(val, colormap = "default"):
 	x -= x.min()
 	x /= (x.max()+1e-16)
 
-	xp = np.linspace(0,1,num = 9)
+	xp = np.linspace(0,1,num = baseColor.shape[0])
 
 	r_fp = baseColor[:,0]
 	g_fp = baseColor[:,1]
@@ -60,3 +64,6 @@ def colorMap(val, colormap = "default"):
 	b = np.interp(x, xp, b_fp)
 	color = np.concatenate((r[:,None],g[:,None],b[:,None]), 1) / 256.0
 	return color
+
+
+

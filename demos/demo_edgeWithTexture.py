@@ -1,21 +1,21 @@
-import sys
-sys.path.append('/Users/hsuehtil/Dropbox/BlenderToolbox/') # change this to your path to “path/to/BlenderToolbox/
+import sys, os
+sys.path.append(os.path.join(os.path.abspath(os.getcwd()),'..')) # change this to your path to “path/to/BlenderToolbox/
 import BlenderToolBox as bt
-import os, bpy, bmesh
+import bpy, bmesh
 import numpy as np
 cwd = os.getcwd()
 
-outputPath = os.path.join(cwd, './demo_edgeWire.png') # make it abs path for windows
+outputPath = os.path.join(cwd, './demo_edgeWithTexture.png') # make it abs path for windows
 
 ## initialize blender
 imgRes_x = 480 
 imgRes_y = 480 
 numSamples = 100 
-exposure = 1.5 
+exposure = 2.0
 bt.blenderInit(imgRes_x, imgRes_y, numSamples, exposure)
 
 ## read mesh (choose either readPLY or readOBJ)
-meshPath = '../meshes/spot.ply'
+meshPath = '../meshes/spot_UV.obj'
 location = (1.12, -0.14, 0) # (UI: click mesh > Transform > Location)
 rotation = (90, 0, 227) # (UI: click mesh > Transform > Rotation)
 scale = (1.5,1.5,1.5) # (UI: click mesh > Transform > Scale)
@@ -27,14 +27,13 @@ bpy.ops.object.shade_smooth()
 ## subdivision
 bt.subdivision(mesh, level = 0)
 
-radius = 0.0015
-mesh = bt.getEdgeWire(mesh,radius)
-
-# # draw edge subset
-E = np.loadtxt('../meshes/Es.txt').astype(np.int32)
-radius = 0.01
-edgeColor = bt.derekBlue
-bt.drawEdgeSubset(mesh, E,radius, edgeColor)
+# set material
+# colorObj(RGBA, H, S, V, Bright, Contrast)
+textureHSVBC = bt.colorObj([], 0.5, 1.0, 1.0, 0.0, 0.0)
+texturePath = '../meshes/spot_by_keenan.png' 
+edgeThickness = 0.005
+edgeRGBA = (0,0,0,0)
+bt.setMat_edgeWithTexture(mesh, edgeThickness, edgeRGBA, texturePath, textureHSVBC)
 
 ## set invisible plane (shadow catcher)
 bt.invisibleGround(shadowBrightness=0.9)

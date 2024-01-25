@@ -31,16 +31,16 @@ def setMat_edge(mesh, \
 	# add Ambient Occlusion
 	tree.nodes.new('ShaderNodeAmbientOcclusion')
 	tree.nodes.new('ShaderNodeGamma')
-	tree.nodes.new('ShaderNodeMixRGB')
-	tree.nodes["Mix"].blend_type = 'MULTIPLY'
+	MIXRGB = tree.nodes.new('ShaderNodeMixRGB')
+	MIXRGB.blend_type = 'MULTIPLY'
 	tree.nodes["Gamma"].inputs["Gamma"].default_value = AOStrength
 	tree.nodes["Gamma"].location.x -= 600
 	tree.nodes["Ambient Occlusion"].inputs["Distance"].default_value = 10.0
 	tree.nodes["Ambient Occlusion"].inputs["Color"].default_value = meshColor
-	tree.links.new(tree.nodes["Ambient Occlusion"].outputs['Color'], tree.nodes['Mix'].inputs['Color1'])
+	tree.links.new(tree.nodes["Ambient Occlusion"].outputs['Color'], MIXRGB.inputs['Color1'])
 	tree.links.new(tree.nodes["Ambient Occlusion"].outputs['AO'], tree.nodes['Gamma'].inputs['Color'])
-	tree.links.new(tree.nodes["Gamma"].outputs['Color'], tree.nodes['Mix'].inputs['Color2'])
-	tree.links.new(tree.nodes["Mix"].outputs['Color'], tree.nodes['Principled BSDF'].inputs['Base Color'])
+	tree.links.new(tree.nodes["Gamma"].outputs['Color'], MIXRGB.inputs['Color2'])
+	tree.links.new(MIXRGB.outputs['Color'], tree.nodes['Principled BSDF'].inputs['Base Color'])
 
 	# add edge wireframe
 	tree.nodes.new(type="ShaderNodeWireframe")

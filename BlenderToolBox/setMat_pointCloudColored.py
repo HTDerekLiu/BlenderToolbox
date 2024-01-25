@@ -49,11 +49,13 @@ def setMat_pointCloudColored(mesh, meshColor, ptSize):
 
     # this if else is a quick hack to handle blender 3.2.x vs earlier versions
     bpy.ops.object.modifier_add(type='NODES')
-    if mesh.modifiers[-1].node_group:
-        geo_tree = mesh.modifiers[-1].node_group    
-    else:
-        geo_tree = new_GeometryNodes_group()
-        mesh.modifiers[-1].node_group = geo_tree
+    bpy.ops.node.new_geometry_nodes_modifier()
+    geo_tree = mesh.modifiers[-1].node_group
+    # if mesh.modifiers[-1].node_group:
+    #     geo_tree = mesh.modifiers[-1].node_group    
+    # else:
+    #     geo_tree = new_GeometryNodes_group()
+    #     mesh.modifiers[-1].node_group = geo_tree
     IN = geo_tree.nodes['Group Input']
     OUT = geo_tree.nodes['Group Output']
     MESH2POINT = geo_tree.nodes.new('GeometryNodeMeshToPoints')
@@ -68,16 +70,16 @@ def setMat_pointCloudColored(mesh, meshColor, ptSize):
     # assign the material to point cloud
     MATERIAL.inputs[2].default_value = mat
 
-def new_GeometryNodes_group():
-    ''' Create a new empty node group that can be used
-        in a GeometryNodes modifier.
-    '''
-    node_group = bpy.data.node_groups.new('GeometryNodes', 'GeometryNodeTree')
-    inNode = node_group.nodes.new('NodeGroupInput')
-    inNode.outputs.new('NodeSocketGeometry', 'Geometry')
-    outNode = node_group.nodes.new('NodeGroupOutput')
-    outNode.inputs.new('NodeSocketGeometry', 'Geometry')
-    node_group.links.new(inNode.outputs['Geometry'], outNode.inputs['Geometry'])
-    inNode.location = Vector((-1.5*inNode.width, 0))
-    outNode.location = Vector((1.5*outNode.width, 0))
-    return node_group
+# def new_GeometryNodes_group():
+#     ''' Create a new empty node group that can be used
+#         in a GeometryNodes modifier.
+#     '''
+#     node_group = bpy.data.node_groups.new('GeometryNodes', 'GeometryNodeTree')
+#     inNode = node_group.nodes.new('NodeGroupInput')
+#     inNode.outputs.new('NodeSocketGeometry', 'Geometry')
+#     outNode = node_group.nodes.new('NodeGroupOutput')
+#     outNode.inputs.new('NodeSocketGeometry', 'Geometry')
+#     node_group.links.new(inNode.outputs['Geometry'], outNode.inputs['Geometry'])
+#     inNode.location = Vector((-1.5*inNode.width, 0))
+#     outNode.location = Vector((1.5*outNode.width, 0))
+#     return node_group

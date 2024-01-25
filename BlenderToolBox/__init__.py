@@ -4,6 +4,7 @@ from . copyToVertexSubset import copyToVertexSubset
 from . copyArrowToVertex import copyArrowToVertex
 from . colorObj import colorObj
 from . createArrow import createArrow
+from . createVectorFieldMesh import createVectorFieldMesh
 from . drawPoints import drawPoints
 from . drawLines import drawLines
 from . drawEdgeSubset import drawEdgeSubset
@@ -11,7 +12,9 @@ from . drawBoundaryLoop import drawBoundaryLoop
 from . drawSphere import drawSphere
 from . discreteColor import discreteColor
 from . edgeNormals import edgeNormals
+from . genPolylineMesh import genPolylineMesh
 from . getEdgeWire import getEdgeWire
+from . import_scene_from_blend import import_scene_from_blend
 from . invisibleGround import invisibleGround
 from . initColorNode import initColorNode
 from . lookAt import lookAt
@@ -22,11 +25,13 @@ from . readNumpyMesh import readNumpyMesh
 from . readNumpyPoints import readNumpyPoints
 from . readOBJ import readOBJ
 from . readPLY import readPLY
+from . readSTL import readSTL
 from . renderImage import renderImage
 from . renderAnimation import renderAnimation
 from . render_mesh_default import render_mesh_default
 from . recalculateNormals import recalculateNormals
 from . selectOBJ import selectOBJ
+from . set_background import set_background
 from . setCamera import setCamera
 from . setCamera_from_UI import setCamera_from_UI
 from . setCamera_orthographic import setCamera_orthographic
@@ -42,6 +47,7 @@ from . setMat_pointCloudColored import setMat_pointCloudColored
 from . setMat_crackedCeramic import setMat_crackedCeramic
 from . setMat_ceramic import setMat_ceramic
 from . setMat_edge import setMat_edge
+from . setMat_edgeWithTexture import setMat_edgeWithTexture
 from . setMat_emission import setMat_emission
 from . setMat_glass import setMat_glass
 from . setMat_honey import setMat_honey

@@ -57,7 +57,10 @@ The sample rendering pipeline works for all the demo files in the repository. Ot
 ## Notes
 
 Before rendering a scene, you probably need to set up the default rendering devices in the user preferences (e.g., which GPU to use). You only need to set up the user preferences once, then the script should be able to detect the GPUs automatically in the future. To set up the rendering devices, open the blender, go to `Edit` > `Preferences` > `System`, then in the `Cycles Render Devices` select your preferred devices for rendering (e.g., select `CUDA` and check every GPUs on your computer). After setting up the devices, click the `Save Preference` on bottom left.
+![setDevice](./assets/setDevice.png)
+
+For a more detailed tutorial on Blender rendering with/without scripting, please refer to [link](https://www.silviasellan.com/blender_course_scripting.html) by Silvia Sellán.
 
 ## Contact
 
-These scripts are tested on Blender 3.2.1. As the API may change, using a newer version of the Blender may cause some functions not working properly. If you notice some bugs due to Blender updates or any questions/recommendations, please contact me at hsuehtil@cs.toronto.edu. 
+These scripts are tested on Blender 3.4.1. As the API may change, using a different version of the Blender may cause some functions not working properly. If you notice some bugs due to Blender updates or any questions/recommendations, please contact hsuehtil@gmail.com.

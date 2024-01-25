@@ -17,6 +17,7 @@ import bmesh
 import os
 from .readOBJ import readOBJ
 from .readPLY import readPLY
+from .readSTL import readSTL
 
 def readMesh(filePath, location, rotation_euler, scale):
 	_, extension = os.path.splitext(filePath)
@@ -24,6 +25,10 @@ def readMesh(filePath, location, rotation_euler, scale):
 		mesh = readPLY(filePath, location, rotation_euler, scale)
 	elif extension == '.obj' or extension == '.OBJ':
 		mesh = readOBJ(filePath, location, rotation_euler, scale)
+	elif extension == '.stl' or extension == '.STL':
+	 	mesh = readSTL(filePath, location, rotation_euler, scale)
 	else:
-		raise TypeError("only support .ply or .obj for now")
+		raise TypeError("only support .ply, .obj, and .stl for now")
+	bpy.context.view_layer.objects.active = mesh
+	bpy.ops.object.shade_flat() # defaiult flat shading
 	return mesh 
