@@ -35,7 +35,7 @@ def main():
         import your_package
         your_package.do_something()
         ```
-        """,
+        """
     # ... other setup parameters
 
 
