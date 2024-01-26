@@ -54,6 +54,7 @@ def main():
         author='Hsueh-Ti Derek Liu',
         author_email='sample@aol.edu',
         url='',
+        python_requires='==3.10',
         description='Blender TOolbox.',
         long_description=long_description,
         long_description_content_type='text/markdown',
@@ -62,6 +63,7 @@ def main():
         packages=setuptools.find_packages(where="BlenderToolBox"),
         install_requires=['numpy', 'bpy==4.0'],
         setup_requires=['bpy==4.0'],
+        # options={"bdist_wheel": {"python_tag": "cp310"}},
         zip_safe=False,
     )
 
