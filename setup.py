@@ -13,14 +13,6 @@ from distutils.version import LooseVersion
 __version__ = '0.3.0'
 
 
-class CMakeExtension(Extension):
-    # Boilerplate that I don't fully understand
-    def __init__(self, name, sourcedir='', exclude_arch=False):
-        Extension.__init__(self, name, sources=[])
-        # Directory where my python package is
-        self.sourcedir = os.path.abspath(sourcedir)
-        self.exclude_arch = exclude_arch
-
 
 
 
@@ -55,14 +47,13 @@ def main():
         author_email='sample@aol.edu',
         url='',
         python_requires='>=3.10',
-        description='Blender TOolbox.',
-        long_description=long_description,
-        long_description_content_type='text/markdown',
+        description='Blender Toolbox.',
+        # long_description=long_description,
+        # long_description_content_type='text/markdown',
         license="Apache 2.0",
         package_dir={'': 'BlenderToolBox'},
         packages=setuptools.find_packages(where="BlenderToolBox"),
         install_requires=['numpy', 'bpy==4.0'],
-        setup_requires=['bpy==4.0'],
         # options={"bdist_wheel": {"python_tag": "cp310"}},
         zip_safe=False,
     )
