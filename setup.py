@@ -17,25 +17,9 @@ __version__ = '0.3.0'
 
 
 def main():
-    # with open('README.md') as f:
-    #     long_description = f.read()
-    long_description = """
-        # Your Package Name
+    with open('README.md') as f:
+        long_description = f.read()
 
-        This is a description of your package using Markdown syntax.
-
-        ## Features
-
-        - Feature 1
-        - Feature 2
-
-        ## Usage
-
-        ```python
-        import your_package
-        your_package.do_something()
-        ```
-        """
     # ... other setup parameters
 
 
@@ -64,17 +48,15 @@ def main():
         version=__version__,
         author='Hsueh-Ti Derek Liu',
         author_email='sample@aol.edu',
-        url='',
+        url='https://github.com/otmanon/BlenderToolbox',
         python_requires='>=3.10',
         description='Blender Toolbox.',
-        long_description='''\
-         A longer description of your package.
-         ''',
-        long_description_content_type='text/plain',
+        long_description=long_description,
+        long_description_content_type='text/markdown',
         license="Apache 2.0",
         package_dir={'': 'BlenderToolBox'},
         packages=setuptools.find_packages(where="BlenderToolBox"),
-        install_requires=['numpy', 'bpy'],
+        install_requires=['numpy', 'bpy==4.0'],
         # options={"bdist_wheel": {"python_tag": "cp310"}},
         zip_safe=False,
     )
