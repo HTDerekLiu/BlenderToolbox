@@ -1,3 +1,17 @@
+# New pip Installation
+Make sure you're using python 3.10, as bpy is only compiled for that version of python.
+To install the toolbox, run
+
+```
+pip install  --index-url https://test.pypi.org/simple/ otmantest-blendertoolbox==0.10.0
+```
+Followed by 
+```
+pip install bpy==4.0.0
+```
+
+For some reason, pip has difficulty finding bpy when it's set as a package dependancy for BlenderToolbox, so we have to explicitly
+pip install it for now.
 # Blender Toolbox
 
 This is a set of Python scripts for rendering 3D shapes in [Blender](https://www.blender.org). These scripts are just from my personal codebase for rendering paper-worthy figures. To use them, make sure you have installed Blender and you can run the demo by typing 
