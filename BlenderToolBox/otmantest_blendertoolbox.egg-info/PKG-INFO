@@ -6,6 +6,7 @@ Home-page:
 Author: Hsueh-Ti Derek Liu
 Author-email: sample@aol.edu
 License: Apache 2.0
+Requires-Python: >=3.10
 Description-Content-Type: text/markdown
 License-File: LICENSE
 Requires-Dist: numpy

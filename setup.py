@@ -54,7 +54,7 @@ def main():
         author='Hsueh-Ti Derek Liu',
         author_email='sample@aol.edu',
         url='',
-        python_requires='==3.10',
+        python_requires='>=3.10',
         description='Blender TOolbox.',
         long_description=long_description,
         long_description_content_type='text/markdown',
