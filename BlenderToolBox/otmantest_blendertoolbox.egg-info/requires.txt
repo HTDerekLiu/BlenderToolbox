@@ -1,2 +1,2 @@
 numpy
-bpy==4.0
+bpy

@@ -9,4 +9,4 @@ License: Apache 2.0
 Requires-Python: >=3.10
 License-File: LICENSE
 Requires-Dist: numpy
-Requires-Dist: bpy==4.0
+Requires-Dist: bpy
