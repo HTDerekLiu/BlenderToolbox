@@ -3,7 +3,7 @@ Make sure you're using python 3.10, as bpy is only compiled for that version of 
 To install the toolbox, run
 
 ```
-pip install  --index-url https://test.pypi.org/simple/ otmantest-blendertoolbox==0.10.0
+pip install  --index-url https://test.pypi.org/simple/ otmantest-blendertoolbox
 ```
 Followed by 
 ```
