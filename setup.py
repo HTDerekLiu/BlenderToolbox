@@ -67,8 +67,10 @@ def main():
         url='',
         python_requires='>=3.10',
         description='Blender Toolbox.',
-        long_description=long_description,
-        long_description_content_type='text/markdown',
+        long_description='''\
+         A longer description of your package.
+         ''',
+        long_description_content_type='text/plain',
         license="Apache 2.0",
         package_dir={'': 'BlenderToolBox'},
         packages=setuptools.find_packages(where="BlenderToolBox"),
