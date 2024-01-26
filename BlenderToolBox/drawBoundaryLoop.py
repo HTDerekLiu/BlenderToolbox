@@ -92,7 +92,7 @@ def drawBoundaryLoop(mesh, r, bdColor):
 
     # set principled BSDF
     tree.nodes["Principled BSDF"].inputs['Roughness'].default_value = 0.7
-    tree.nodes["Principled BSDF"].inputs['Sheen Tint'].default_value = 0
+    # tree.nodes["Principled BSDF"].inputs['Sheen Tint'].default_value = 0
     tree.links.new(BCNode.outputs['Color'], tree.nodes['Principled BSDF'].inputs['Base Color'])
 
     return bdObj
