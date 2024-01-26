@@ -17,8 +17,8 @@ __version__ = '0.3.0'
 
 
 def main():
-    with open('README.md') as f:
-        long_description = f.read()
+    # with open('README.md') as f:
+    #     long_description = f.read()
 
     # Applies to windows only.
     # Normally, we set cmake's -A option to specify 64 bit platform when need (and /m for build),
@@ -48,8 +48,8 @@ def main():
         url='',
         python_requires='>=3.10',
         description='Blender Toolbox.',
-        long_description=long_description,
-        long_description_content_type='text/markdown',
+        # long_description=long_description,
+        # long_description_content_type='text/markdown',
         license="Apache 2.0",
         package_dir={'': 'BlenderToolBox'},
         packages=setuptools.find_packages(where="BlenderToolBox"),
