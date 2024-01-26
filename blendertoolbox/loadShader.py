@@ -18,18 +18,18 @@ pwd = os.path.dirname(os.path.realpath(__file__))
 
 def loadShader(shaderName, mesh):
     # switch to different shader names
-    if shaderName is "EeveeToon":
+    if shaderName == "EeveeToon":
         bpy.context.scene.render.engine = 'BLENDER_EEVEE'
         bpy.context.scene.render.alpha_mode = 'TRANSPARENT'
         matName = "ToonShade_EV"
         blenderFileName = 'EeveeToon.blend'
-    elif shaderName is "ColoredSteel":
+    elif shaderName == "ColoredSteel":
         matName = "Blued_Steel"
         blenderFileName = 'ColoredSteel.blend'
-    elif shaderName is "Wax":
+    elif shaderName == "Wax":
         matName = "Wax_PBR_SSS"
         blenderFileName = 'Wax.blend'
-    elif shaderName is "Wood":
+    elif shaderName == "Wood":
         matName = "UCP wood-v-1-1"
         blenderFileName = 'UCPWood.blend' # createy by Elbriga
 

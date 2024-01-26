@@ -1,27 +1,8 @@
-import sys, os
-sys.path.append(os.path.join(os.path.abspath(os.getcwd()))) # change this to your path to “path/to/BlenderToolbox/
-import BlenderToolBox as bt
-import os, bpy, bmesh
+import blendertoolbox as bt
+import bpy
+import os
 import numpy as np
 cwd = os.getcwd()
-
-'''
-RENDER AN IMAGE STEP-BY-STEP:
-1. copy "template.py" to your preferred local folder
-2. In "template.py":
-    - change the second line to your path to the BlenderToolbox, such as "sys.path.append('path/to/BlenderToolbox/')"
-    - change "meshPath"
-    - set your desired material (select one from the demo scripts)
-3. run "blender --background --python template.py" in terminal, then terminate the code when it starts rendering. This step outputs a "test.blend"
-4. open "test.blend" with your blender software
-5. In blender UI, adjust:
-    - location, rotation, scale of the mesh
-    - material parameters
-6. In "template.py":
-    - type in the adjusted parameters from GUI 
-    - set outputPath and increase imgRes_x, imgRes_y, numSamples
-7. run "blender --background --python template.py" again to output your final image
-'''
 
 outputPath = os.path.join(cwd, './template.png')
 
