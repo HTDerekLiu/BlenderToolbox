@@ -19,7 +19,26 @@ __version__ = '0.3.0'
 def main():
     # with open('README.md') as f:
     #     long_description = f.read()
-    long_description = "Blender Toolbox"
+    long_description = """
+        # Your Package Name
+
+        This is a description of your package using Markdown syntax.
+
+        ## Features
+
+        - Feature 1
+        - Feature 2
+
+        ## Usage
+
+        ```python
+        import your_package
+        your_package.do_something()
+        ```
+        """,
+    # ... other setup parameters
+
+
     # Applies to windows only.
     # Normally, we set cmake's -A option to specify 64 bit platform when need (and /m for build),
     # but these are errors with non-visual-studio generators. CMake does not seem to have an idiomatic
