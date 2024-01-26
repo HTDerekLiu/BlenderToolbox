@@ -1,9 +1,9 @@
 # **NEW!!** Installation with pip
-To use this toolbox, please make sure to install [Blender](https://www.blender.org) (version 4.0.0) and then install the toolbox with the following commands
+To use this toolbox, please make sure to install [Blender](https://www.blender.org) (version 4.0 or above) and then install the toolbox with the following commands
 ```
 conda create -n blender python=3.10
 source activate blender
-pip install blendertoolbox
+pip install -i https://test.pypi.org/simple/ blendertoolbox==0.5.1
 pip install bpy
 ```
 Please make sure you're using python 3.10, as Blender Python `bpy` is only compiled for that version of python.
@@ -68,7 +68,7 @@ python default_mesh.py
 ```
 This will output a `.png` file as your final rendering result. 
 
-We also expose other commonly adjusted parameters, such as lighting angle, mesh color, image resolution, etc. For more details, please read the comments in the `default_mesh.py`.
+I also expose other commonly adjusted parameters, such as lighting angle, mesh color, image resolution, etc. For more details, please read the comments in the `default_mesh.py`.
 
 The sample rendering pipeline works for all the demo files in the repository. Other "non-lazy" demos expose more parameters for users to tune. However, in order to know how to adjust those parameters require some background knowledge in Blender. I refer users to a quick introduction to Blender UI from Silvia's [website](https://www.silviasellan.com/blender_figure.html). There are also a ton of online tutorials which off er more advanced stuff way beyond what I have covered here.
 <!-- 
@@ -81,4 +81,4 @@ For a more detailed tutorial on Blender rendering with/without scripting, please
 
 ## Contact
 
-These scripts are tested on Blender 4.0.0. As the API may change, using a different version of the Blender may cause some functions not working properly. If you notice some bugs due to Blender updates or any questions/recommendations, please contact hsuehtil@gmail.com.
+These scripts are tested on Blender 4.0. As the API may change, using a different version of the Blender may cause some functions not working properly. If you notice some bugs due to Blender updates or any questions/recommendations, please contact hsuehtil@gmail.com.
