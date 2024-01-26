@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='blendertoolbox',
-    version='0.5.1',
+    version='0.1.0',
     description='A example Python package',
     url='https://github.com/shuds13/pyexample',
     author='Stephen Hudson',
@@ -11,6 +11,6 @@ setup(
     packages=['blendertoolbox'],
     install_requires=[ ],
     classifiers=[
-        'Programming Language :: Python :: 3.10',
+        'Programming Language :: Python :: 3.5',
     ],
 )

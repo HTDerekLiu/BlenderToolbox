@@ -1,0 +1,8 @@
+LICENSE
+README.md
+setup.py
+BlenderToolBox/otmantest_blendertoolbox.egg-info/PKG-INFO
+BlenderToolBox/otmantest_blendertoolbox.egg-info/SOURCES.txt
+BlenderToolBox/otmantest_blendertoolbox.egg-info/dependency_links.txt
+BlenderToolBox/otmantest_blendertoolbox.egg-info/not-zip-safe
+BlenderToolBox/otmantest_blendertoolbox.egg-info/top_level.txt
