@@ -34,6 +34,7 @@ from . readSTL import readSTL
 from . renderImage import renderImage
 from . renderAnimation import renderAnimation
 from . render_mesh_default import render_mesh_default
+from . render_point_cloud_default import render_point_cloud_default
 from . recalculateNormals import recalculateNormals
 from . selectOBJ import selectOBJ
 from . set_background import set_background

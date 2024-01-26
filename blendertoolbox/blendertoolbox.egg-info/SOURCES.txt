@@ -1,8 +1,0 @@
-LICENSE
-README.md
-setup.py
-BlenderToolBox/blendertoolbox.egg-info/PKG-INFO
-BlenderToolBox/blendertoolbox.egg-info/SOURCES.txt
-BlenderToolBox/blendertoolbox.egg-info/dependency_links.txt
-BlenderToolBox/blendertoolbox.egg-info/not-zip-safe
-BlenderToolBox/blendertoolbox.egg-info/top_level.txt

@@ -1,8 +1,9 @@
-import os, bpy, bmesh
+import os, bpy
 import numpy as np
 
 from . blenderInit import blenderInit
 from . readMesh import readMesh
+from . readNumpyMesh import readNumpyMesh
 from . subdivision import subdivision
 from . setMat_plastic import setMat_plastic
 from . invisibleGround import invisibleGround
@@ -32,12 +33,19 @@ def render_mesh_default(args):
   use_GPU = True
   blenderInit(imgRes_x, imgRes_y, numSamples, exposure, use_GPU)
 
-  ## read mesh (choose either readPLY or readOBJ)
-  meshPath = args["mesh_path"]
+  ## read mesh
   location = args["mesh_position"]
   rotation = args["mesh_rotation"]
   scale = args["mesh_scale"]
-  mesh = readMesh(meshPath, location, rotation, scale)
+  if "mesh_path" in args:
+    meshPath = args["mesh_path"]
+    mesh = readMesh(meshPath, location, rotation, scale)
+  elif "mesh_path" not in args and "vertices" in args and "faces" in args:
+    V = args["vertices"]
+    F = args["faces"]
+    mesh = readNumpyMesh(V,F,location,rotation,scale)
+  else:
+    raise ValueError("one should provide either [mesh_path] or [verticesfaces] in the args")   
 
   ## set shading (uncomment one of them)
   if args["shading"] == "smooth":
