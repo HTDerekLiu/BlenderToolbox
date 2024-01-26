@@ -1,0 +1,12 @@
+Metadata-Version: 2.1
+Name: otmantest-blendertoolbox
+Version: 0.2.0
+Summary: A example Python package
+Home-page: https://github.com/otmanon/BlenderToolbox.git
+Author: Hsueh-Ti Derek Liu
+Author-email: null@aol.com
+License: Apache License 2.0
+Classifier: Programming Language :: Python :: 3.10
+License-File: LICENSE
+Requires-Dist: bpy==4.0
+Requires-Dist: numpy
