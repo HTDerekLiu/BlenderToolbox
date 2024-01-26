@@ -38,6 +38,6 @@ def setMat_VColor(mesh, meshVColor):
 
 	# set principled BSDF
 	tree.nodes["Principled BSDF"].inputs['Roughness'].default_value = 1.0
-	tree.nodes["Principled BSDF"].inputs['Sheen Tint'].default_value = 0
+	tree.nodes["Principled BSDF"].inputs['Sheen Tint'].default_value = [0, 0, 0, 1]
 	tree.links.new(HSVNode.outputs['Color'], BCNode.inputs['Color'])
 	tree.links.new(BCNode.outputs['Color'], tree.nodes['Principled BSDF'].inputs['Base Color'])

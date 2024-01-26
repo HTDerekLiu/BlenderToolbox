@@ -40,8 +40,14 @@ def drawEdgeSubset(mesh, E, r, edgeColor):
         dz = z2 - z1    
         dist = math.sqrt(dx**2 + dy**2 + dz**2) 
 
-        bpy.ops.object.duplicate({"object" : cylinder}, linked=True)
-        objCopy = bpy.context.object
+        # cylinder.duplicate
+        bpy.ops.object.duplicate( linked=True)  # annoying I can't specify object i want to apply this to in here
+        bpy.context.selected_objects.clear()
+        cylinder.select_set(True)
+
+        objCopy = bpy.context.active_object
+
+
         objCopy.dimensions = (r,r,dist)
         objCopy.location = (dx/2 + x1, dy/2 + y1, dz/2 + z1)
         phi = math.atan2(dy, dx) 

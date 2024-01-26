@@ -24,7 +24,7 @@ def setMat_muscle(mesh, meshColor, fiberShape, bumpStrength = 0.4, wrinkleness =
     # set principled BSDF
     PRIN = tree.nodes["Principled BSDF"]
     PRIN.inputs['Roughness'].default_value = 0.5
-    PRIN.inputs['Clearcoat Roughness'].default_value = 0.2
+    PRIN.inputs['Coat Roughness'].default_value = 0.2
 
     # initialize required nodes
     BUMP = tree.nodes.new('ShaderNodeBump')

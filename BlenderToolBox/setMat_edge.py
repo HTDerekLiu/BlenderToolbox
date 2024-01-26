@@ -26,7 +26,7 @@ def setMat_edge(mesh, \
 
 	# set principled BSDF
 	tree.nodes["Principled BSDF"].inputs['Roughness'].default_value = 0.7
-	tree.nodes["Principled BSDF"].inputs['Sheen Tint'].default_value = 0
+	tree.nodes["Principled BSDF"].inputs['Sheen Tint'].default_value = [0, 0, 0, 1]
 
 	# add Ambient Occlusion
 	tree.nodes.new('ShaderNodeAmbientOcclusion')
