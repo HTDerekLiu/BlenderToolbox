@@ -1,10 +1,10 @@
-import os, bpy, bmesh
+import os, bpy
 import numpy as np
 
 from . blenderInit import blenderInit
 from . readMesh import readMesh
-from . subdivision import subdivision
-from . setMat_plastic import setMat_plastic
+from . readNumpyPoints import readNumpyPoints
+from . setMat_pointCloud import setMat_pointCloud
 from . invisibleGround import invisibleGround
 from . setCamera import setCamera
 from . setLight_sun import setLight_sun
@@ -23,7 +23,7 @@ class colorObj(object):
         self.B = B # birghtness
         self.C = C # contrast
 
-def render_mesh_default(args):
+def render_point_cloud_default(args):
   ## initialize blender
   imgRes_x = args["image_resolution"][0]
   imgRes_y = args["image_resolution"][1]
@@ -32,29 +32,25 @@ def render_mesh_default(args):
   use_GPU = True
   blenderInit(imgRes_x, imgRes_y, numSamples, exposure, use_GPU)
 
-  ## read mesh (choose either readPLY or readOBJ)
-  meshPath = args["mesh_path"]
+  ## read mesh
   location = args["mesh_position"]
   rotation = args["mesh_rotation"]
   scale = args["mesh_scale"]
-  mesh = readMesh(meshPath, location, rotation, scale)
-
-  ## set shading (uncomment one of them)
-  if args["shading"] == "smooth":
-    bpy.ops.object.shade_smooth() 
-  elif args["shading"] == "flat":
-    bpy.ops.object.shade_flat() 
+  if "mesh_path" in args:
+    meshPath = args["mesh_path"]
+    mesh = readMesh(meshPath, location, rotation, scale)
+  elif "mesh_path" not in args and "vertices" in args:
+    P = args["vertices"]
+    mesh = readNumpyPoints(P,location,rotation,scale)
   else:
-    raise ValueError("shading should be either flat or smooth in lazy pipeline")
+    raise ValueError("one should provide either [mesh_path] or [vertices, faces] in the args")   
 
-  ## subdivision
-  subdivision(mesh, level = args["subdivision_iteration"])
-
-  ## default render as plastic
+  ## default render for point cloud
   RGB = args["mesh_RGB"]
   RGBA = (RGB[0], RGB[1], RGB[2], 1)
-  meshColor = colorObj(RGBA, 0.5, 1.0, 1.0, 0.0, 2.0)
-  setMat_plastic(mesh, meshColor)
+  ptColor = colorObj(RGBA, 0.5, 1.0, 1.0, 0.0, 0.0)
+  ptSize = args["point_size"]
+  setMat_pointCloud(mesh, ptColor, ptSize)
 
   ## set invisible plane (shadow catcher)
   invisibleGround(shadowBrightness=0.9)
