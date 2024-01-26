@@ -17,9 +17,9 @@ __version__ = '0.3.0'
 
 
 def main():
-    with open('README.md') as f:
-        long_description = f.read()
-
+    # with open('README.md') as f:
+    #     long_description = f.read()
+    long_description = "Blender Toolbox"
     # Applies to windows only.
     # Normally, we set cmake's -A option to specify 64 bit platform when need (and /m for build),
     # but these are errors with non-visual-studio generators. CMake does not seem to have an idiomatic
