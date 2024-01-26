@@ -42,7 +42,7 @@ def setMat_poop(mesh, poopRGB1, poopRGB2, noiseScale, noiseDetail, noiseDistorti
     CR2.location.x -= 800
 
     PRIN = tree.nodes["Principled BSDF"]
-    PRIN.inputs["Specular"].default_value = 0
+    PRIN.inputs["Specular IOR Level"].default_value = 0
     tree.links.new(CR2.outputs[0], PRIN.inputs[0])
 
     GLO = tree.nodes.new('ShaderNodeBsdfGlossy')

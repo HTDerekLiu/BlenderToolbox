@@ -67,8 +67,14 @@ def createVectorFieldMesh(P, PN, thickness, length, location, rotation, scale):
     MOD = P_mesh.modifiers[-1]
     name = "GeometryNodeTree"
     group = bpy.data.node_groups.new(name, "GeometryNodeTree")
-    group.inputs.new('NodeSocketGeometry', name)
-    group.outputs.new('NodeSocketGeometry', name)
+    # group.inputs.new('NodeSocketGeometry', name)
+    #### To add a new socket
+    # Taken from here
+    # https://blender.stackexchange.com/questions/305827/add-or-remove-item-socket-in-nodetree-node-group-new-items-tree-blende
+
+    group.interface.new_socket(name='NodeSocketGeometry', in_out='INPUT', socket_type='NodeSocketGeometry', )
+    group.interface.new_socket(name='NodeSocketGeometry', in_out='OUTPUT', socket_type='NodeSocketGeometry', )
+
     IN = group.nodes.new('NodeGroupInput')
     OUT = group.nodes.new('NodeGroupOutput')
     OUT.is_active_output = True

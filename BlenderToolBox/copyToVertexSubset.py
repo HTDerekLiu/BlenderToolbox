@@ -19,6 +19,11 @@ def copyToVertexSubset(mesh, templateObj, VIdx):
     bpy.context.view_layer.objects.active = templateObj
     for ii in VIdx:
         Vloc = mesh.matrix_world @ mesh.data.vertices[int(ii)].co
-        bpy.ops.object.duplicate({"object" : templateObj}, linked=True)
-        objCopy = bpy.context.object
+
+        bpy.ops.object.duplicate( linked=True)  # annoying I can't specify object i want to apply this to in here
+        bpy.context.selected_objects.clear()
+        templateObj.select_set(True)
+
+        objCopy = bpy.context.active_object
+
         objCopy.location = Vloc

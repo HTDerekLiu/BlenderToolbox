@@ -28,6 +28,6 @@ def drawSphere(ptSize, ptColor, ptLoc = (1e10,1e10,1e10)):
     BCNode = initColorNode(tree, ptColor)
 
     tree.nodes["Principled BSDF"].inputs['Roughness'].default_value = 1.0
-    tree.nodes["Principled BSDF"].inputs['Sheen Tint'].default_value = 0
+    tree.nodes["Principled BSDF"].inputs['Sheen Tint'].default_value = [0, 0, 0, 1]
     tree.links.new(BCNode.outputs['Color'], tree.nodes['Principled BSDF'].inputs['Base Color'])
     return sphere

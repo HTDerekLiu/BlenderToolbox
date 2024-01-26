@@ -23,9 +23,9 @@ def setMat_transparent(mesh, meshColor, alpha, transmission, roughness = 0.7):
 
 	# set principled BSDF
 	tree.nodes["Principled BSDF"].inputs['Roughness'].default_value = roughness
-	tree.nodes["Principled BSDF"].inputs['Sheen Tint'].default_value = 0
+	tree.nodes["Principled BSDF"].inputs['Sheen Tint'].default_value = [0, 0, 0, 1]
 	tree.nodes["Principled BSDF"].inputs['Metallic'].default_value = 0.0
-	tree.nodes["Principled BSDF"].inputs['Transmission'].default_value = transmission
+	tree.nodes["Principled BSDF"].inputs['Transmission Weight'].default_value = transmission
 	tree.nodes["Principled BSDF"].inputs['Alpha'].default_value = alpha
 
 	# set color using Hue/Saturation node
