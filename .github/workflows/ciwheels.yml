@@ -156,7 +156,7 @@ jobs:
 
       - name: Build wheels
         run: |
-            pip wheel -w wheelhouse .
+            python setup.py bdist_wheel
 
 
       # - name: Fix Windows wheels
@@ -171,8 +171,8 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           path: |
-            ./wheelhouse/*.whl 
-            ./wheelhouse/*.tar.gz 
+            ./dist/*.whl 
+            ./dist/*.tar.gz 
 
   # # Push the resulting binaries to pypi on a tag starting with 'v'
   upload_pypi:
