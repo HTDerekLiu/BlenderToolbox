@@ -26,7 +26,9 @@ jobs:
       run: python setup.py sdist
 
     - name: Check metadata
-      run: python setup.py sdist_check
+      run: |
+          pip install sdist_check 
+          python setup.py sdist_check
 
     - uses: actions/upload-artifact@v3
       with:
