@@ -48,7 +48,7 @@ def main():
         url='',
         python_requires='>=3.10',
         description='Blender Toolbox.',
-        # long_description=long_description,
+        long_description=long_description,
         # long_description_content_type='text/markdown',
         license="Apache 2.0",
         package_dir={'': 'BlenderToolBox'},
