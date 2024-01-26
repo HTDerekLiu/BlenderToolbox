@@ -5,11 +5,13 @@ on:
   push:
     branches:
       - main
+      - bpy-pypi
     # tags:
     #   - v*
   pull_request:
     branches:
       - main
+      - bpy-pypi
 
 jobs:
   build_sdist:
