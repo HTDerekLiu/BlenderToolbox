@@ -26,7 +26,7 @@ jobs:
       run: python setup.py sdist
 
     - name: Check metadata
-      run: pipx run twine check dist/*
+      run: python setup.py sdist_check
 
     - uses: actions/upload-artifact@v3
       with:
