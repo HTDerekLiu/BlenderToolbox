@@ -2,12 +2,12 @@ from setuptools import setup
 
 setup(
     name='blendertoolbox',
-    version='0.5.1',
+    version='0.0.1',
     description='A example Python package',
-    url='https://github.com/shuds13/pyexample',
-    author='Stephen Hudson',
+    url='https://github.com/HTDerekLiu/BlenderToolbox/',
+    author='Hsueh-Ti Derek Liu',
     author_email='shudson@anl.gov',
-    license='BSD 2-clause',
+    license='Apache 2.0',
     packages=['blendertoolbox'],
     install_requires=[ ],
     classifiers=[
