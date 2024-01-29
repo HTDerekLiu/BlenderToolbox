@@ -2,11 +2,11 @@ from setuptools import setup
 
 setup(
     name='blendertoolbox',
-    version='0.0.1',
-    description='A example Python package',
+    version='0.0.2',
+    description='Some simple Blender scripts for rendering paper figures',
     url='https://github.com/HTDerekLiu/BlenderToolbox/',
     author='Hsueh-Ti Derek Liu',
-    author_email='shudson@anl.gov',
+    author_email='hsuehtil@gmail.com',
     license='Apache 2.0',
     packages=['blendertoolbox'],
     install_requires=[ ],

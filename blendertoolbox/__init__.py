@@ -14,6 +14,7 @@ from . drawPoints import drawPoints
 from . drawLines import drawLines
 from . drawEdgeSubset import drawEdgeSubset
 from . drawBoundaryLoop import drawBoundaryLoop
+from . drawOutline import drawOutline
 from . drawSphere import drawSphere
 from . discreteColor import discreteColor
 from . edgeNormals import edgeNormals
