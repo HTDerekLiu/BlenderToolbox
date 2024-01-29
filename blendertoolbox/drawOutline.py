@@ -1,3 +1,4 @@
+# Copyright 2024 Oded Stein
 import bpy
 
 def drawOutline(thickness = 1.0, alpha = 0.85):
