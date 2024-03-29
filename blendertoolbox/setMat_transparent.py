@@ -14,7 +14,7 @@
 import bpy
 from . initColorNode import initColorNode
 
-def setMat_transparent(mesh, meshColor, alpha, transmission, roughness = 0.7):
+def setMat_transparent(mesh, meshColor, alpha, transmission, roughness = 0.7, visible_shadow=True):
 	mat = bpy.data.materials.new('MeshMaterial')
 	mesh.data.materials.append(mat)
 	mesh.active_material = mat
@@ -45,6 +45,9 @@ def setMat_transparent(mesh, meshColor, alpha, transmission, roughness = 0.7):
 	# link all the nodes
 	tree.links.new(HSVNode.outputs['Color'], BCNode.inputs['Color'])
 	tree.links.new(BCNode.outputs['Color'], tree.nodes['Principled BSDF'].inputs['Base Color'])
+
+	# whether to have shadows
+	mesh.visible_shadow = visible_shadow
 
 	
 

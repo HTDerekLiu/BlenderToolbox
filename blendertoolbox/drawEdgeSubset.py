@@ -24,7 +24,9 @@ def drawEdgeSubset(mesh, E, r, edgeColor):
     cylinder.active_material = mat
     mat.diffuse_color = edgeColor
 
+    print(E.shape)
     for ii in range(E.shape[0]): 
+        print(ii)
         p1Idx = E[ii,0]
         p2Idx = E[ii,1]
         p1 = mesh.matrix_world @ mesh.data.vertices[p1Idx].co
@@ -41,12 +43,12 @@ def drawEdgeSubset(mesh, E, r, edgeColor):
         dist = math.sqrt(dx**2 + dy**2 + dz**2) 
 
         # cylinder.duplicate
+        # bpy.context.selected_objects.clear()
+        # cylinder.select_set(True)
         bpy.ops.object.duplicate( linked=True)  # annoying I can't specify object i want to apply this to in here
-        bpy.context.selected_objects.clear()
-        cylinder.select_set(True)
 
+        # bpy.context.selected_objects.clear()
         objCopy = bpy.context.active_object
-
 
         objCopy.dimensions = (r,r,dist)
         objCopy.location = (dx/2 + x1, dy/2 + y1, dz/2 + z1)
