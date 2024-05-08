@@ -1,13 +1,13 @@
-# # if you want to call the toolbox the old way with `blender -b -P demo_XXX.py`, then uncomment these two lines
+# # if you want to call the toolbox with `blender -b -P demo_XXX.py`, then uncomment these two lines
 # import sys, os
-# sys.path.append("../../BlenderToolbox/")
-import blendertoolbox as bt 
+# sys.path.append("../../BlenderToolbox/") 
+import blendertoolbox as bt
 import bpy
 import os
 import numpy as np
 cwd = os.getcwd()
 
-outputPath = os.path.join(cwd, './demo_normalize_shape.png') 
+outputPath = os.path.join(cwd, './demo_colorbrewer.png') # make it abs path for windows
 
 ## initialize blender
 imgRes_x = 480 
@@ -16,22 +16,29 @@ numSamples = 100
 exposure = 1.5 
 bt.blenderInit(imgRes_x, imgRes_y, numSamples, exposure)
 
-## read mesh (choose either readPLY or readOBJ)
-meshPath = '../meshes/spot.ply'
-location = (0,0,0) # (UI: click mesh > Transform > Location)
-rotation = (0,0,0) # (UI: click mesh > Transform > Rotation)
-scale = (1,1,1) # (UI: click mesh > Transform > Scale)
-mesh = bt.readMesh(meshPath, location, rotation, scale)
+## read mesh from numpy array
+location = (0,0,0.67)
+rotation = (0,0,0) 
+scale = (.5,.5,.5)
+
+V = np.array([[1,1,1],[-1,1,-1],[-1,-1,1],[1,-1,-1]], dtype=np.float32) # vertex list
+F = np.array([[0,1,2],[0,2,3],[0,3,1],[2,1,3]], dtype=np.int32) # face list
+mesh = bt.readNumpyMesh(V,F,location,rotation,scale)
+
+vertex_scalars = np.array([0.,1.,2.,3.]) # vertex color list
+color_type = 'vertex'
+color_map = 'YlOrRd'
+mesh = bt.setMeshScalars(mesh, vertex_scalars, color_map, color_type, cmin=0.0, cmax=1.0)
 
 ## set shading (uncomment one of them)
-bpy.ops.object.shade_smooth() 
+# bpy.ops.object.shade_smooth() 
 
 ## subdivision
-bt.subdivision(mesh, level = 2)
+# bt.subdivision(mesh, level = 0)
 
-# # set material (TODO: this has some new issue due to new version of Blender)
-meshColor = bt.colorObj(bt.derekBlue, 0.5, 1.0, 1.0, 0.0, 2.0)
-bt.setMat_plastic(mesh, meshColor)
+# # set material 
+meshVColor = bt.colorObj([], 0.5, 1.0, 1.0, 0.0, 0.0)
+bt.setMat_VColor(mesh, meshVColor)
 
 ## set invisible plane (shadow catcher)
 bt.invisibleGround(shadowBrightness=0.9)
@@ -57,5 +64,5 @@ bt.shadowThreshold(alphaThreshold = 0.05, interpolationMode = 'CARDINAL')
 ## save blender file so that you can adjust parameters in the UI
 bpy.ops.wm.save_mainfile(filepath=os.getcwd() + '/test.blend')
 
-## save rendering
+# save rendering
 bt.renderImage(outputPath, cam)

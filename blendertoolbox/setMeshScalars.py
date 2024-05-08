@@ -15,7 +15,7 @@ import bpy
 import numpy as np
 from . colorMap import colorMap
 
-def setMeshScalars(mesh_obj, C, color_map_name = 'default', type = None):
+def setMeshScalars(mesh_obj, C, color_map_name = 'default', type = None, cmin=None, cmax=None):
     """
     This function set per vertex/face color of a mesh with a numpy array of scalars
 
@@ -55,7 +55,7 @@ def setMeshScalars(mesh_obj, C, color_map_name = 'default', type = None):
         raise ValueError('type needs to be either "vertex" or "face" or None')
 
     # turn scalar into colors
-    C_RGB = colorMap(C, color_map_name)
+    C_RGB = colorMap(C, color_map_name, cmin=cmin, cmax=cmax)
 
     # assigning vertex colors
     if type is 'vertex':

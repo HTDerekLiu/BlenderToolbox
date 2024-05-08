@@ -1,4 +1,7 @@
-import blendertoolbox as bt
+# # if you want to call the toolbox the old way with `blender -b -P demo_XXX.py`, then uncomment these two lines
+# import sys, os
+# sys.path.append("../../BlenderToolbox/")
+import blendertoolbox as bt 
 import bpy
 import os
 import numpy as np

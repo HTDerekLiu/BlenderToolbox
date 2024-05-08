@@ -24,9 +24,7 @@ def drawEdgeSubset(mesh, E, r, edgeColor):
     cylinder.active_material = mat
     mat.diffuse_color = edgeColor
 
-    print(E.shape)
     for ii in range(E.shape[0]): 
-        print(ii)
         p1Idx = E[ii,0]
         p2Idx = E[ii,1]
         p1 = mesh.matrix_world @ mesh.data.vertices[p1Idx].co

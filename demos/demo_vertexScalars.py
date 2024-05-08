@@ -1,4 +1,7 @@
-import blendertoolbox as bt
+# # if you want to call the toolbox the old way with `blender -b -P demo_XXX.py`, then uncomment these two lines
+# import sys, os
+# sys.path.append("../../BlenderToolbox/")
+import blendertoolbox as bt 
 import bpy
 import os
 import numpy as np
@@ -25,7 +28,7 @@ mesh = bt.readNumpyMesh(V,F,location,rotation,scale)
 vertex_scalars = np.array([0.,1.,2.,3.]) # vertex color list
 color_type = 'vertex'
 color_map = 'default'
-mesh = bt.setMeshScalars(mesh, vertex_scalars, color_map, color_type)
+mesh = bt.setMeshScalars(mesh, vertex_scalars, color_map, color_type, cmin=0.0, cmax=1.0)
 
 ## set shading (uncomment one of them)
 # bpy.ops.object.shade_smooth() 
