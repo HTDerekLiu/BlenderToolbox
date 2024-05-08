@@ -18,20 +18,24 @@ numSamples = 100
 exposure = 1.5 
 bt.blenderInit(imgRes_x, imgRes_y, numSamples, exposure)
 
-## read vector field mesh from numpy array
-location = (0.55, 0.07, 0.82) 
-rotation = (0,0,56.4) 
-scale = (2,2,2)
-thickness = 0.03 # this can be found in the geometry node graph
-length = 0.1 # this can be found in the geometry node graph
-P = np.array([[.1,0,0],[0,.1,0],[0,0,0.1],[-.1,0,0.],[0,-.1,0],[0,0,-.1]], dtype=np.float32)
-PN = np.array([[0.5,0,0],[0,1.5,0],[0,0,1],[-.5,0,0],[0,-1.5,0],[0,0,-1]], dtype=np.float32) 
-
-mesh = bt.createVectorFieldMesh(P, PN, thickness, length, location, rotation, scale)
-
-# set plastic material
-meshColor = bt.colorObj(bt.derekBlue, 0.5, 1.0, 1.0, 0.0, 2.0)
+## read mesh
+location = (0.42,-0.1,-0.1) 
+rotation = (0,0,50) 
+scale = (0.025,0.025,0.025)
+mesh = bt.readMesh("../meshes/fat_dragon_39507.obj", location, rotation, scale)
+meshColor = bt.colorObj((1,1,1,1), 0.5, 1.0, 1.0, 0.0, 0.0)
 bt.setMat_plastic(mesh, meshColor)
+
+## read vector fields 
+P = np.loadtxt("../meshes/fat_dragon_source_locations.txt") # Nx3 array of vector source locations
+P_vec = np.loadtxt("../meshes/fat_dragon_vectors.txt") # Nx3 array of vector directions
+
+## set arrow material
+thickness = 0.2 # this can be found in the geometry node graph
+length = 0.5 # this can be found in the geometry node graph
+arrow_mesh = bt.createVectorFieldMesh(P, P_vec, thickness, length, location, rotation, scale)
+arrow_color = bt.colorObj(bt.derekBlue, 0.5, 1.0, 1.0, 0.0, 2.0)
+bt.setMat_plastic(arrow_mesh, arrow_color)
 
 ## set invisible plane (shadow catcher)
 bt.invisibleGround(shadowBrightness=0.9)

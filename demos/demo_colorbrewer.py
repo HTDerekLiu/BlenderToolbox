@@ -1,4 +1,4 @@
-# # if you want to call the toolbox with `blender -b -P demo_XXX.py`, then uncomment these two lines
+# # if you want to call the toolbox the old way with `blender -b -P demo_XXX.py`, then uncomment these two lines
 # import sys, os
 # sys.path.append("../../BlenderToolbox/") 
 import blendertoolbox as bt
