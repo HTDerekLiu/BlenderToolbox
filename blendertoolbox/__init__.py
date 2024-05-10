@@ -9,6 +9,7 @@ from . copyToVertexSubset import copyToVertexSubset
 from . copyArrowToVertex import copyArrowToVertex
 from . colorObj import colorObj
 from . createArrow import createArrow
+from . createScaledVectorFieldMesh import createScaledVectorFieldMesh
 from . createVectorFieldMesh import createVectorFieldMesh
 from . drawPoints import drawPoints
 from . drawLines import drawLines
