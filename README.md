@@ -84,6 +84,7 @@ For a more detailed tutorial on Blender rendering with/without scripting, please
 These scripts are tested on Blender 4.0.0. As the API may change, using a different version of the Blender may cause some functions not working properly. If you notice some bugs due to Blender updates or any questions/recommendations, please contact hsuehtil@gmail.com.
 
 ## BibTeX
+```
 @software{Liu_BlenderToolbox_2018,
   author = {Liu, Hsueh-Ti Derek},
   month = {12},
@@ -91,3 +92,4 @@ These scripts are tested on Blender 4.0.0. As the API may change, using a differ
   url = {https://github.com/HTDerekLiu/BlenderToolbox},
   year = {2018}
 }
+```
