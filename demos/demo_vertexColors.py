@@ -5,9 +5,8 @@ import blendertoolbox as bt
 import bpy
 import os
 import numpy as np
-cwd = os.getcwd()
 
-outputPath = os.path.join(cwd, './demo_vertexColors.png') # make it abs path for windows
+outputPath = os.path.abspath('./demo_vertexColors.png') # make it abs path for windows
 
 ## initialize blender
 imgRes_x = 480 
@@ -24,7 +23,6 @@ scale = (.5,.5,.5)
 V = np.array([[1,1,1],[-1,1,-1],[-1,-1,1],[1,-1,-1]], dtype=np.float32) # vertex list
 F = np.array([[0,1,2],[0,2,3],[0,3,1],[2,1,3]], dtype=np.int32) # face list
 mesh = bt.readNumpyMesh(V,F,location,rotation,scale)
-
 
 
 vertex_colors = np.array([[1,0,0],[0,1,0],[0,0,1],[1,1,1]]) # vertex color list

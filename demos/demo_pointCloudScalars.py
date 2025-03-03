@@ -5,9 +5,8 @@ import blendertoolbox as bt
 import bpy
 import os
 import numpy as np
-cwd = os.getcwd()
 
-outputPath = os.path.join(cwd, './demo_pointCloudScalars.png') # make it abs path for windows
+outputPath = os.path.abspath('./demo_pointCloudScalars.png') # make it abs path for windows
 
 ## initialize blender
 imgRes_x = 480 

@@ -5,13 +5,12 @@ import blendertoolbox as bt
 import bpy
 import os
 import numpy as np
-cwd = os.getcwd()
 
 """
 Warning: this function may be obsolete: please check out demo_vertexColors.py and demo_faceColors.py
 """
 
-outputPath = os.path.join(cwd, './demo_vertexColors_ply.png') # make it abs path for windows
+outputPath = os.path.abspath('./demo_vertexColors_ply.png') # make it abs path for windows
 
 ## initialize blender
 imgRes_x = 480 

@@ -5,9 +5,8 @@ import blendertoolbox as bt
 import bpy
 import os
 import numpy as np
-cwd = os.getcwd()
 
-outputPath = os.path.join(cwd, './demo_outline.png') # make it abs path for windows
+outputPath = os.path.abspath('./demo_outline.png') # make it abs path for windows
 
 ## initialize blender
 imgRes_x = 480 
@@ -55,7 +54,7 @@ bt.setLight_ambient(color=(0.1,0.1,0.1,1))
 bt.shadowThreshold(alphaThreshold = 0.05, interpolationMode = 'CARDINAL')
 
 ## draw outline aroung object
-bt.drawOutline(thickness = 5.0, alpha = 0.85)
+bt.drawOutline(thickness = 10.0, alpha = 0.85)
 
 ## save blender file so that you can adjust parameters in the UI
 bpy.ops.wm.save_mainfile(filepath=os.getcwd() + '/test.blend')

@@ -77,4 +77,4 @@ def render_point_cloud_default(args):
   bpy.ops.wm.save_mainfile(filepath=os.getcwd() + '/test.blend')
 
   ## save rendering
-  renderImage(args["output_path"], cam)
+  renderImage(os.path.abspath(args["output_path"]), cam)

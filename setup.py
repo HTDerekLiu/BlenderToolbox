@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='blendertoolbox',
-    version='0.0.3',
+    version='0.0.5',
     description='Some Blender functions for rendering paper figures',
     url='https://github.com/HTDerekLiu/BlenderToolbox/',
     author='Hsueh-Ti Derek Liu',

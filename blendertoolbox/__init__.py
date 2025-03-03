@@ -48,6 +48,7 @@ from . setLight_sun import setLight_sun
 from . setLight_ambient import setLight_ambient
 from . setLight_threePoints import setLight_threePoints
 from . setMat_amber import setMat_amber
+from . setMat_ambient_occlusion import setMat_ambient_occlusion
 from . setMat_balloon import setMat_balloon
 from . setMat_carPaint import setMat_carPaint
 from . setMat_chrome import setMat_chrome

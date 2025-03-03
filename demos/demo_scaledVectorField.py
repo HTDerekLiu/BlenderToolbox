@@ -1,15 +1,15 @@
 # if you want to call the toolbox the old way with `blender -b -P demo_XXX.py`, then uncomment these two lines
-import sys, os
-sys.path.append("../../BlenderToolbox/")
+# import sys, os
+# sys.path.append("../../BlenderToolbox/")
 import blendertoolbox as bt 
 import bpy
 import os
 import numpy as np
-cwd = os.getcwd()
+
 ###
 # After blender 3.4 this function requires some changes to update the API of Transfer Attribute nodes. Will do it later.
 ###
-outputPath = os.path.join(cwd, './demo_scaledVectorField.png') # make it abs path for windows
+outputPath = os.path.abspath('./demo_scaledVectorField.png') # make it abs path for windows
 
 ## initialize blender
 imgRes_x = 480 
