@@ -17,3 +17,37 @@ myShapes/
 upload_to_pypi.sh
 build/*
 blendertoolbox.egg-info/*
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.tox/
+.nox/
+
+# Claude settings
+.claude/*
+
+# Virtual environments
+venv/
+.venv/
+env/
+.env/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Poetry
+dist/
+# Note: Do not ignore poetry.lock - it should be committed
