@@ -3,7 +3,7 @@ To use this toolbox, please make sure to install [Blender](https://www.blender.o
 ```
 conda create -n blender python=3.11
 source activate blender
-pip install bpy=4.3.0 --extra-index-url https://download.blender.org/pypi/
+pip install bpy==4.3.0 --extra-index-url https://download.blender.org/pypi/
 pip install blendertoolbox
 ```
 Please make sure you're using python 3.10, as Blender Python `bpy` is only compiled for that version of python.
