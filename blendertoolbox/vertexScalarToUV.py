@@ -14,7 +14,7 @@
 import bpy
 import numpy as np
 
-def vertexScalarToUV(mesh_obj, vertex_scalars):
+def vertexScalarToUV(mesh_obj, vertex_scalars, normalize_scalars=True):
     """
     This function takes a vertex scalar data and set to vertex UV (useful for render isoline)
 
@@ -36,8 +36,10 @@ def vertexScalarToUV(mesh_obj, vertex_scalars):
     uv_layer = mesh.uv_layers.new(name="funcUV")
 
     C = np.copy(vertex_scalars.flatten())
-    C -= C.min()
-    C /= (C.max()+1e-16)
+    if normalize_scalars:
+        C -= C.min()
+        C += 1e-6
+        C /= (C.max()+1e-6)
 
     for face in mesh.polygons:
         for vIdx, loopIdx in zip(face.vertices, face.loop_indices):

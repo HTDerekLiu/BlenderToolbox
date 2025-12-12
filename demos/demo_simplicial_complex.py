@@ -1,12 +1,12 @@
 # # if you want to call the toolbox the old way with `blender -b -P demo_XXX.py`, then uncomment these two lines
-# import sys, os
-# sys.path.append("../../BlenderToolbox/")
+import sys, os
+sys.path.append("../../BlenderToolbox/")
 import blendertoolbox as bt 
 import bpy
 import os
 import numpy as np
 
-outputPath = os.path.abspath('./demo_transparent.png') # make it abs path for windows
+outputPath = os.path.abspath('./demo_simplicial_complex.png') # make it abs path for windows
 
 ## initialize blender
 imgRes_x = 480 
@@ -15,25 +15,40 @@ numSamples = 100
 exposure = 1.5 
 bt.blenderInit(imgRes_x, imgRes_y, numSamples, exposure)
 
-## read mesh (choose either readPLY or readOBJ)
-meshPath = '../meshes/spot.ply'
-location = (1.12, -0.14, 0) # (UI: click mesh > Transform > Location)
-rotation = (90, 0, 227) # (UI: click mesh > Transform > Rotation)
-scale = (1.5,1.5,1.5) # (UI: click mesh > Transform > Scale)
-mesh = bt.readMesh(meshPath, location, rotation, scale)
+## read mesh from numpy array
+location = (0,0,0.67) 
+rotation = (0,0,0) 
+scale = (.5,.5,.5)
+V = np.array([
+    [1,1,1],
+    [-1,1,-1],
+    [-1,-1,1],
+    [1,-1,-1],
+    [2,1,0],
+    ], dtype=np.float32) # vertex list
+F = np.array([
+    [0,1,2],
+    [0,2,3],
+    [0,3,1],
+    [2,1,3]
+    ], dtype=np.int32) # face list
+E = np.array([
+    [0,1],
+    [0,2],
+    [0,3],
+    [1,2],
+    [1,3],
+    [2,3],
+    [0,4],
+    ], dtype=np.int32) # edge list
+meshFace, meshCurveNetwork = bt.readSimplicialComplex(V,E,F,location,rotation,scale)
 
-## set shading (uncomment one of them)
-bpy.ops.object.shade_smooth() 
-
-## subdivision
-bt.subdivision(mesh, level = 2)
-
-# # set material (TODO: this has some new issue due to new version of Blender)
-# colorObj(RGBA, H, S, V, Bright, Contrast)
-meshColor = bt.colorObj(bt.coralRed, 0.5, 1.0, 1.0, 0.0, 0.0)
-alpha = 0.2
-transmission = 0.5
-bt.setMat_transparent(mesh, meshColor, alpha, transmission, visible_shadow = False)
+nodeSize = 0.15
+edgeThickness = 0.1
+nodeColor = bt.colorObj(bt.coralRed, H=0.5, S=1.0, V=1.0, B=0.0, C=0.0)
+edgeColor = bt.colorObj(bt.iglGreen, H=0.5, S=1.0, V=1.0, B=0.0, C=0.0)
+faceColor = bt.colorObj(bt.derekBlue, H=0.5, S=1.0, V=1.0, B=0.0, C=0.0)
+bt.setMat_simplicialComplex(meshFace, meshCurveNetwork, nodeSize, edgeThickness, nodeColor, edgeColor, faceColor)
 
 ## set invisible plane (shadow catcher)
 bt.invisibleGround(shadowBrightness=0.9)
@@ -59,5 +74,5 @@ bt.shadowThreshold(alphaThreshold = 0.05, interpolationMode = 'CARDINAL')
 ## save blender file so that you can adjust parameters in the UI
 bpy.ops.wm.save_mainfile(filepath=os.getcwd() + '/test.blend')
 
-# ## save rendering
-# bt.renderImage(outputPath, cam)
+## save rendering
+bt.renderImage(outputPath, cam)

@@ -32,6 +32,7 @@ from . readNumpyMesh import readNumpyMesh
 from . readNumpyPoints import readNumpyPoints
 from . readOBJ import readOBJ
 from . readPLY import readPLY
+from . readSimplicialComplex import readSimplicialComplex
 from . readSTL import readSTL
 from . renderImage import renderImage
 from . renderAnimation import renderAnimation
@@ -44,6 +45,7 @@ from . setCamera import setCamera
 from . setCamera_from_UI import setCamera_from_UI
 from . setCamera_orthographic import setCamera_orthographic
 from . setCameraPath import setCameraPath
+from . setGraphMesh import setGraphMesh
 from . setLight_sun import setLight_sun
 from . setLight_ambient import setLight_ambient
 from . setLight_threePoints import setLight_threePoints
@@ -52,6 +54,7 @@ from . setMat_ambient_occlusion import setMat_ambient_occlusion
 from . setMat_balloon import setMat_balloon
 from . setMat_carPaint import setMat_carPaint
 from . setMat_chrome import setMat_chrome
+from . setMat_graph import setMat_graph
 from . setMat_pointCloudColored import setMat_pointCloudColored
 from . setMat_crackedCeramic import setMat_crackedCeramic
 from . setMat_ceramic import setMat_ceramic
@@ -61,6 +64,7 @@ from . setMat_emission import setMat_emission
 from . setMat_glass import setMat_glass
 from . setMat_honey import setMat_honey
 from . setMat_singleColor import setMat_singleColor
+from . setMat_simplicialComplex import setMat_simplicialComplex
 from . setMat_stone import setMat_stone
 from . setMat_transparent import setMat_transparent
 from . setMat_transparentWithEdge import setMat_transparentWithEdge

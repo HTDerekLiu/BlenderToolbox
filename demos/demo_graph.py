@@ -1,6 +1,6 @@
 # # if you want to call the toolbox the old way with `blender -b -P demo_XXX.py`, then uncomment these two lines
-import sys, os
-sys.path.append("../../BlenderToolbox/")
+# import sys, os
+# sys.path.append("../../BlenderToolbox/")
 
 import blendertoolbox as bt 
 import bpy
@@ -33,7 +33,7 @@ if __name__ == "__main__":
     edge_resolution = 8          # Smoothness of edge cylinders (higher = smoother)
     edge_color = bt.colorObj(bt.derekBlue, H=0.5, S=1.0, V=1.0, B=0.0, C=0.0)
     node_color = bt.colorObj(bt.coralRed, H=0.5, S=1.0, V=1.0, B=0.0, C=0.0)
-    bt.setGraphMaterial(mesh, node_size,  edge_thickness, node_color, edge_color, edge_resolution)
+    bt.setMat_graph(mesh, node_size,  edge_thickness, node_color, edge_color, edge_resolution)
 
     ## set invisible plane (shadow catcher)
     bt.invisibleGround(shadowBrightness=0.9)
