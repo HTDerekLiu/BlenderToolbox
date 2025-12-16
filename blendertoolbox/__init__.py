@@ -62,6 +62,7 @@ from . setMat_edge import setMat_edge
 from . setMat_edgeWithTexture import setMat_edgeWithTexture
 from . setMat_emission import setMat_emission
 from . setMat_glass import setMat_glass
+from . setMat_thindielectric import setMat_thindielectric
 from . setMat_honey import setMat_honey
 from . setMat_singleColor import setMat_singleColor
 from . setMat_simplicialComplex import setMat_simplicialComplex
